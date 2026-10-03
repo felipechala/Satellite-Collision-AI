@@ -1,3 +1,21 @@
+"""Quantile regression heads: small PyTorch neural networks trained with pinball loss.
+
+These heads were originally LightGBM gradient-boosted trees; they are now MLPs with the
+same fit/predict/save/load contract. One network per head predicts the p10/p50/p90
+jointly. Preprocessing the trees got for free lives inside the head: numeric features
+are standardized with NaN -> 0 plus a missing indicator per column, and categorical
+codes are one-hot encoded with an explicit missing/unseen bucket.
+
+Monotone constraints (MONOTONE) are enforced by construction rather than post hoc: the
+constrained feature bypasses the trunk through an additive non-decreasing path (a sum
+of positive-weight ReLU ramps), so every prediction is monotone in that feature. The
+trade-off versus the trees' threshold envelope is that the constrained feature cannot
+interact with other features, which matches how the DebriSat rule is stated: the
+correction may only move one way.
+
+Everything runs in float64 on CPU, full-batch, with seeded initialization, so training
+and prediction are deterministic. Weights persist as .npz (plain arrays, no pickle).
+"""
 from __future__ import annotations
 
 import math
@@ -5,117 +23,199 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
-import lightgbm as lgb
 import numpy as np
+import torch
 from sklearn.model_selection import GroupKFold
 
 from .features import CATEGORICAL_INDEX, FEATURE_COLUMNS
 
 QUANTILES = (0.1, 0.5, 0.9)
 BAND_COVERAGE = QUANTILES[2] - QUANTILES[0]
-NUM_BOOST_ROUND = 150
 
 # Construction effects that DebriSat says can only push a correction one way (+1 up, -1 down).
 MONOTONE: dict[str, dict[str, int]] = {"am_mu_shift": {"mli_fraction": 1}}
 
+# Small and heavily regularized: the training set is a few hundred events.
+HIDDEN = (16, 8)
+N_KNOTS = 8
+EPOCHS = 800
+LEARNING_RATE = 0.02
+WEIGHT_DECAY = 8e-3  # L2 on trunk weights only (plain Adam, not AdamW)
 
-def _params(alpha: float, seed: int) -> dict:
-    # Shallow, heavily regularized trees: the training set is a few hundred events.
-    return {
-        "objective": "quantile",
-        "alpha": alpha,
-        "learning_rate": 0.05,
-        "max_depth": 3,
-        "num_leaves": 7,
-        "min_data_in_leaf": 10,
-        "lambda_l2": 1.0,
-        "min_data_per_group": 10,
-        "cat_smooth": 10.0,
-        "cat_l2": 10.0,
-        "feature_pre_filter": False,
-        "deterministic": True,
-        "force_col_wise": True,
-        "num_threads": 1,
-        "seed": seed,
-        "verbose": -1,
-    }
+_WEIGHT_KEYS = ("W1", "b1", "W2", "b2", "W3", "b3", "Wm")
+
+
+class _MonotoneQuantileNet(torch.nn.Module):
+    """Trunk MLP plus the additive monotone ReLU-ramp path for one constrained feature."""
+
+    def __init__(self, d: int, mono_sign: float, seed: int = 0):
+        super().__init__()
+        g = torch.Generator().manual_seed(seed)
+        h1, h2 = HIDDEN
+
+        def he(fan_in: int, fan_out: int) -> torch.nn.Parameter:
+            w = torch.randn((fan_in, fan_out), generator=g, dtype=torch.float64)
+            return torch.nn.Parameter(w * math.sqrt(2.0 / fan_in))
+
+        self.W1, self.b1 = he(d, h1), torch.nn.Parameter(torch.zeros(h1, dtype=torch.float64))
+        self.W2, self.b2 = he(h1, h2), torch.nn.Parameter(torch.zeros(h2, dtype=torch.float64))
+        self.W3, self.b3 = he(h2, 3), torch.nn.Parameter(torch.zeros(3, dtype=torch.float64))
+        # softplus(-2) ~ 0.13 per knot: gentle initial slope on the monotone path
+        self.Wm = torch.nn.Parameter(torch.full((3, N_KNOTS), -2.0, dtype=torch.float64))
+        self.register_buffer("knots", torch.arange(N_KNOTS, dtype=torch.float64) / N_KNOTS)
+        self.mono_sign = float(mono_sign)
+
+    def forward(self, Z: torch.Tensor, t: torch.Tensor) -> torch.Tensor:
+        h1 = torch.relu(Z @ self.W1 + self.b1)
+        h2 = torch.relu(h1 @ self.W2 + self.b2)
+        out = h2 @ self.W3 + self.b3
+        # A missing monotone feature (NaN) contributes nothing to the ramp path.
+        ramps = torch.nan_to_num(torch.relu(t.unsqueeze(1) - self.knots), nan=0.0)
+        return out + self.mono_sign * ramps @ torch.nn.functional.softplus(self.Wm).T
+
+
+def _transform(p: dict, X) -> tuple[np.ndarray, np.ndarray]:
+    """X (n, F) with NaNs -> trunk input Z (n, d) and scaled monotone feature t (n,)."""
+    X = np.asarray(X, dtype=float)
+    xn = X[:, p["trunk_num_idx"]]
+    missing = np.isnan(xn)
+    z = (xn - p["num_mean"]) / p["num_std"]
+    z[missing] = 0.0
+    parts = [z, missing.astype(float)]
+    for j, card in zip(p["cat_idx"], p["cat_card"]):
+        c = X[:, j]
+        code = np.where(np.isfinite(c) & (c >= 0) & (c < card), c, card).astype(int)
+        parts.append(np.eye(int(card) + 1)[code])
+    mono_idx = int(p["mono_idx"])
+    if mono_idx >= 0:
+        t_raw = X[:, mono_idx]
+        parts.append(np.isnan(t_raw).astype(float)[:, None])
+        t = (t_raw - p["mono_lo"]) / (p["mono_hi"] - p["mono_lo"])
+    else:
+        t = np.full(X.shape[0], np.nan)
+    return np.concatenate(parts, axis=1), t
 
 
 class QuantileHead:
-    """Three LightGBM regressors predicting the p10, p50 and p90 of one label.
+    """One PyTorch MLP predicting the p10, p50 and p90 of a label.
 
-    LightGBM refuses monotone constraints with the quantile objective, so monotonicity is
-    enforced at prediction time instead: each tree ensemble is piecewise constant in a feature
-    between its split thresholds, so a running max (or min) over one point per threshold
-    interval yields the tightest monotone function that matches the model wherever the model
-    is already monotone.
+    Inputs may contain NaN anywhere; the stored preprocessing handles it. Training is
+    full-batch Adam on mean pinball loss, deterministic for a given seed.
     """
 
-    def __init__(self, boosters: list[lgb.Booster], monotone: Optional[dict[str, int]] = None):
-        self.boosters = boosters
-        self.monotone = {f: s for f, s in (monotone or {}).items() if s}
-        self._thresholds = {f: self._split_thresholds(f) for f in self.monotone}
+    def __init__(self, params: dict, monotone: Optional[dict[str, int]] = None):
+        # monotone is kept for signature compatibility; the constraint is baked into
+        # the parameters at fit time and reloaded from them.
+        self.p = {k: np.asarray(v) for k, v in params.items() if k not in _WEIGHT_KEYS}
+        self.net = _MonotoneQuantileNet(int(np.asarray(params["W1"]).shape[0]),
+                                        float(self.p["mono_sign"]))
+        with torch.no_grad():
+            for k in _WEIGHT_KEYS:
+                getattr(self.net, k).copy_(torch.as_tensor(np.asarray(params[k]),
+                                                           dtype=torch.float64))
+        self.net.eval()
 
-    def _split_thresholds(self, feature: str) -> np.ndarray:
-        found: set[float] = set()
-        for b in self.boosters:
-            df = b.trees_to_dataframe()
-            found.update(df.loc[df["split_feature"] == feature, "threshold"].dropna().astype(float))
-        return np.array(sorted(found))
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        """Quantile predictions in training space, shape (n, 3)."""
+        Z, t = _transform(self.p, X)
+        with torch.no_grad():
+            return self.net(torch.from_numpy(Z), torch.from_numpy(t)).numpy()
+
+    def _raw(self, X: np.ndarray) -> np.ndarray:
+        """Identical to predict: the network is monotone by construction, so there is
+        no separate unconstrained model (kept for the previous API's callers/tests)."""
+        return self.predict(X)
+
+    # ---------- training ----------
 
     @classmethod
     def fit(cls, X: np.ndarray, y: np.ndarray, monotone: Optional[dict[str, int]] = None,
             seed: int = 0) -> "QuantileHead":
-        boosters = []
-        for q in QUANTILES:
-            ds = lgb.Dataset(X, label=y, feature_name=FEATURE_COLUMNS,
-                             categorical_feature=CATEGORICAL_INDEX, free_raw_data=False)
-            boosters.append(lgb.train(_params(q, seed), ds, num_boost_round=NUM_BOOST_ROUND))
-        return cls(boosters, monotone)
+        X = np.asarray(X, dtype=float)
+        y = np.asarray(y, dtype=float)
 
-    def _raw(self, X: np.ndarray) -> np.ndarray:
-        return np.column_stack([b.predict(X, num_threads=1) for b in self.boosters])
+        mono = {f: s for f, s in (monotone or {}).items() if s}
+        if len(mono) > 1:
+            raise ValueError("at most one monotone feature is supported")
+        mono_name, mono_sign = next(iter(mono.items())) if mono else (None, 0)
+        mono_idx = FEATURE_COLUMNS.index(mono_name) if mono_name else -1
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
-        """Quantile predictions in training space, shape (n, 3)."""
-        out = self._raw(X)
-        for feature, sign in self.monotone.items():
-            ts = self._thresholds[feature]
-            if len(ts) == 0:
-                continue
-            j = FEATURE_COLUMNS.index(feature)
-            x = X[:, j]
-            known = np.flatnonzero(~np.isnan(x))
-            if len(known) == 0:
-                continue
-            # One representative per interval (-inf, t0], (t0, t1], ..., (t_last, inf).
-            reps = np.append(ts, ts[-1] + 1.0)
-            interval = np.searchsorted(ts, x[known], side="left")
-            grid = np.repeat(X[known], len(reps), axis=0)
-            grid[:, j] = np.tile(reps, len(known))
-            preds = self._raw(grid).reshape(len(known), len(reps), 3)
-            # Only intervals at or below each row's own interval may raise (or lower) it.
-            later = np.arange(len(reps))[None, :] > interval[:, None]
-            if sign > 0:
-                preds[later] = -np.inf
-                out[known] = preds.max(axis=1)
-            else:
-                preds[later] = np.inf
-                out[known] = preds.min(axis=1)
-        return out
+        num_idx = [j for j in range(len(FEATURE_COLUMNS))
+                   if j not in CATEGORICAL_INDEX and j != mono_idx]
+        p: dict = {
+            "trunk_num_idx": np.array(num_idx, dtype=int),
+            "cat_idx": np.array(CATEGORICAL_INDEX, dtype=int),
+            "mono_idx": mono_idx,
+            "mono_sign": float(mono_sign),
+        }
+
+        xn = X[:, num_idx]
+        finite = np.isfinite(xn)
+        cnt = np.maximum(finite.sum(axis=0), 1)
+        mean = np.where(finite, xn, 0.0).sum(axis=0) / cnt
+        std = np.sqrt((np.where(finite, xn - mean, 0.0) ** 2).sum(axis=0) / cnt)
+        p["num_mean"] = mean
+        p["num_std"] = np.where(std > 1e-6, std, 1.0)
+
+        cards = []
+        for j in CATEGORICAL_INDEX:
+            c = X[:, j]
+            vals = c[np.isfinite(c)]
+            cards.append(int(vals.max()) + 1 if vals.size else 0)
+        p["cat_card"] = np.array(cards, dtype=int)
+
+        if mono_idx >= 0:
+            tv = X[:, mono_idx]
+            vals = tv[np.isfinite(tv)]
+            lo = float(vals.min()) if vals.size else 0.0
+            hi = float(vals.max()) if vals.size else 1.0
+            p["mono_lo"], p["mono_hi"] = lo, (hi if hi > lo else lo + 1.0)
+        else:
+            p["mono_lo"], p["mono_hi"] = 0.0, 1.0
+
+        Z, t = _transform(p, X)
+        net = _MonotoneQuantileNet(Z.shape[1], mono_sign, seed)
+        with torch.no_grad():
+            net.b3.fill_(float(np.median(y)))
+        cls._train(net, Z, t, y)
+        weights = {k: getattr(net, k).detach().numpy() for k in _WEIGHT_KEYS}
+        return cls({**p, **weights})
+
+    @staticmethod
+    def _train(net: _MonotoneQuantileNet, Z: np.ndarray, t: np.ndarray, y: np.ndarray) -> None:
+        Zt = torch.from_numpy(Z)
+        tt = torch.from_numpy(t)
+        yt = torch.from_numpy(y).unsqueeze(1)
+        q = torch.tensor(QUANTILES, dtype=torch.float64)
+        optimizer = torch.optim.Adam(
+            [{"params": [net.W1, net.W2, net.W3], "weight_decay": WEIGHT_DECAY},
+             {"params": [net.b1, net.b2, net.b3, net.Wm], "weight_decay": 0.0}],
+            lr=LEARNING_RATE,
+        )
+        net.train()
+        for _ in range(EPOCHS):
+            optimizer.zero_grad()
+            diff = yt - net(Zt, tt)
+            loss = torch.maximum(q * diff, (q - 1.0) * diff).mean()
+            loss.backward()
+            optimizer.step()
+        net.eval()
+
+    # ---------- persistence ----------
 
     @staticmethod
     def paths(directory: Path, name: str) -> list[Path]:
-        return [directory / f"{name}_p{round(q * 100)}.txt" for q in QUANTILES]
+        return [directory / f"{name}.npz"]
 
     def save(self, directory: Path, name: str) -> None:
         directory.mkdir(parents=True, exist_ok=True)
-        for b, p in zip(self.boosters, self.paths(directory, name)):
-            b.save_model(str(p))
+        weights = {k: getattr(self.net, k).detach().numpy() for k in _WEIGHT_KEYS}
+        np.savez(self.paths(directory, name)[0], **self.p, **weights)
 
     @classmethod
     def load(cls, directory: Path, name: str, monotone: Optional[dict[str, int]] = None) -> "QuantileHead":
-        return cls([lgb.Booster(model_file=str(p)) for p in cls.paths(directory, name)], monotone)
+        with np.load(cls.paths(directory, name)[0]) as data:
+            return cls({k: data[k] for k in data.files}, monotone)
 
 
 def pinball_loss(y: np.ndarray, pred: np.ndarray) -> float:
