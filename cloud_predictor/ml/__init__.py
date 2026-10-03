@@ -1,4 +1,3 @@
-from .estimator import BreakupParameterEstimator
 from .schema import Band, BreakupEvent, BreakupParameters, Impactor, Spacecraft
 
 __all__ = [
@@ -9,3 +8,11 @@ __all__ = [
     "Impactor",
     "Spacecraft",
 ]
+
+
+def __getattr__(name):
+    # Lazy so that numpy-only consumers (engine/) don't need lightgbm installed.
+    if name == "BreakupParameterEstimator":
+        from .estimator import BreakupParameterEstimator
+        return BreakupParameterEstimator
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
