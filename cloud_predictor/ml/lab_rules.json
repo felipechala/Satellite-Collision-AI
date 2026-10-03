@@ -1,0 +1,29 @@
+{
+  "_comment": "DebriSat lab rules by target structure_material. slope_delta steepens the power law below 10 cm; am_mu_shift_lab is added to the learned am_mu_shift. Non-aluminum values are provisional placeholders (neutral) until filled from the DebriSat papers; set provisional to false and cite the source when you fill one.",
+  "materials": {
+    "aluminum": {
+      "slope_delta": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "provisional": false,
+      "source": "Neutral by definition: the SBM is calibrated on aluminum construction."
+    },
+    "cfrp": {
+      "slope_delta": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "provisional": true,
+      "source": ""
+    },
+    "mixed": {
+      "slope_delta": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "provisional": true,
+      "source": ""
+    },
+    "unknown": {
+      "slope_delta": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "provisional": true,
+      "source": ""
+    }
+  }
+}
