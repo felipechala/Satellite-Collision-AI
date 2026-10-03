@@ -1,0 +1,13 @@
+discos_event_id,target_satno,impactor_mass_kg,impactor_v_rel_km_s,impactor_material,source
+224,22675,,11.7,,"Iridium 33 / Cosmos 2251. Impactor mass taken from the DISCOS Iridium 33 object. v_rel: NASA Orbital Debris Quarterly News 13(2), Apr 2009"
+182,,600,9.0,,"Fengyun-1C ASAT. KKV mass ~600 kg: Secure World Foundation Chinese ASAT fact sheet (2012). v_rel ~9 km/s: Pardini & Anselmo (2007/2009); estimates range 8-9.4"
+217,,20,9.8,,"USA 193 / SM-3 LEAP kinetic warhead. CelesTrak USA-193 post-shootdown analysis"
+111,,14,6.7,,"Solwind P78-1 / ASM-135 Miniature Homing Vehicle (14 kg, 24,000 km/h closing)"
+650,,,10.0,,"Microsat-R / Mission Shakti. v_rel ~10 km/s (DRDO). TODO: interceptor mass not published"
+861,,,,,"Cosmos 1408 / Nudol. TODO: interceptor mass and v_rel not public; LeoLabs suggests < 6 km/s"
+5,,,,,"USA 19 deliberately collided with its Delta 180 stage (both objects in DISCOS). TODO: v_rel"
+164,,,,,"Cosmos 1934 struck by Cosmos 926 debris. TODO: impactor mass and v_rel"
+244,,,,,"Cerise struck by an Ariane 1 fragment. TODO: impactor mass and v_rel"
+163,,,,,"Thor Burner IIA stage struck by CZ-4 debris. TODO: impactor mass and v_rel"
+355,,,,,"Ayame 1 contact with its own stage. TODO: impactor mass and v_rel"
+784,,,,,"Yunhai 1-02 struck by Zenit-2 debris (48078). TODO: impactor mass and v_rel"

@@ -1,0 +1,4 @@
+# Hand-curated spacecraft facts; they win over Gunter and DISCOS. One row per (norad_id, field).
+# field is any key of ml.data.SPEC_FIELDS except norad_id, e.g. structure_material (aluminum|cfrp|mixed),
+# solar_array_area_m2, mli_fraction, propellant_mass_kg, dry_mass_kg, bus_family. Always cite a source.
+norad_id,field,value,source
