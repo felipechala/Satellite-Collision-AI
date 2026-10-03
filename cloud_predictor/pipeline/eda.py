@@ -230,8 +230,8 @@ def report(data_dir: Path, out: Path, as_of: datetime) -> str:
 
     L += ["## Spec field coverage", "",
           "Share of valid events whose parent record has the field. Missing values are imputed by the model "
-          "(LightGBM handles NaN); a parent with no construction info at all (material, panels, volume, MLI, "
-          "bus family) gets the neutral fallback band.", ""]
+          "(the neural net heads carry missing indicators and a missing bucket per categorical); a parent with "
+          "no construction info at all (material, panels, volume, MLI, bus family) gets the neutral fallback band.", ""]
     targets = specs.set_index("norad_id").reindex(df["norad_id"].unique())
     cov = pd.DataFrame({"field": SPEC_COLUMNS,
                         "coverage": [targets[c].notna().mean() if c in targets else 0.0 for c in SPEC_COLUMNS]})

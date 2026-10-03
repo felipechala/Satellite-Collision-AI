@@ -23,7 +23,7 @@ As of 2026-10-03, data from `D:\CodeProjects\Satellite-Collision-AI\cloud_predic
 
 ## Spec field coverage
 
-Share of valid events whose parent record has the field. Missing values are imputed by the model (LightGBM handles NaN); a parent with no construction info at all (material, panels, volume, MLI, bus family) gets the neutral fallback band.
+Share of valid events whose parent record has the field. Missing values are imputed by the model (the neural net heads carry missing indicators and a missing bucket per categorical); a parent with no construction info at all (material, panels, volume, MLI, bus family) gets the neutral fallback band.
 
 | field | coverage |
 | --- | --- |

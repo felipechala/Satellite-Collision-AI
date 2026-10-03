@@ -22,7 +22,7 @@ from .schema import (
     validate,
 )
 
-MANIFEST_FORMAT = 1
+MANIFEST_FORMAT = 2  # bumped when the heads became neural networks (.npz, not LightGBM)
 OUTPUT_DECIMALS = 6
 
 
