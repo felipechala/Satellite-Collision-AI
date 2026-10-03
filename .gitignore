@@ -40,6 +40,12 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# Raw downloads (Space-Track / DISCOS / Gunter caches; DISCOS terms restrict redistribution)
+cloud_predictor/data/raw/
+
+# Trained model artifacts
+cloud_predictor/models/
+
 # Environment variables
 .env
 .env.local

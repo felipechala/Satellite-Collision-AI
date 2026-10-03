@@ -23,7 +23,10 @@ NEUTRAL: dict[str, float] = {
 }
 
 BOUNDS: dict[str, tuple[float, float]] = {
-    "n_multiplier": (0.2, 5.0),
+    # The SBM explosion law (S = 1) is fitted to large upper-stage explosions; most cataloged
+    # explosions are far smaller (DISCOS median: 7 pieces >= 10 cm vs 239 predicted, single-piece
+    # events at 0.004x). The floor must sit below that or every explosion prediction clips.
+    "n_multiplier": (0.003, 5.0),
     "slope_delta": (-0.5, 0.5),
     "am_mu_shift": (-0.5, 0.5),
     "am_sigma_scale": (0.5, 2.0),
