@@ -11,7 +11,7 @@ __all__ = [
 
 
 def __getattr__(name):
-    # Lazy so that numpy-only consumers (engine/) don't need lightgbm installed.
+    # Lazy so that numpy-only consumers (engine/) don't need sklearn/pandas installed.
     if name == "BreakupParameterEstimator":
         from .estimator import BreakupParameterEstimator
         return BreakupParameterEstimator
