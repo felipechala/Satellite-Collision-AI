@@ -1,0 +1,3603 @@
+[
+ {
+  "norad_id": 118,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 445.99,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1961,
+  "bus_family": "Able-Star"
+ },
+ {
+  "norad_id": 443,
+  "object_class": "payload",
+  "dry_mass_kg": 887.02,
+  "bus_volume_m3": 3.0411,
+  "launch_year": 1962,
+  "bus_family": "Sputnik"
+ },
+ {
+  "norad_id": 694,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4443.0,
+  "bus_volume_m3": 64.8345,
+  "launch_year": 1963,
+  "bus_family": "CENTAUR C"
+ },
+ {
+  "norad_id": 746,
+  "object_class": "payload",
+  "dry_mass_kg": 326.07,
+  "bus_volume_m3": 0.4977,
+  "launch_year": 1964,
+  "bus_family": "elektron-1"
+ },
+ {
+  "norad_id": 869,
+  "object_class": "payload",
+  "dry_mass_kg": 1650.0,
+  "bus_volume_m3": 6.7733,
+  "launch_year": 1964,
+  "bus_family": "KAUR-2"
+ },
+ {
+  "norad_id": 871,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 23.79,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1964,
+  "bus_family": "Altair"
+ },
+ {
+  "norad_id": 919,
+  "object_class": "payload",
+  "dry_mass_kg": 4707.63,
+  "bus_volume_m3": 19.4527,
+  "launch_year": 1964,
+  "bus_family": "Zenit"
+ },
+ {
+  "norad_id": 1093,
+  "object_class": "payload",
+  "dry_mass_kg": 5685.0,
+  "bus_volume_m3": 27.0981,
+  "launch_year": 1965,
+  "bus_family": "Vostok / Zenit"
+ },
+ {
+  "norad_id": 1270,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1434.0,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1965,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 1502,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 47.0,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1965,
+  "bus_family": "Altair"
+ },
+ {
+  "norad_id": 1706,
+  "object_class": "payload",
+  "dry_mass_kg": 240.0,
+  "launch_year": 1965,
+  "bus_family": "DS"
+ },
+ {
+  "norad_id": 1729,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 60.0,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1965,
+  "bus_family": "FW-4D"
+ },
+ {
+  "norad_id": 1815,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 33.0,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1965,
+  "bus_family": "Altair"
+ },
+ {
+  "norad_id": 1822,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1950.0,
+  "bus_volume_m3": 34.7193,
+  "launch_year": 1965,
+  "bus_family": "Titan Transtage"
+ },
+ {
+  "norad_id": 1863,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1486.62,
+  "bus_volume_m3": 34.7193,
+  "launch_year": 1965,
+  "bus_family": "Titan Transtage"
+ },
+ {
+  "norad_id": 2015,
+  "object_class": "payload",
+  "dry_mass_kg": 4.0,
+  "launch_year": 1966,
+  "bus_family": "bluebell-2s"
+ },
+ {
+  "norad_id": 2176,
+  "object_class": "payload",
+  "dry_mass_kg": 50.8,
+  "bus_volume_m3": 0.0417,
+  "launch_year": 1966,
+  "bus_family": "Transit"
+ },
+ {
+  "norad_id": 2188,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3291.0,
+  "bus_volume_m3": 377.1482,
+  "launch_year": 1966,
+  "bus_family": "ATLAS MA-5"
+ },
+ {
+  "norad_id": 2253,
+  "object_class": "payload",
+  "dry_mass_kg": 67.0,
+  "bus_volume_m3": 14782.9298,
+  "launch_year": 1966,
+  "bus_family": "pageos"
+ },
+ {
+  "norad_id": 2289,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 13200.0,
+  "bus_volume_m3": 608.9726,
+  "launch_year": 1966,
+  "bus_family": "Saturn IVB"
+ },
+ {
+  "norad_id": 2437,
+  "object_class": "payload",
+  "dry_mass_kg": 1450.0,
+  "launch_year": 1966,
+  "bus_family": "Cosmos U"
+ },
+ {
+  "norad_id": 2543,
+  "object_class": "payload",
+  "dry_mass_kg": 1450.0,
+  "launch_year": 1966,
+  "bus_family": "Cosmos U-2 warhead(OGCh)"
+ },
+ {
+  "norad_id": 2643,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 34.0,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1967,
+  "bus_family": "FW-4D"
+ },
+ {
+  "norad_id": 2801,
+  "object_class": "payload",
+  "dry_mass_kg": 800.0,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1967,
+  "bus_family": "zaliv-gvm"
+ },
+ {
+  "norad_id": 3021,
+  "object_class": "payload",
+  "dry_mass_kg": 400.0,
+  "bus_volume_m3": 1.9635,
+  "launch_year": 1967,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 3094,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 40.0,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1968,
+  "bus_family": "FW-4D"
+ },
+ {
+  "norad_id": 3099,
+  "object_class": "payload",
+  "dry_mass_kg": 2477.7,
+  "launch_year": 1968,
+  "bus_family": "Cosmos-199 equipment bay"
+ },
+ {
+  "norad_id": 3100,
+  "object_class": "payload",
+  "dry_mass_kg": 434.0,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1968,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 3129,
+  "object_class": "payload",
+  "dry_mass_kg": 800.0,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1968,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 3171,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 13300.0,
+  "bus_volume_m3": 608.6305,
+  "launch_year": 1968,
+  "bus_family": "Saturn IVB"
+ },
+ {
+  "norad_id": 3315,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 70.0,
+  "launch_year": 1968,
+  "bus_family": "Star 37D"
+ },
+ {
+  "norad_id": 3432,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1950.0,
+  "bus_volume_m3": 34.7193,
+  "launch_year": 1968,
+  "bus_family": "Transtage"
+ },
+ {
+  "norad_id": 3503,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1968,
+  "bus_family": "i2m"
+ },
+ {
+  "norad_id": 3504,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 7.0686,
+  "launch_year": 1968,
+  "bus_family": "i2p"
+ },
+ {
+  "norad_id": 3526,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1968,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 3530,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1968,
+  "bus_family": "i2p"
+ },
+ {
+  "norad_id": 3616,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 778.0,
+  "bus_volume_m3": 8.0048,
+  "launch_year": 1968,
+  "bus_family": "Delta E"
+ },
+ {
+  "norad_id": 3692,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1486.62,
+  "bus_volume_m3": 34.7193,
+  "launch_year": 1969,
+  "bus_family": "Transtage"
+ },
+ {
+  "norad_id": 3776,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1434.0,
+  "bus_volume_m3": 19.0004,
+  "launch_year": 1969,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 3818,
+  "object_class": "payload",
+  "dry_mass_kg": 644.2,
+  "launch_year": 1969,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 3836,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1440.0,
+  "bus_volume_m3": 20.1753,
+  "launch_year": 1969,
+  "bus_family": "Vostok 8A92M-2"
+ },
+ {
+  "norad_id": 4052,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 70.0,
+  "launch_year": 1969,
+  "bus_family": "Star 37D"
+ },
+ {
+  "norad_id": 4070,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 1.5708,
+  "launch_year": 1969,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 4159,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 600.0,
+  "bus_volume_m3": 11.133,
+  "launch_year": 1969,
+  "bus_family": "Agena D"
+ },
+ {
+  "norad_id": 4273,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1969,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 4367,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 600.0,
+  "bus_volume_m3": 11.133,
+  "launch_year": 1970,
+  "bus_family": "Agena D"
+ },
+ {
+  "norad_id": 4419,
+  "object_class": "payload",
+  "dry_mass_kg": 1280.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1970,
+  "bus_family": "meteor-1"
+ },
+ {
+  "norad_id": 4497,
+  "object_class": "payload",
+  "dry_mass_kg": 891.97,
+  "bus_volume_m3": 2.1551,
+  "launch_year": 1970,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 4594,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1970,
+  "bus_family": "i2p"
+ },
+ {
+  "norad_id": 4598,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1970,
+  "bus_family": "i2p"
+ },
+ {
+  "norad_id": 4783,
+  "object_class": "payload",
+  "dry_mass_kg": 693.76,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1970,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 4806,
+  "object_class": "payload",
+  "dry_mass_kg": 891.97,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1970,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 4922,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 2.1551,
+  "launch_year": 1971,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 4955,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1971,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 4964,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1971,
+  "bus_family": "i2p"
+ },
+ {
+  "norad_id": 5050,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 2.1551,
+  "launch_year": 1971,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 5106,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 40.0,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1971,
+  "bus_family": "FW-4D"
+ },
+ {
+  "norad_id": 5174,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1971,
+  "bus_family": "strela-2m"
+ },
+ {
+  "norad_id": 5253,
+  "object_class": "payload",
+  "dry_mass_kg": 862.24,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1971,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 5281,
+  "object_class": "payload",
+  "dry_mass_kg": 396.43,
+  "launch_year": 1971,
+  "bus_family": "DS"
+ },
+ {
+  "norad_id": 5461,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1971,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 5466,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1971,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 5625,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 2.1551,
+  "launch_year": 1971,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 5628,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1971,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 5643,
+  "object_class": "payload",
+  "dry_mass_kg": 673.93,
+  "bus_volume_m3": 2.6546,
+  "launch_year": 1971,
+  "bus_family": "DS"
+ },
+ {
+  "norad_id": 5646,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1971,
+  "bus_family": "i2p"
+ },
+ {
+  "norad_id": 5705,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1971,
+  "bus_family": "strela-2m"
+ },
+ {
+  "norad_id": 5729,
+  "object_class": "payload",
+  "dry_mass_kg": 396.43,
+  "launch_year": 1971,
+  "bus_family": "DS-U2"
+ },
+ {
+  "norad_id": 5731,
+  "object_class": "payload",
+  "dry_mass_kg": 1280.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1971,
+  "bus_family": "meteor-1"
+ },
+ {
+  "norad_id": 5894,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1972,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 6097,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1972,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 6127,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 800.0,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1972,
+  "bus_family": "DSV-3H-4"
+ },
+ {
+  "norad_id": 6148,
+  "object_class": "payload",
+  "dry_mass_kg": 693.76,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1972,
+  "bus_family": "zaliv-gvm"
+ },
+ {
+  "norad_id": 6206,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 2.1551,
+  "launch_year": 1972,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 6319,
+  "object_class": "payload",
+  "dry_mass_kg": 594.65,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1972,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 6343,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1973,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 6373,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1973,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 6399,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4185.0,
+  "bus_volume_m3": 87.9224,
+  "launch_year": 1973,
+  "bus_family": "Proton-K 8S812"
+ },
+ {
+  "norad_id": 6432,
+  "object_class": "payload",
+  "dry_mass_kg": 2310.0,
+  "bus_volume_m3": 29.3601,
+  "launch_year": 1973,
+  "bus_family": "Zenit"
+ },
+ {
+  "norad_id": 6921,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 845.0,
+  "bus_volume_m3": 7.8697,
+  "launch_year": 1973,
+  "bus_family": "DSV-3H-4"
+ },
+ {
+  "norad_id": 6950,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1973,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 7109,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1974,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 7219,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 115.0,
+  "bus_volume_m3": 0.0335,
+  "launch_year": 1974,
+  "bus_family": "Star 26B"
+ },
+ {
+  "norad_id": 7299,
+  "object_class": "payload",
+  "dry_mass_kg": 545.09,
+  "launch_year": 1974,
+  "bus_family": "DS-U3"
+ },
+ {
+  "norad_id": 7306,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1974,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 7433,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1974,
+  "bus_family": "strela-2m"
+ },
+ {
+  "norad_id": 7532,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 845.0,
+  "bus_volume_m3": 9.2363,
+  "launch_year": 1974,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 7576,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1974,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 7587,
+  "object_class": "payload",
+  "dry_mass_kg": 2973.24,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1974,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 7616,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 845.0,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1975,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 7735,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 346.88,
+  "bus_volume_m3": 9.8366,
+  "launch_year": 1975,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 7753,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1434.0,
+  "bus_volume_m3": 19.0004,
+  "launch_year": 1975,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 7946,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 845.0,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1975,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 8009,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1975,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 8191,
+  "object_class": "payload",
+  "dry_mass_kg": 6640.24,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1975,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 8416,
+  "object_class": "payload",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1975,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 8444,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1975,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 8471,
+  "object_class": "payload",
+  "dry_mass_kg": 545.09,
+  "launch_year": 1975,
+  "bus_family": "DS-U2"
+ },
+ {
+  "norad_id": 8530,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1976,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 8751,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1486.62,
+  "bus_volume_m3": 34.7193,
+  "launch_year": 1976,
+  "bus_family": "Transtage"
+ },
+ {
+  "norad_id": 8794,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1976,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 8932,
+  "object_class": "payload",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1976,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 9011,
+  "object_class": "payload",
+  "dry_mass_kg": 650.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1976,
+  "bus_family": "Cosmos"
+ },
+ {
+  "norad_id": 9046,
+  "object_class": "payload",
+  "dry_mass_kg": 2886.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1976,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 9053,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1976,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 9063,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 845.0,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1976,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 9495,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1976,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 9573,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1976,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 9601,
+  "object_class": "payload",
+  "dry_mass_kg": 650.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1976,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 9614,
+  "object_class": "payload",
+  "dry_mass_kg": 6010.0,
+  "bus_volume_m3": 29.3601,
+  "launch_year": 1976,
+  "bus_family": "Zenit"
+ },
+ {
+  "norad_id": 9634,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1976,
+  "bus_family": "is-a"
+ },
+ {
+  "norad_id": 9833,
+  "object_class": "payload",
+  "dry_mass_kg": 2725.47,
+  "bus_volume_m3": 9.5002,
+  "launch_year": 1977,
+  "bus_family": "ds-u2-ik-gvm"
+ },
+ {
+  "norad_id": 9883,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1977,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 9911,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1977,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 10010,
+  "object_class": "payload",
+  "dry_mass_kg": 624.38,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1977,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 10059,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1977,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 10129,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1977,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 10144,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 346.88,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1977,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 10150,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1977,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 10365,
+  "object_class": "payload",
+  "dry_mass_kg": 1850.0,
+  "bus_volume_m3": 26.9981,
+  "launch_year": 1977,
+  "bus_family": "KAUR-3"
+ },
+ {
+  "norad_id": 10531,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 39.2208,
+  "launch_year": 1977,
+  "bus_family": "is-a"
+ },
+ {
+  "norad_id": 10599,
+  "object_class": "payload",
+  "dry_mass_kg": 802.78,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1978,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 10704,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 346.88,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1978,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 10898,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1978,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 10970,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1978,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 11015,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1978,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 11060,
+  "object_class": "payload",
+  "dry_mass_kg": 727.45,
+  "bus_volume_m3": 10.2986,
+  "launch_year": 1978,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 11081,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 934.0,
+  "bus_volume_m3": 7.389,
+  "launch_year": 1978,
+  "bus_family": "DELTA P"
+ },
+ {
+  "norad_id": 11087,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1978,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 11150,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1978,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 11261,
+  "object_class": "payload",
+  "dry_mass_kg": 260.0,
+  "bus_volume_m3": 3.0788,
+  "launch_year": 1979,
+  "bus_family": "ecs-a"
+ },
+ {
+  "norad_id": 11278,
+  "object_class": "payload",
+  "dry_mass_kg": 875.0,
+  "bus_volume_m3": 7.2331,
+  "launch_year": 1979,
+  "bus_family": "solwind"
+ },
+ {
+  "norad_id": 11333,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1979,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 11416,
+  "object_class": "payload",
+  "dry_mass_kg": 716.55,
+  "bus_volume_m3": 10.2986,
+  "launch_year": 1979,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 11417,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1979,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 11509,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1979,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 11561,
+  "object_class": "payload",
+  "dry_mass_kg": 1952.43,
+  "bus_volume_m3": 26.9981,
+  "launch_year": 1979,
+  "bus_family": "KAUR-3"
+ },
+ {
+  "norad_id": 11605,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1979,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 11635,
+  "object_class": "payload",
+  "dry_mass_kg": 458.87,
+  "launch_year": 1979,
+  "bus_family": "AS-3000"
+ },
+ {
+  "norad_id": 11659,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1318.14,
+  "bus_volume_m3": 45.6068,
+  "launch_year": 1979,
+  "bus_family": "H8"
+ },
+ {
+  "norad_id": 11715,
+  "object_class": "payload",
+  "dry_mass_kg": 128.84,
+  "bus_volume_m3": 3.0788,
+  "launch_year": 1980,
+  "bus_family": "ecs-a"
+ },
+ {
+  "norad_id": 11729,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1980,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 11750,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1980,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 11765,
+  "object_class": "payload",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1980,
+  "bus_family": "is-a"
+ },
+ {
+  "norad_id": 11844,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1980,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 11871,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1980,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 11962,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1980,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 12016,
+  "object_class": "payload",
+  "dry_mass_kg": 867.2,
+  "bus_volume_m3": 5.768,
+  "launch_year": 1980,
+  "bus_family": "tselina-o"
+ },
+ {
+  "norad_id": 12032,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1980,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 12054,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1980,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 12149,
+  "object_class": "payload",
+  "dry_mass_kg": 1045.0,
+  "bus_volume_m3": 6.3617,
+  "launch_year": 1981,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 12303,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1981,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 12364,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1981,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 12376,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1981,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 12456,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1981,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 12504,
+  "object_class": "payload",
+  "dry_mass_kg": 800.0,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1981,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 12547,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1981,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 12553,
+  "object_class": "payload",
+  "dry_mass_kg": 716.55,
+  "bus_volume_m3": 10.2986,
+  "launch_year": 1981,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 12627,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1981,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 12631,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1981,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 12827,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1720.0,
+  "bus_volume_m3": 12.0242,
+  "launch_year": 1981,
+  "bus_family": "Blok-ML"
+ },
+ {
+  "norad_id": 12828,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1981,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 12933,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1981,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 13003,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1421.21,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1981,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 13027,
+  "object_class": "payload",
+  "dry_mass_kg": 743.31,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1982,
+  "bus_family": "strela-2m"
+ },
+ {
+  "norad_id": 13080,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1982,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 13113,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1982,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 13124,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1982,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 13150,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1982,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 13259,
+  "object_class": "payload",
+  "dry_mass_kg": 650.0,
+  "bus_volume_m3": 12.5664,
+  "launch_year": 1982,
+  "bus_family": "ds-p1-m"
+ },
+ {
+  "norad_id": 13295,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1982,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 13508,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1982,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 13552,
+  "object_class": "payload",
+  "dry_mass_kg": 2180.38,
+  "bus_volume_m3": 4.5804,
+  "launch_year": 1982,
+  "bus_family": "tselina-d"
+ },
+ {
+  "norad_id": 13554,
+  "object_class": "payload",
+  "dry_mass_kg": 1952.43,
+  "bus_volume_m3": 26.9981,
+  "launch_year": 1982,
+  "bus_family": "KAUR-3"
+ },
+ {
+  "norad_id": 13585,
+  "object_class": "payload",
+  "dry_mass_kg": 1238.85,
+  "launch_year": 1982,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 13696,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1720.0,
+  "bus_volume_m3": 17.3567,
+  "launch_year": 1982,
+  "bus_family": "Blok-ML"
+ },
+ {
+  "norad_id": 13718,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1982,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 13736,
+  "object_class": "payload",
+  "dry_mass_kg": 744.3,
+  "bus_volume_m3": 12.1933,
+  "launch_year": 1982,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 13758,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1421.21,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1983,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 13902,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1983,
+  "bus_family": "Proton-K/D-1 ullage motor"
+ },
+ {
+  "norad_id": 13923,
+  "object_class": "payload",
+  "dry_mass_kg": 1712.0,
+  "bus_volume_m3": 11.7143,
+  "launch_year": 1983,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 14034,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1983,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 14064,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1983,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 14130,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1318.14,
+  "bus_volume_m3": 53.6238,
+  "launch_year": 1983,
+  "bus_family": "H8"
+ },
+ {
+  "norad_id": 14182,
+  "object_class": "payload",
+  "dry_mass_kg": 1150.0,
+  "launch_year": 1983,
+  "bus_family": "us-k"
+ },
+ {
+  "norad_id": 14190,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 150.0,
+  "launch_year": 1983,
+  "bus_family": "STAR 48B cyl"
+ },
+ {
+  "norad_id": 14207,
+  "object_class": "payload",
+  "dry_mass_kg": 2477.7,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1983,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 14423,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1318.14,
+  "bus_volume_m3": 48.3146,
+  "launch_year": 1983,
+  "bus_family": "H8"
+ },
+ {
+  "norad_id": 14452,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1983,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 14506,
+  "object_class": "payload",
+  "dry_mass_kg": 744.3,
+  "bus_volume_m3": 12.1933,
+  "launch_year": 1983,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 14607,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1983,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 14608,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1983,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 14689,
+  "object_class": "payload",
+  "dry_mass_kg": 90.19,
+  "launch_year": 1984,
+  "bus_family": "irt"
+ },
+ {
+  "norad_id": 14693,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 203.17,
+  "launch_year": 1984,
+  "bus_family": "PAM-D"
+ },
+ {
+  "norad_id": 14694,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 203.17,
+  "launch_year": 1984,
+  "bus_family": "PAM-D"
+ },
+ {
+  "norad_id": 14787,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1318.14,
+  "bus_volume_m3": 48.3146,
+  "launch_year": 1984,
+  "bus_family": "H8"
+ },
+ {
+  "norad_id": 15099,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1984,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 15165,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1984,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 15167,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1984,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 15338,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1984,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 15388,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1984,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 15516,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1985,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 15653,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1985,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 15714,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1985,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 15734,
+  "object_class": "payload",
+  "dry_mass_kg": 6600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1985,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 15773,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1985,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 15876,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1318.14,
+  "bus_volume_m3": 54.6857,
+  "launch_year": 1985,
+  "bus_family": "H8"
+ },
+ {
+  "norad_id": 16054,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1985,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 16139,
+  "object_class": "payload",
+  "dry_mass_kg": 222.99,
+  "bus_volume_m3": 0.8042,
+  "launch_year": 1985,
+  "bus_family": "strela-3"
+ },
+ {
+  "norad_id": 16191,
+  "object_class": "payload",
+  "dry_mass_kg": 1750.0,
+  "bus_volume_m3": 29.4053,
+  "launch_year": 1985,
+  "bus_family": "SP-2"
+ },
+ {
+  "norad_id": 16263,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1985,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 16439,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 8225.97,
+  "bus_volume_m3": 124.2374,
+  "launch_year": 1985,
+  "bus_family": "Zenit-2 second stage"
+ },
+ {
+  "norad_id": 16446,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1985,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 16528,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1982.16,
+  "bus_volume_m3": 29.7013,
+  "launch_year": 1986,
+  "bus_family": "H-8"
+ },
+ {
+  "norad_id": 16615,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1780.0,
+  "bus_volume_m3": 45.6068,
+  "launch_year": 1986,
+  "bus_family": "H8"
+ },
+ {
+  "norad_id": 16657,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1986,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 16895,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1986,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 16938,
+  "object_class": "payload",
+  "dry_mass_kg": 1370.0,
+  "bus_volume_m3": 4.5239,
+  "launch_year": 1986,
+  "bus_family": "Payload Assist System (PAS)"
+ },
+ {
+  "norad_id": 16969,
+  "object_class": "payload",
+  "dry_mass_kg": 1004.96,
+  "bus_volume_m3": 11.9082,
+  "launch_year": 1986,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 17066,
+  "object_class": "payload",
+  "dry_mass_kg": 802.78,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1986,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 17240,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1421.21,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1986,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 17290,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1987,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 17297,
+  "object_class": "payload",
+  "dry_mass_kg": 6300.0,
+  "bus_volume_m3": 29.3601,
+  "launch_year": 1987,
+  "bus_family": "Zenit"
+ },
+ {
+  "norad_id": 17535,
+  "object_class": "payload",
+  "dry_mass_kg": 1545.0,
+  "bus_volume_m3": 26.2386,
+  "launch_year": 1987,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 18123,
+  "object_class": "payload",
+  "dry_mass_kg": 815.66,
+  "bus_volume_m3": 12.1933,
+  "launch_year": 1987,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 18129,
+  "object_class": "payload",
+  "dry_mass_kg": 802.78,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1987,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 18184,
+  "object_class": "payload",
+  "dry_mass_kg": 6600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1987,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 18214,
+  "object_class": "payload",
+  "dry_mass_kg": 1936.0,
+  "launch_year": 1987,
+  "bus_family": "okean-o1"
+ },
+ {
+  "norad_id": 18313,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1987,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 18352,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1920.0,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1987,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 18363,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 23.79,
+  "bus_volume_m3": 0.2945,
+  "launch_year": 1987,
+  "bus_family": "Altair"
+ },
+ {
+  "norad_id": 18374,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1987,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 18375,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1987,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 18713,
+  "object_class": "payload",
+  "dry_mass_kg": 6450.0,
+  "bus_volume_m3": 29.3601,
+  "launch_year": 1987,
+  "bus_family": "Vostok / Zenit Capsule"
+ },
+ {
+  "norad_id": 18719,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1987,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 18820,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1988,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 18822,
+  "object_class": "payload",
+  "dry_mass_kg": 815.66,
+  "bus_volume_m3": 12.1933,
+  "launch_year": 1988,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 18823,
+  "object_class": "payload",
+  "dry_mass_kg": 6640.24,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1988,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 18953,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1988,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 18985,
+  "object_class": "payload",
+  "dry_mass_kg": 800.0,
+  "bus_volume_m3": 17.318,
+  "launch_year": 1988,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 19070,
+  "object_class": "payload",
+  "dry_mass_kg": 64.0,
+  "bus_volume_m3": 0.0417,
+  "launch_year": 1988,
+  "bus_family": "Transit"
+ },
+ {
+  "norad_id": 19122,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1988,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 19332,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1988,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 19485,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1988,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 19490,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1486.62,
+  "bus_volume_m3": 43.7639,
+  "launch_year": 1988,
+  "bus_family": "Titan 34D third stage"
+ },
+ {
+  "norad_id": 19531,
+  "object_class": "payload",
+  "dry_mass_kg": 1712.0,
+  "bus_volume_m3": 11.9082,
+  "launch_year": 1988,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 19535,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1988,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 19537,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1988,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 19622,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1988,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 19689,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1920.0,
+  "bus_volume_m3": 74.861,
+  "launch_year": 1988,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 19755,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1989,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 19771,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1989,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 19773,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1920.0,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1989,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 19856,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1989,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 19920,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1466.8,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1989,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 20081,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1989,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 20116,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1989,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 20123,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1820.0,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1989,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 20124,
+  "object_class": "payload",
+  "dry_mass_kg": 6600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1989,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 20136,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1989,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 20170,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1920.0,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1989,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 20262,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1387.51,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1989,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 20323,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 950.0,
+  "bus_volume_m3": 27.1434,
+  "launch_year": 1989,
+  "bus_family": "DELTA K"
+ },
+ {
+  "norad_id": 20344,
+  "object_class": "payload",
+  "dry_mass_kg": 3600.0,
+  "bus_volume_m3": 3.8485,
+  "launch_year": 1989,
+  "bus_family": "AKM"
+ },
+ {
+  "norad_id": 20390,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1387.51,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1989,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 20399,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1989,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 20509,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1421.21,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1990,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 20630,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1990,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 20631,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1990,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 20791,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1000.0,
+  "bus_volume_m3": 32.5768,
+  "launch_year": 1990,
+  "bus_family": "L-14"
+ },
+ {
+  "norad_id": 20828,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1990,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 20957,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1990,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 20978,
+  "object_class": "payload",
+  "dry_mass_kg": 1487.0,
+  "bus_volume_m3": 12.1933,
+  "launch_year": 1990,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 21012,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1990,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 21013,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1990,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 21057,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 74.861,
+  "launch_year": 1991,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 21087,
+  "object_class": "payload",
+  "dry_mass_kg": 802.78,
+  "bus_volume_m3": 6.5973,
+  "launch_year": 1991,
+  "bus_family": "KAUR-1"
+ },
+ {
+  "norad_id": 21108,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1434.0,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1991,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 21114,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1991,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 21141,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 74.861,
+  "launch_year": 1991,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 21220,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1991,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 21226,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1991,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 21263,
+  "object_class": "payload",
+  "dry_mass_kg": 728.44,
+  "bus_volume_m3": 10.4906,
+  "launch_year": 1991,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 21299,
+  "object_class": "payload",
+  "dry_mass_kg": 222.99,
+  "bus_volume_m3": 0.8042,
+  "launch_year": 1991,
+  "bus_family": "strela-3"
+ },
+ {
+  "norad_id": 21610,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1991,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 21640,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1243.81,
+  "bus_volume_m3": 12.9779,
+  "launch_year": 1991,
+  "bus_family": "IUS first stage"
+ },
+ {
+  "norad_id": 21656,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1387.51,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1991,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 21734,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1400.0,
+  "bus_volume_m3": 12.2145,
+  "launch_year": 1991,
+  "bus_family": "Tsyklon-3-3"
+ },
+ {
+  "norad_id": 21741,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1991,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 21744,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1421.21,
+  "bus_volume_m3": 29.722,
+  "launch_year": 1991,
+  "bus_family": "Cosmos 3 second stage"
+ },
+ {
+  "norad_id": 21766,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1920.0,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1991,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 21798,
+  "object_class": "payload",
+  "dry_mass_kg": 1487.0,
+  "bus_volume_m3": 3.8453,
+  "launch_year": 1991,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 21941,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2080.0,
+  "bus_volume_m3": 74.861,
+  "launch_year": 1992,
+  "bus_family": "H10+"
+ },
+ {
+  "norad_id": 22032,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1920.0,
+  "bus_volume_m3": 74.3301,
+  "launch_year": 1992,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 22066,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1992,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 22067,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1992,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 22079,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 64.2424,
+  "launch_year": 1992,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 22118,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 74.861,
+  "launch_year": 1992,
+  "bus_family": "H10+"
+ },
+ {
+  "norad_id": 22206,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 64.2424,
+  "launch_year": 1992,
+  "bus_family": "H10+"
+ },
+ {
+  "norad_id": 22250,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1992,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 22273,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1992,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 22274,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1992,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 22280,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1992,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 22285,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 8500.0,
+  "bus_volume_m3": 124.2374,
+  "launch_year": 1992,
+  "bus_family": "Zenit-2 second stage"
+ },
+ {
+  "norad_id": 22519,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 200.0,
+  "bus_volume_m3": 3.8485,
+  "launch_year": 1992,
+  "bus_family": "Boost motor"
+ },
+ {
+  "norad_id": 22566,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 8500.0,
+  "bus_volume_m3": 124.2374,
+  "launch_year": 1993,
+  "bus_family": "Zenit-2 second stage"
+ },
+ {
+  "norad_id": 22585,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1993,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 22641,
+  "object_class": "payload",
+  "dry_mass_kg": 6300.0,
+  "bus_volume_m3": 26.6457,
+  "launch_year": 1993,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 22675,
+  "object_class": "payload",
+  "dry_mass_kg": 900.0,
+  "bus_volume_m3": 9.4248,
+  "launch_year": 1993,
+  "bus_family": "strela-2m"
+ },
+ {
+  "norad_id": 22716,
+  "object_class": "payload",
+  "dry_mass_kg": 6600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1993,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 22782,
+  "object_class": "payload",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 1993,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 22789,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 1993,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 22803,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 8225.97,
+  "bus_volume_m3": 124.2374,
+  "launch_year": 1993,
+  "bus_family": "Zenit-2 second stage"
+ },
+ {
+  "norad_id": 22830,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1764.12,
+  "bus_volume_m3": 62.6496,
+  "launch_year": 1993,
+  "bus_family": "H10"
+ },
+ {
+  "norad_id": 22925,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1993,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 22974,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2680.0,
+  "bus_volume_m3": 57.7187,
+  "launch_year": 1994,
+  "bus_family": "Titan-2-2"
+ },
+ {
+  "norad_id": 23106,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 97.0,
+  "bus_volume_m3": 0.0892,
+  "launch_year": 1994,
+  "bus_family": "HAPS"
+ },
+ {
+  "norad_id": 23174,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1994,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 23338,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1994,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 23342,
+  "object_class": "payload",
+  "dry_mass_kg": 1900.0,
+  "bus_volume_m3": 9.852,
+  "launch_year": 1994,
+  "bus_family": "SP-1"
+ },
+ {
+  "norad_id": 23402,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1994,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 23440,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2300.0,
+  "bus_volume_m3": 7.854,
+  "launch_year": 1994,
+  "bus_family": "Briz-KM"
+ },
+ {
+  "norad_id": 23455,
+  "object_class": "payload",
+  "dry_mass_kg": 1060.46,
+  "bus_volume_m3": 11.9082,
+  "launch_year": 1994,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 23533,
+  "object_class": "payload",
+  "dry_mass_kg": 1487.0,
+  "bus_volume_m3": 3.8453,
+  "launch_year": 1995,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 23596,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1995,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 23606,
+  "object_class": "payload",
+  "dry_mass_kg": 50.0,
+  "bus_volume_m3": 0.096,
+  "launch_year": 1995,
+  "bus_family": "Microsat-70"
+ },
+ {
+  "norad_id": 23631,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1995,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 23797,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2440.0,
+  "bus_volume_m3": 67.4157,
+  "launch_year": 1996,
+  "bus_family": "Blok-DM-2"
+ },
+ {
+  "norad_id": 23845,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2120.91,
+  "bus_volume_m3": 67.4157,
+  "launch_year": 1996,
+  "bus_family": "Blok-DM-2M"
+ },
+ {
+  "norad_id": 23887,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1996,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 24298,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 8225.97,
+  "bus_volume_m3": 124.2374,
+  "launch_year": 1996,
+  "bus_family": "Zenit-2 second stage"
+ },
+ {
+  "norad_id": 24753,
+  "object_class": "payload",
+  "dry_mass_kg": 815.66,
+  "bus_volume_m3": 3.8453,
+  "launch_year": 1997,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 24805,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 40.0216,
+  "launch_year": 1997,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 24881,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2095.0,
+  "bus_volume_m3": 73.7923,
+  "launch_year": 1997,
+  "bus_family": "CENTAUR"
+ },
+ {
+  "norad_id": 25054,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 55.5,
+  "bus_volume_m3": 0.311,
+  "launch_year": 1997,
+  "bus_family": "Proton-K/DM-2M ullage motor"
+ },
+ {
+  "norad_id": 25088,
+  "object_class": "payload",
+  "dry_mass_kg": 3300.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1997,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 25106,
+  "object_class": "payload",
+  "dry_mass_kg": 662.0,
+  "bus_volume_m3": 33.9822,
+  "launch_year": 1997,
+  "bus_family": "LM-700A"
+ },
+ {
+  "norad_id": 25117,
+  "object_class": "payload",
+  "dry_mass_kg": 42.0,
+  "bus_volume_m3": 0.1699,
+  "launch_year": 1997,
+  "bus_family": "MicroStar"
+ },
+ {
+  "norad_id": 25129,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2120.91,
+  "bus_volume_m3": 67.4157,
+  "launch_year": 1997,
+  "bus_family": "Blok-DM-2M"
+ },
+ {
+  "norad_id": 25176,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2700.0,
+  "bus_volume_m3": 146.9009,
+  "launch_year": 1998,
+  "bus_family": "H-II LE-5A"
+ },
+ {
+  "norad_id": 25417,
+  "object_class": "payload",
+  "dry_mass_kg": 42.0,
+  "bus_volume_m3": 0.1699,
+  "launch_year": 1998,
+  "bus_family": "MicroStar"
+ },
+ {
+  "norad_id": 25626,
+  "object_class": "payload",
+  "dry_mass_kg": 3670.0,
+  "bus_volume_m3": 30.528,
+  "launch_year": 1999,
+  "bus_family": "SSL-1300"
+ },
+ {
+  "norad_id": 25637,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 919.0,
+  "bus_volume_m3": 27.5881,
+  "launch_year": 1999,
+  "bus_family": "Delta II second stage"
+ },
+ {
+  "norad_id": 25728,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2476.0,
+  "bus_volume_m3": 110.5841,
+  "launch_year": 1999,
+  "bus_family": "Delta III second stage"
+ },
+ {
+  "norad_id": 25730,
+  "object_class": "payload",
+  "dry_mass_kg": 958.0,
+  "bus_volume_m3": 2.744,
+  "launch_year": 1999,
+  "bus_family": "fy-1"
+ },
+ {
+  "norad_id": 25880,
+  "object_class": "payload",
+  "dry_mass_kg": 2763.0,
+  "bus_volume_m3": 53.136,
+  "launch_year": 1999,
+  "bus_family": "A2100A"
+ },
+ {
+  "norad_id": 25940,
+  "object_class": "payload",
+  "dry_mass_kg": 1450.0,
+  "bus_volume_m3": 7.2,
+  "launch_year": 1999,
+  "bus_family": "Zi Yuan"
+ },
+ {
+  "norad_id": 25942,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1727.0,
+  "bus_volume_m3": 32.5768,
+  "launch_year": 1999,
+  "bus_family": "L-14B"
+ },
+ {
+  "norad_id": 25984,
+  "object_class": "payload",
+  "dry_mass_kg": 44.0,
+  "bus_volume_m3": 0.1571,
+  "launch_year": 1999,
+  "bus_family": "MicroStar"
+ },
+ {
+  "norad_id": 26040,
+  "object_class": "payload",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 1999,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 26106,
+  "object_class": "payload",
+  "dry_mass_kg": 2382.0,
+  "bus_volume_m3": 3.5343,
+  "launch_year": 2000,
+  "bus_family": "dumsat"
+ },
+ {
+  "norad_id": 26398,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 110.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2000,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 26536,
+  "object_class": "payload",
+  "dry_mass_kg": 1403.0,
+  "bus_volume_m3": 15.162,
+  "launch_year": 2000,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 26960,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 960.0,
+  "bus_volume_m3": 3.982,
+  "launch_year": 2001,
+  "bus_family": "PSLV fourth stage"
+ },
+ {
+  "norad_id": 26997,
+  "object_class": "payload",
+  "dry_mass_kg": 500.0,
+  "bus_volume_m3": 11.913,
+  "launch_year": 2001,
+  "bus_family": "Proteus"
+ },
+ {
+  "norad_id": 27001,
+  "object_class": "payload",
+  "dry_mass_kg": 2476.0,
+  "bus_volume_m3": 42.9338,
+  "launch_year": 2001,
+  "bus_family": "SP-2"
+ },
+ {
+  "norad_id": 27053,
+  "object_class": "payload",
+  "dry_mass_kg": 3150.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 2001,
+  "bus_family": "US"
+ },
+ {
+  "norad_id": 27453,
+  "object_class": "payload",
+  "dry_mass_kg": 1403.0,
+  "bus_volume_m3": 15.162,
+  "launch_year": 2002,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 27457,
+  "object_class": "payload",
+  "dry_mass_kg": 435.0,
+  "bus_volume_m3": 6.2832,
+  "launch_year": 2002,
+  "bus_family": "contour"
+ },
+ {
+  "norad_id": 27474,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 110.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2002,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 27475,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 110.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2002,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 27509,
+  "object_class": "payload",
+  "dry_mass_kg": 2010.0,
+  "bus_volume_m3": 19.3019,
+  "launch_year": 2002,
+  "bus_family": "Meteosat"
+ },
+ {
+  "norad_id": 27518,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2002,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 27555,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2850.0,
+  "bus_volume_m3": 150.7964,
+  "launch_year": 2002,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 27692,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2850.0,
+  "bus_volume_m3": 150.7964,
+  "launch_year": 2003,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 27820,
+  "object_class": "payload",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 34.375,
+  "launch_year": 2003,
+  "bus_family": "Spacebus-3000B3"
+ },
+ {
+  "norad_id": 27856,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 2003,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 28054,
+  "object_class": "payload",
+  "dry_mass_kg": 1503.0,
+  "bus_volume_m3": 6.336,
+  "launch_year": 2003,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 28234,
+  "object_class": "payload",
+  "dry_mass_kg": 2542.0,
+  "bus_volume_m3": 6.2832,
+  "launch_year": 2004,
+  "bus_family": "MSS-2500-GSO (MSS-767)"
+ },
+ {
+  "norad_id": 28353,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 9000.0,
+  "bus_volume_m3": 124.2374,
+  "launch_year": 2004,
+  "bus_family": "Zenit-2 second stage"
+ },
+ {
+  "norad_id": 28920,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2005,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 28932,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2006,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 28944,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2370.0,
+  "bus_volume_m3": 34.9867,
+  "launch_year": 2006,
+  "bus_family": "Briz-M"
+ },
+ {
+  "norad_id": 29092,
+  "object_class": "payload",
+  "dry_mass_kg": 2700.0,
+  "bus_volume_m3": 8.0,
+  "launch_year": 2006,
+  "bus_family": "yaogan-1"
+ },
+ {
+  "norad_id": 29155,
+  "object_class": "payload",
+  "dry_mass_kg": 3209.0,
+  "bus_volume_m3": 70.644,
+  "launch_year": 2006,
+  "bus_family": "BSS-601"
+ },
+ {
+  "norad_id": 29247,
+  "object_class": "payload",
+  "dry_mass_kg": 3150.0,
+  "bus_volume_m3": 13.2732,
+  "launch_year": 2006,
+  "bus_family": "Cosmos"
+ },
+ {
+  "norad_id": 29394,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2006,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 29402,
+  "object_class": "payload",
+  "dry_mass_kg": 7600.0,
+  "bus_volume_m3": 36.071,
+  "launch_year": 2006,
+  "bus_family": "orlets-1"
+ },
+ {
+  "norad_id": 29523,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2850.0,
+  "bus_volume_m3": 150.7964,
+  "launch_year": 2006,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 29651,
+  "object_class": "payload",
+  "dry_mass_kg": 1820.0,
+  "bus_volume_m3": 20.8099,
+  "launch_year": 2006,
+  "bus_family": "usa-193"
+ },
+ {
+  "norad_id": 29680,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2006,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 29682,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2006,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 30324,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2800.0,
+  "bus_volume_m3": 87.6504,
+  "launch_year": 2007,
+  "bus_family": "H-18"
+ },
+ {
+  "norad_id": 31792,
+  "object_class": "payload",
+  "dry_mass_kg": 3250.0,
+  "bus_volume_m3": 6.9272,
+  "launch_year": 2007,
+  "bus_family": "tselina-2"
+ },
+ {
+  "norad_id": 32280,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2007,
+  "bus_family": "Proton-K/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 32288,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3510.0,
+  "bus_volume_m3": 278.77,
+  "launch_year": 2007,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 32398,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2007,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 32399,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2007,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 32709,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2370.0,
+  "bus_volume_m3": 34.9867,
+  "launch_year": 2008,
+  "bus_family": "Briz-M"
+ },
+ {
+  "norad_id": 33322,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3800.0,
+  "bus_volume_m3": 71.8451,
+  "launch_year": 2008,
+  "bus_family": "L-55"
+ },
+ {
+  "norad_id": 33385,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2008,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 33472,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2008,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 33473,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2008,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 33500,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2009,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 34779,
+  "object_class": "payload",
+  "dry_mass_kg": 3060.0,
+  "bus_volume_m3": 8.67,
+  "launch_year": 2009,
+  "bus_family": "DFH-3"
+ },
+ {
+  "norad_id": 35816,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2020.0,
+  "bus_volume_m3": 88.3078,
+  "launch_year": 2009,
+  "bus_family": "Centaur-5 SEC"
+ },
+ {
+  "norad_id": 35946,
+  "object_class": "payload",
+  "dry_mass_kg": 2615.0,
+  "bus_volume_m3": 21.1076,
+  "launch_year": 2009,
+  "bus_family": "BCP-5000"
+ },
+ {
+  "norad_id": 35951,
+  "object_class": "payload",
+  "dry_mass_kg": 1217.0,
+  "bus_volume_m3": 6.336,
+  "launch_year": 2009,
+  "bus_family": "TIROS-N"
+ },
+ {
+  "norad_id": 36105,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2009,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 36116,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2009,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 36406,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2010,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 36407,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2010,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 37143,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2010,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 37144,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 56.0,
+  "bus_volume_m3": 0.311,
+  "launch_year": 2010,
+  "bus_family": "Proton-M/DM-2 ullage motor"
+ },
+ {
+  "norad_id": 37151,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2800.0,
+  "bus_volume_m3": 87.6504,
+  "launch_year": 2010,
+  "bus_family": "H-18"
+ },
+ {
+  "norad_id": 37211,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2800.0,
+  "bus_volume_m3": 87.6504,
+  "launch_year": 2010,
+  "bus_family": "H-18"
+ },
+ {
+  "norad_id": 37756,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 360.0,
+  "launch_year": 2011,
+  "bus_family": "Fregat operational debris"
+ },
+ {
+  "norad_id": 37806,
+  "object_class": "payload",
+  "dry_mass_kg": 2500.0,
+  "bus_volume_m3": 18.8496,
+  "launch_year": 2011,
+  "bus_family": "garpun"
+ },
+ {
+  "norad_id": 38015,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2800.0,
+  "bus_volume_m3": 87.6504,
+  "launch_year": 2011,
+  "bus_family": "H-18"
+ },
+ {
+  "norad_id": 38092,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2800.0,
+  "bus_volume_m3": 87.6504,
+  "launch_year": 2012,
+  "bus_family": "H-18"
+ },
+ {
+  "norad_id": 38341,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2012,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 38343,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1600.0,
+  "bus_volume_m3": 34.9867,
+  "launch_year": 2012,
+  "bus_family": "Briz-M"
+ },
+ {
+  "norad_id": 38345,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 100.0,
+  "launch_year": 2012,
+  "bus_family": "H-IIA 202 Adapter"
+ },
+ {
+  "norad_id": 38746,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2370.0,
+  "bus_volume_m3": 34.9867,
+  "launch_year": 2012,
+  "bus_family": "Briz-M"
+ },
+ {
+  "norad_id": 39063,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2013,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 39162,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 100.0,
+  "bus_volume_m3": 4.5027,
+  "launch_year": 2013,
+  "bus_family": "VESPA Upper Part"
+ },
+ {
+  "norad_id": 39186,
+  "object_class": "payload",
+  "dry_mass_kg": 5691.0,
+  "bus_volume_m3": 45.2319,
+  "launch_year": 2013,
+  "bus_family": "Yantar"
+ },
+ {
+  "norad_id": 39271,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 148.6099,
+  "launch_year": 2013,
+  "bus_family": "Falcon 9 Merlin-V"
+ },
+ {
+  "norad_id": 39411,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1000.0,
+  "bus_volume_m3": 49.539,
+  "launch_year": 2013,
+  "bus_family": "L-14B-res"
+ },
+ {
+  "norad_id": 39497,
+  "object_class": "payload",
+  "dry_mass_kg": 50.0,
+  "bus_volume_m3": 0.4,
+  "launch_year": 2013,
+  "bus_family": "nivelir"
+ },
+ {
+  "norad_id": 39580,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2014,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 39634,
+  "object_class": "payload",
+  "dry_mass_kg": 2157.0,
+  "bus_volume_m3": 6.141,
+  "launch_year": 2014,
+  "bus_family": "Prima"
+ },
+ {
+  "norad_id": 39742,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2850.0,
+  "bus_volume_m3": 150.7964,
+  "launch_year": 2014,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 39765,
+  "object_class": "payload",
+  "dry_mass_kg": 45.0,
+  "bus_volume_m3": 0.1257,
+  "launch_year": 2014,
+  "bus_family": "nivelir"
+ },
+ {
+  "norad_id": 39771,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 4000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2014,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 40209,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2020.0,
+  "bus_volume_m3": 88.3078,
+  "launch_year": 2014,
+  "bus_family": "Centaur-5 SEC"
+ },
+ {
+  "norad_id": 40330,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3450.0,
+  "bus_volume_m3": 278.77,
+  "launch_year": 2014,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 40535,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2850.0,
+  "bus_volume_m3": 150.7964,
+  "launch_year": 2015,
+  "bus_family": "Delta IV DCSS"
+ },
+ {
+  "norad_id": 40556,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2370.0,
+  "bus_volume_m3": 21.7681,
+  "launch_year": 2015,
+  "bus_family": "Briz-KM"
+ },
+ {
+  "norad_id": 40619,
+  "object_class": "payload",
+  "dry_mass_kg": 7290.0,
+  "bus_volume_m3": 45.2319,
+  "launch_year": 2015,
+  "bus_family": "progress-m-m"
+ },
+ {
+  "norad_id": 41122,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1600.0,
+  "bus_volume_m3": 34.9867,
+  "launch_year": 2015,
+  "bus_family": "Briz-M"
+ },
+ {
+  "norad_id": 41308,
+  "object_class": "payload",
+  "dry_mass_kg": 6552.0,
+  "bus_volume_m3": 67.5,
+  "launch_year": 2016,
+  "bus_family": "BSS-702MP"
+ },
+ {
+  "norad_id": 41337,
+  "object_class": "payload",
+  "dry_mass_kg": 2700.0,
+  "bus_volume_m3": 17.106,
+  "launch_year": 2016,
+  "bus_family": "astro-h"
+ },
+ {
+  "norad_id": 41748,
+  "object_class": "payload",
+  "dry_mass_kg": 6552.0,
+  "bus_volume_m3": 67.5,
+  "launch_year": 2016,
+  "bus_family": "BSS-702MP"
+ },
+ {
+  "norad_id": 43089,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 360.0,
+  "launch_year": 2017,
+  "bus_family": "Fregat operational debris"
+ },
+ {
+  "norad_id": 43227,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2020.0,
+  "bus_volume_m3": 88.3078,
+  "launch_year": 2018,
+  "bus_family": "Centaur-5 SEC"
+ },
+ {
+  "norad_id": 43652,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2020.0,
+  "bus_volume_m3": 88.3078,
+  "launch_year": 2018,
+  "bus_family": "Centaur-5 SEC"
+ },
+ {
+  "norad_id": 43673,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 200.0,
+  "bus_volume_m3": 50.2655,
+  "launch_year": 2018,
+  "bus_family": "H-IIA 202 lower payload fairing half"
+ },
+ {
+  "norad_id": 43674,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 200.0,
+  "bus_volume_m3": 50.2655,
+  "launch_year": 2018,
+  "bus_family": "H-IIA 202 lower payload fairing half"
+ },
+ {
+  "norad_id": 43682,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 3000.0,
+  "bus_volume_m3": 115.6106,
+  "launch_year": 2018,
+  "bus_family": "H-II LE-5B"
+ },
+ {
+  "norad_id": 43947,
+  "object_class": "payload",
+  "dry_mass_kg": 740.0,
+  "bus_volume_m3": 2.0,
+  "launch_year": 2019,
+  "bus_family": "microsat-r"
+ },
+ {
+  "norad_id": 44317,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 500.0,
+  "bus_volume_m3": 2.6507,
+  "launch_year": 2019,
+  "bus_family": "Long March"
+ },
+ {
+  "norad_id": 44387,
+  "object_class": "payload",
+  "dry_mass_kg": 2879.0,
+  "bus_volume_m3": 42.9338,
+  "launch_year": 2019,
+  "bus_family": "meteor-m-2-1"
+ },
+ {
+  "norad_id": 44421,
+  "object_class": "payload",
+  "dry_mass_kg": 547.0,
+  "bus_volume_m3": 3.982,
+  "launch_year": 2019,
+  "bus_family": "kyua-1"
+ },
+ {
+  "norad_id": 44422,
+  "object_class": "payload",
+  "dry_mass_kg": 100.0,
+  "bus_volume_m3": 0.1257,
+  "launch_year": 2019,
+  "bus_family": "kyua-1"
+ },
+ {
+  "norad_id": 44547,
+  "object_class": "payload",
+  "dry_mass_kg": 800.0,
+  "bus_volume_m3": 4.5,
+  "launch_year": 2019,
+  "bus_family": "CAST2000"
+ },
+ {
+  "norad_id": 45877,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 410.0,
+  "bus_volume_m3": 0.9801,
+  "launch_year": 2020,
+  "bus_family": "ORION"
+ },
+ {
+  "norad_id": 54236,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 6000.0,
+  "launch_year": 2022,
+  "bus_family": "L-15"
+ },
+ {
+  "norad_id": 55565,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 1500.0,
+  "bus_volume_m3": 8.7965,
+  "launch_year": 2023,
+  "bus_family": "SS-3"
+ },
+ {
+  "norad_id": 57839,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 2020.0,
+  "bus_volume_m3": 88.3078,
+  "launch_year": 2023,
+  "bus_family": "Centaur-5 SEC"
+ },
+ {
+  "norad_id": 59344,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 6000.0,
+  "launch_year": 2024,
+  "bus_family": "L-15"
+ },
+ {
+  "norad_id": 60214,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 6000.0,
+  "launch_year": 2024,
+  "bus_family": "L-15"
+ },
+ {
+  "norad_id": 60397,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 6000.0,
+  "launch_year": 2024,
+  "bus_family": "L-15"
+ },
+ {
+  "norad_id": 62187,
+  "object_class": "rocket_body",
+  "dry_mass_kg": 6000.0,
+  "bus_volume_m3": 113.4115,
+  "launch_year": 2024,
+  "bus_family": "Long March"
+ },
+ {
+  "norad_id": 64157,
+  "object_class": "payload",
+  "dry_mass_kg": 575.0,
+  "bus_volume_m3": 5.043,
+  "launch_year": 2025,
+  "bus_family": "Starlink v2 Mini"
+ },
+ {
+  "norad_id": 66629,
+  "object_class": "payload",
+  "dry_mass_kg": 575.0,
+  "bus_volume_m3": 5.043,
+  "launch_year": 2025,
+  "bus_family": "Starlink v2 Mini"
+ }
+]
