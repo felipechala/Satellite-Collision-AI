@@ -1,0 +1,50 @@
+scope,n_events,metric,nasa_sbm,our_model
+all events,381,"typical factor off (median of max(pred/real, real/pred))",29.858,3.4939
+all events,381,"median pred/real (1 = unbiased, >1 = too many)",29.858,1.4797
+all events,381,share within 2x of real,0.0709,0.3176
+all events,381,share within 10x of real,0.3018,0.8084
+all events,381,RMSE of ln(pred/real),3.6821,1.7529
+all events,381,mean |ln(pred/real)|,3.2936,1.4194
+all events,381,share of real counts inside our p10-p90 band,,0.832
+type: collision,4,"typical factor off (median of max(pred/real, real/pred))",2.8391,2.8391
+type: collision,4,"median pred/real (1 = unbiased, >1 = too many)",1.2472,1.2472
+type: collision,4,share within 2x of real,0.25,0.25
+type: collision,4,share within 10x of real,1.0,1.0
+type: collision,4,RMSE of ln(pred/real),1.3262,1.3262
+type: collision,4,mean |ln(pred/real)|,1.2059,1.2059
+type: collision,4,share of real counts inside our p10-p90 band,,0.75
+type: explosion,377,"typical factor off (median of max(pred/real, real/pred))",34.1235,3.5259
+type: explosion,377,"median pred/real (1 = unbiased, >1 = too many)",34.1235,1.4797
+type: explosion,377,share within 2x of real,0.069,0.3183
+type: explosion,377,share within 10x of real,0.2944,0.8064
+type: explosion,377,RMSE of ln(pred/real),3.6991,1.7569
+type: explosion,377,mean |ln(pred/real)|,3.3158,1.4217
+type: explosion,377,share of real counts inside our p10-p90 band,,0.8329
+explosion cause: battery,22,"typical factor off (median of max(pred/real, real/pred))",28.5497,10.4364
+explosion cause: battery,22,"median pred/real (1 = unbiased, >1 = too many)",28.5497,6.1955
+explosion cause: battery,22,share within 2x of real,0.1364,0.1818
+explosion cause: battery,22,share within 10x of real,0.3636,0.5
+explosion cause: battery,22,RMSE of ln(pred/real),3.179,2.461
+explosion cause: battery,22,mean |ln(pred/real)|,2.7437,2.1827
+explosion cause: battery,22,share of real counts inside our p10-p90 band,,0.8182
+explosion cause: deliberate,56,"typical factor off (median of max(pred/real, real/pred))",23.8864,2.3375
+explosion cause: deliberate,56,"median pred/real (1 = unbiased, >1 = too many)",23.8864,1.0159
+explosion cause: deliberate,56,share within 2x of real,0.1429,0.4286
+explosion cause: deliberate,56,share within 10x of real,0.375,0.875
+explosion cause: deliberate,56,RMSE of ln(pred/real),3.3004,1.4884
+explosion cause: deliberate,56,mean |ln(pred/real)|,2.8862,1.1087
+explosion cause: deliberate,56,share of real counts inside our p10-p90 band,,0.8393
+explosion cause: propulsion,173,"typical factor off (median of max(pred/real, real/pred))",29.858,4.0462
+explosion cause: propulsion,173,"median pred/real (1 = unbiased, >1 = too many)",29.858,1.5663
+explosion cause: propulsion,173,share within 2x of real,0.0694,0.2659
+explosion cause: propulsion,173,share within 10x of real,0.3121,0.7861
+explosion cause: propulsion,173,RMSE of ln(pred/real),3.6875,1.8499
+explosion cause: propulsion,173,mean |ln(pred/real)|,3.2686,1.542
+explosion cause: propulsion,173,share of real counts inside our p10-p90 band,,0.8092
+explosion cause: unknown,126,"typical factor off (median of max(pred/real, real/pred))",53.4117,2.83
+explosion cause: unknown,126,"median pred/real (1 = unbiased, >1 = too many)",53.4117,1.4761
+explosion cause: unknown,126,share within 2x of real,0.0238,0.3651
+explosion cause: unknown,126,share within 10x of real,0.2222,0.8571
+explosion cause: unknown,126,RMSE of ln(pred/real),3.958,1.5794
+explosion cause: unknown,126,mean |ln(pred/real)|,3.6713,1.2626
+explosion cause: unknown,126,share of real counts inside our p10-p90 band,,0.8651

@@ -44,3 +44,16 @@ def test_metrics_and_bias_wording():
     assert m["model"]["p10_p90_coverage"] == 0.5
     assert _bias(24.0) == "24× too many"
     assert _bias(0.5) == "2.00× too few"
+
+
+def test_kfold_scores_every_labeled_event_once_with_groups_held_out(synth_dir):
+    from ml.evaluate_holdout import run_kfold
+
+    events_csv, specs_json = synth_dir / "historical_breakups.csv", synth_dir / "gunter_satellites.json"
+    preds, splits = run_kfold(str(events_csv), str(specs_json), AS_OF, n_folds=3)
+    rows, _ = build_training_rows(load_events(events_csv), load_specs(specs_json))
+    labels = compute_labels(rows, None, parse_epoch(AS_OF))["n_multiplier"]
+    labeled = {r.event_id for r in rows if np.isfinite(labels[r.event_id])}
+    assert preds["event_id"].is_unique and set(preds["event_id"]) == labeled
+    assert (preds.groupby("group")["repeat"].nunique() == 1).all()  # a group never straddles folds
+    assert len(splits) == 3
