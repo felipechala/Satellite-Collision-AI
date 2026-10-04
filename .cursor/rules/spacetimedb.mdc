@@ -1,0 +1,15 @@
+---
+description: SpacetimeDB stores precomputed debris frames and simulation requests; reducers do not run physics
+globs: spacetimedb/**/*
+alwaysApply: false
+---
+
+# SpacetimeDB module
+
+`spacetimedb/` is a Rust module (`crate-type = cdylib`, `spacetimedb` 2.x) published as `debris-tracker`. It stores frames, advances a shared playback clock at 10 Hz, and streams table changes. Reducers must not propagate orbits or recompute density.
+
+- Publish order is `start_breakup`, then `publish_particles` (at most 5000 per call) and `publish_frame`, then `finalize_breakup`. `publish_frame` takes parallel arrays: position in ECI km and density as fragments/km³ (mean, p10, p50, p90).
+- In SQL the percentile columns are `density_p_10`, `density_p_50`, and `density_p_90`.
+- Simulation rows use status `queued` → `running` → `done` or `failed`. Results for a request are stored with `event_id` equal to that request's id. `params_json` is validated in Python, not in the module.
+- There is no auth; this is a single-user local demo. After a schema change, publish with `--delete-data=always`.
+- When a table, reducer argument, or column changes, update `spacetimedb/README.md` and the Python publisher (`cloud_predictor/publish_breakup.py`) in the same change.
