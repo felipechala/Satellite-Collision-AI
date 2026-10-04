@@ -1,0 +1,1 @@
+C:\Users\Owner\OneDrive\Desktop\Hackathons\MHacks\Satellite-Collision-AI\spacetimedb\target\wasm32-unknown-unknown\release\debris_tracker_module.wasm: C:\Users\Owner\OneDrive\Desktop\Hackathons\MHacks\Satellite-Collision-AI\spacetimedb\src\lib.rs

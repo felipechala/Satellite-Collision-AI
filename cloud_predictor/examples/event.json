@@ -1,0 +1,13 @@
+{
+  "event_type": "collision",
+  "epoch": "2026-10-03T12:00:00Z",
+  "target": {
+    "object_class": "payload",
+    "dry_mass_kg": 950.0,
+    "propellant_mass_kg": 50.0,
+    "structure_material": "cfrp",
+    "mli_fraction": 0.5,
+    "launch_year": 2018
+  },
+  "impactor": {"mass_kg": 50.0, "v_rel_km_s": 10.0}
+}
