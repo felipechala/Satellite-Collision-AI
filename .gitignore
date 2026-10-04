@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 # Claude Code
 .claude/
 
+=======
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 # Python
 __pycache__/
 *.py[cod]

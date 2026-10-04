@@ -8,6 +8,7 @@ from ml.lab_rules import LabRules, combine
 from ml.schema import MATERIALS, Band
 
 
+<<<<<<< HEAD
 def test_default_table_is_neutral_and_marks_placeholders():
     rules = LabRules.load()
     assert set(rules.rules) == set(MATERIALS)
@@ -15,6 +16,22 @@ def test_default_table_is_neutral_and_marks_placeholders():
         assert r.slope_delta == Band(0.0, 0.0, 0.0)
         assert r.am_mu_shift_lab == Band(0.0, 0.0, 0.0)
         assert r.provisional == (m != "aluminum")
+=======
+def test_default_table_neutral_except_debrisat_slope_for_modern_construction():
+    rules = LabRules.load()
+    assert set(rules.rules) == set(MATERIALS)
+    for m, r in rules.rules.items():
+        assert r.am_mu_shift_lab == Band(0.0, 0.0, 0.0)  # DebriSat publishes no numeric A/M offset
+        assert r.provisional == (m != "aluminum")
+        assert r.source  # every material says where its values come from
+        if m in ("cfrp", "mixed"):
+            # DebriSat: 85,000 predicted vs 219,306 recorded / ~294,500 collected fragments >= 2 mm.
+            assert (r.slope_delta.p10, r.slope_delta.p50, r.slope_delta.p90) == (0.12, 0.24, 0.32)
+            assert math.log(219_306 / 85_000) / math.log(50) == pytest.approx(r.slope_delta.p50, abs=0.005)
+            assert "DebriSat" in r.source
+        else:
+            assert r.slope_delta == Band(0.0, 0.0, 0.0)
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 
 
 def test_combine_with_zero_band_is_identity():

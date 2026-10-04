@@ -20,7 +20,11 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
+<<<<<<< HEAD
 from sklearn.model_selection import GroupShuffleSplit
+=======
+from sklearn.model_selection import GroupKFold, GroupShuffleSplit
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 
 from . import sbm
 from .data import build_training_rows, load_events, load_specs
@@ -47,14 +51,23 @@ def _split_predictions(events: pd.DataFrame, test_rows: list, held_out_ids: set[
         b = p.n_multiplier
         out.append({
             "event_id": r.event_id, "event_type": r.event.event_type, "explosion_cause": r.event.explosion_cause,
+<<<<<<< HEAD
             "object_class": r.event.target.object_class, "group": r.group, "actual": r.n_cataloged,
+=======
+            "object_class": r.event.target.object_class, "norad_id": r.event.target.norad_id, "group": r.group,
+            "actual": r.n_cataloged,
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
             "nasa": n_sbm, "model_p10": n_sbm * b.p10, "model_p50": n_sbm * b.p50, "model_p90": n_sbm * b.p90,
         })
     return pd.DataFrame(out), report["heads"]["n_multiplier"]["status"]
 
 
+<<<<<<< HEAD
 def run(events_path: str, specs_path: str, as_of: str, test_size: float = 0.2, repeats: int = 5,
         seed: int = 0) -> tuple[pd.DataFrame, list[dict]]:
+=======
+def _run_splits(events_path: str, specs_path: str, as_of: str, splitter, seed: int) -> tuple[pd.DataFrame, list[dict]]:
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     events = load_events(events_path)
     rows, _ = build_training_rows(events, load_specs(specs_path))
     labels = compute_labels(rows, None, parse_epoch(as_of))["n_multiplier"]
@@ -63,7 +76,10 @@ def run(events_path: str, specs_path: str, as_of: str, test_size: float = 0.2, r
 
     # Whole groups are held out, unlabeled events included, so nothing from a test bus family reaches
     # training; only the labeled ones can be scored.
+<<<<<<< HEAD
     splitter = GroupShuffleSplit(n_splits=repeats, test_size=test_size, random_state=seed)
+=======
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     preds, splits = [], []
     with tempfile.TemporaryDirectory() as tmp:
         for i, (_, te) in enumerate(splitter.split(np.zeros(len(rows)), groups=groups)):
@@ -78,6 +94,23 @@ def run(events_path: str, specs_path: str, as_of: str, test_size: float = 0.2, r
     return pd.concat(preds, ignore_index=True), splits
 
 
+<<<<<<< HEAD
+=======
+def run(events_path: str, specs_path: str, as_of: str, test_size: float = 0.2, repeats: int = 5,
+        seed: int = 0) -> tuple[pd.DataFrame, list[dict]]:
+    """Repeated random group splits (an event may be scored several times, or never)."""
+    splitter = GroupShuffleSplit(n_splits=repeats, test_size=test_size, random_state=seed)
+    return _run_splits(events_path, specs_path, as_of, splitter, seed)
+
+
+def run_kfold(events_path: str, specs_path: str, as_of: str, n_folds: int = 5,
+              seed: int = 0) -> tuple[pd.DataFrame, list[dict]]:
+    """Grouped K-fold: every labeled event gets exactly one held-out prediction, from a model trained
+    without its bus family. "repeat" is the fold number."""
+    return _run_splits(events_path, specs_path, as_of, GroupKFold(n_splits=n_folds), seed)
+
+
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 def metrics(df: pd.DataFrame) -> dict:
     """Error of each predictor in log space: ln(predicted / actual)."""
     out = {"n": len(df)}

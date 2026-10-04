@@ -55,6 +55,7 @@
 
         <fieldset>
           <legend>Layers</legend>
+<<<<<<< HEAD
           <label><input type="checkbox" id="show-particles" checked /> Probability cloud (median scenario)</label>
           <label><input type="checkbox" id="show-voxels" /> Ensemble density, hourly (uncertainty)</label>
         </fieldset>
@@ -65,6 +66,21 @@
 
         <fieldset id="view">
           <legend>Ensemble density shown</legend>
+=======
+          <label><input type="checkbox" id="show-particles" checked /> Expected fragment density (median scenario)</label>
+          <label><input type="checkbox" id="show-voxels" /> Hourly ensemble snapshots (uncertainty)</label>
+        </fieldset>
+        <div class="legend">
+          <div class="legend-ramp" id="cloud-ramp"></div>
+          <div class="legend-labels"><span id="cloud-min"></span><span id="cloud-mid"></span><span id="cloud-max"></span></div>
+          <div class="legend-unit">expected fragments / km³</div>
+          <p class="note">Each glow is a statistical sample of the predicted cloud, not a piece of debris.
+            Colour shows the expected number of fragments per km³ around it.</p>
+        </div>
+
+        <fieldset id="view">
+          <legend>Ensemble snapshot shown</legend>
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
           <label><input type="radio" name="metric" value="3" checked /> Mean</label>
           <label><input type="radio" name="metric" value="4" /> p10 (low)</label>
           <label><input type="radio" name="metric" value="6" /> p90 (high)</label>
@@ -76,6 +92,19 @@
       </section>
     </aside>
 
+<<<<<<< HEAD
+=======
+    <aside id="sat-card" hidden>
+      <h2>Target satellite</h2>
+      <div id="sat-frame">
+        <img id="sat-image" alt="" hidden />
+        <div id="sat-placeholder" aria-hidden="true"></div>
+      </div>
+      <div id="sat-status" role="status"></div>
+      <p class="note">AI illustration (Grok Imagine) of the scenario's spacecraft, not simulation output.</p>
+    </aside>
+
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

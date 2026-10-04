@@ -1,10 +1,15 @@
 {
+<<<<<<< HEAD
   "_comment": "DebriSat lab rules by target structure_material. slope_delta steepens the power law below 10 cm; am_mu_shift_lab is added to the learned am_mu_shift. Non-aluminum values are provisional placeholders (neutral) until filled from the DebriSat papers; set provisional to false and cite the source when you fill one.",
+=======
+  "_comment": "DebriSat lab rules by target structure_material. slope_delta steepens the power law below 10 cm (N(Lc) = N(10 cm) * (Lc/0.1 m)^-(alpha + slope_delta)); am_mu_shift_lab is added to the learned am_mu_shift. Set provisional to false only when every value of a material is sourced; always cite the source.",
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
   "materials": {
     "aluminum": {
       "slope_delta": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
       "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
       "provisional": false,
+<<<<<<< HEAD
       "source": "Neutral by definition: the SBM is calibrated on aluminum construction."
     },
     "cfrp": {
@@ -18,12 +23,31 @@
       "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
       "provisional": true,
       "source": ""
+=======
+      "source": "Neutral by definition: the SBM size law is calibrated on SOCIT, an aluminum Transit-era satellite."
+    },
+    "cfrp": {
+      "slope_delta": {"p10": 0.12, "p50": 0.24, "p90": 0.32},
+      "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "provisional": true,
+      "source": "slope_delta derived from DebriSat (2014 lab impact on a modern LEO satellite: CFRP/GFRP structure, MLI, solar cells). The SBM predicted 85,000 fragments >= 2 mm; 219,306 were recorded and ~294,500 collected (Cowardin et al., 'DebriSat Updates via NASA's SSBM and DOD's IMPACT Breakup Models', ESA SDC 2025, NTRS 20250002258), while the cumulative number vs Lc 'matches well' with the SBM at larger sizes and the slope departs from just under 1 cm (Murray et al., 'Analysis of the DebriSat Fragments and Comparison to the NASA Standard Satellite Breakup Model', 2019, NTRS 20190034081). Anchoring at 10 cm, the excess at 2 mm gives slope_delta = ln(ratio)/ln(50): 0.24 from the recorded count (p50), 0.32 from the collected estimate (p90), 0.12 if only half the excess is slope rather than overall scale (p10). Our derivation, not an official SBM revision (NASA is still developing one). am_mu_shift_lab stays neutral: the papers report the SBM A/M mean is low for low- and high-density DebriSat fragments but publish no numeric offset."
+    },
+    "mixed": {
+      "slope_delta": {"p10": 0.12, "p50": 0.24, "p90": 0.32},
+      "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
+      "provisional": true,
+      "source": "Same DebriSat derivation as cfrp: DebriSat itself is mixed modern construction (CFRP/GFRP structure, aluminum, MLI, solar cells), so it applies directly. See the cfrp entry for sources and the derivation."
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     },
     "unknown": {
       "slope_delta": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
       "am_mu_shift_lab": {"p10": 0.0, "p50": 0.0, "p90": 0.0},
       "provisional": true,
+<<<<<<< HEAD
       "source": ""
+=======
+      "source": "No material information: keep the SBM (calibrated on SOCIT) rather than assume modern construction."
+>>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     }
   }
 }
