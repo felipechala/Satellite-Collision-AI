@@ -4,54 +4,20 @@
         --sat-name "Demo Sat" --alt-km 780 --inc-deg 86.4 \
         [--model-dir models/estimator-v1] [--host http://127.0.0.1:3000] [--db debris-tracker]
 
-model_breakup() is the modeling API: BreakupEvent in, voxel density frames out. The
-SpacetimeDB publishing below is one consumer of it; a REST wrapper can be another.
+The modeling itself lives in modeling.model_breakup (the product's function API);
+this file is the SpacetimeDB consumer of it. app.py is the HTTP consumer.
 """
 from __future__ import annotations
 
 import argparse
 import json
-from typing import Optional, Sequence
+from typing import Optional
 
 import httpx
-import numpy as np
 
-from engine.density_grid import density_timeline
-from engine.fragmentation import generate_cloud
-from engine.propagator import circular_state, propagate_cloud
-from ml import sbm
 from ml.contract import ParameterSet
 from ml.schema import BreakupEvent, event_from_dict
-
-# Dense early (the point-source -> band transition is fast), sparse late.
-DEFAULT_TIMES_S = [0.0, 600.0, 1800.0] + [h * 3600.0 for h in (1, 2, 3, 4, 5, 6)] \
-    + [h * 3600.0 for h in range(9, 49, 3)]
-
-
-def model_breakup(
-    event: BreakupEvent,
-    alt_km: float,
-    inc_deg: float,
-    params: Optional[ParameterSet] = None,
-    times_s: Sequence[float] = tuple(DEFAULT_TIMES_S),
-    k: int = 10_000,
-    voxel_km: float = 20.0,
-    sigma_voxels: float = 1.0,
-    max_voxels: int = 1000,
-    seed: int = 0,
-) -> dict:
-    """Breakup event -> time series of voxel density frames (the modeling API).
-
-    Returns {"times_s", "frames": [{"xyz_km", "density"}, ...], "derived", "voxel_km"}.
-    """
-    cloud = generate_cloud(event, params=params, k=k, seed=seed)
-    r0, v0 = circular_state(alt_km, inc_deg)
-    out = propagate_cloud(cloud, r0, v0, times_s=np.asarray(times_s, dtype=float))
-    frames = density_timeline(out["r_km"], out["alive"], out["weight"],
-                              voxel_km=voxel_km, sigma_voxels=sigma_voxels,
-                              max_voxels=max_voxels)
-    return {"times_s": out["times_s"], "frames": frames,
-            "derived": sbm.derive(event), "voxel_km": voxel_km}
+from modeling import model_breakup
 
 
 def _estimate_params(event: BreakupEvent, model_dir: Optional[str]) -> tuple[Optional[ParameterSet], str]:
@@ -72,7 +38,10 @@ class SpacetimeClient:
         self.http = httpx.Client(timeout=30.0)
 
     def call(self, reducer: str, *args) -> None:
-        r = self.http.post(f"{self.base}/{reducer}", json=list(args))
+        try:
+            r = self.http.post(f"{self.base}/{reducer}", json=list(args))
+        except httpx.HTTPError as e:
+            raise RuntimeError(f"{reducer}: cannot reach SpacetimeDB at {self.base}: {e}") from e
         if r.status_code >= 300:
             raise RuntimeError(f"{reducer} failed ({r.status_code}): {r.text}")
 
