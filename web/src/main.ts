@@ -1,11 +1,8 @@
 // One-user demo: submit a breakup to the API, wait for the worker, animate the stored cloud.
 // All data comes through the API (which stores and reads it in SpacetimeDB):
 //   POST /v1/simulations, GET /v1/simulations/{id}, .../particles (orbits), .../frames (density voxels).
-<<<<<<< HEAD
-=======
 // The top-right card shows a Grok Imagine illustration of the target satellite (POST /v1/satellite-image),
 // generated from the same scenario parameters; it is decoration, not model output.
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 // The cloud is drawn as a probability density, not as fragments: each stored representative particle
 // (a weighted sample standing for many real fragments) is a soft Gaussian blob, and overlapping blobs
 // add up to a continuous cloud (a kernel density estimate drawn live). Every render frame evaluates the
@@ -29,25 +26,11 @@ import {
   Viewer,
   buildModuleUrl,
 } from "cesium";
-<<<<<<< HEAD
-=======
 import { densityAtSamples } from "./density";
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 import { type Orbits, aliveAt, positionAt } from "./orbit";
 
 const API: string = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000";
 const POLL_MS = 1000;
-<<<<<<< HEAD
-// Probability cloud: one warm hue; denser = more opaque. Ensemble overlay: sequential orange ramp.
-const CLOUD_COLOR = Color.fromCssColorString("#f4a582");
-const DENSITY_RAMP = ["#5c2410", "#9a3d1c", "#d95926", "#eb6834", "#f4a582"];
-// Blob diameter: samples sit ~60-150 km apart (nearest to 8th-nearest neighbour, 0.5-48 h), so
-// 300 km blobs merge into a continuous field at every time.
-const BLOB_M = 300_000;
-// Blob opacity ~ sqrt(weight): weights span ~1-500 real fragments per sample; linear opacity would
-// let the smallest (heaviest-weighted) size bins hide the rest. Still monotonic in weight.
-const ALPHA_MIN = 0.03, ALPHA_MAX = 0.22;
-=======
 // Expected-fragment density: one warm hue, dark -> near-white, interpolated (sequential, log scale).
 // Ensemble overlay: a blue sequential ramp, so the two layers are never confused.
 const CLOUD_RAMP = ["#3d1607", "#9a3d1c", "#eb6834", "#f4a582", "#fde4d6"];
@@ -62,17 +45,12 @@ const CELL_KM = 100;
 const DENSITY_EVERY_FRAMES = 6;
 // Colour scale: percentiles of log10 density over these times, fixed per simulation.
 const SCALE_TIMES_H = [1, 6, 24, 48];
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 
 type Voxel = [x: number, y: number, z: number, mean: number, p10: number, p50: number, p90: number];
 interface Frame { frame: number; t_s: number; fragments_in_orbit: number; voxels: Voxel[] }
 interface Simulation {
   id: number; status: string; progress: number; error: string | null;
-<<<<<<< HEAD
-  request?: { event?: { epoch?: string } };
-=======
   request?: { event?: { epoch?: string }; orbit?: unknown };
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 }
 type OrbitColumns = Record<keyof Orbits, number[]>;
 
@@ -123,15 +101,12 @@ let voxelLayers: PointPrimitiveCollection[] = [];
 
 let orbits: Orbits | null = null;
 let blobs: Billboard[] = [];
-<<<<<<< HEAD
-=======
 let posKm = new Float64Array(0); // ECI positions of the samples at the current time [km], 3 per sample
 let aliveNow = new Uint8Array(0);
 let density = new Float64Array(0); // expected fragments / km^3 around each sample
 let cloudScale = { lo: 0, hi: 1 };   // log10 density range of the colour scale
 let refreshDensity = true;
 let framesSinceDensity = 0;
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 let frames: Frame[] = [];
 let epoch = JulianDate.now();
 let tEnd = 0;
@@ -161,8 +136,6 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
   return body as T;
 }
 
-<<<<<<< HEAD
-=======
 // ---------- satellite illustration (top right) ----------
 
 const satCard = $("sat-card");
@@ -200,7 +173,6 @@ async function showSatellite(scenario: { event?: unknown; orbit?: unknown } | un
   }
 }
 
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 // ---------- scenario form ----------
 
 const eventType = form.querySelector<HTMLSelectElement>('select[name="event_type"]')!;
@@ -230,17 +202,11 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   runButton.disabled = true;
   setPlaying(false);
-<<<<<<< HEAD
-  try {
-    const sim = await api<{ id: number }>("/v1/simulations", {
-      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(requestBody()),
-=======
   const body = requestBody();
   void showSatellite(body); // in parallel with the simulation
   try {
     const sim = await api<{ id: number }>("/v1/simulations", {
       method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body),
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     });
     await follow(sim.id);
   } catch (err) {
@@ -293,32 +259,6 @@ function rampColor(ramp: string[], u: number, alpha: number): Color {
   return Color.fromCssColorString(ramp[i]).withAlpha(alpha);
 }
 
-<<<<<<< HEAD
-function buildCloud() {
-  cloudLayer.removeAll();
-  const w = orbits!.weight;
-  const wMax = w.reduce((m, x) => Math.max(m, x), 0) || 1;
-  blobs = Array.from(w, (weight) =>
-    cloudLayer.add({
-      position: Cartesian3.ZERO, image: BLOB_IMAGE, sizeInMeters: true, width: BLOB_M, height: BLOB_M,
-      color: CLOUD_COLOR.withAlpha(ALPHA_MIN + (ALPHA_MAX - ALPHA_MIN) * Math.sqrt(weight / wMax)),
-    }),
-  );
-  $("cloud-ramp").style.background =
-    `linear-gradient(to right, ${CLOUD_COLOR.withAlpha(0.05).toCssColorString()}, ${CLOUD_COLOR.toCssColorString()})`;
-}
-
-const scratch = new Cartesian3();
-/** Move every sample to its position at t (ECI meters); hide re-entered ones. */
-function updateCloud(t: number) {
-  const o = orbits!;
-  for (let i = 0; i < blobs.length; i++) {
-    const b = blobs[i];
-    b.show = aliveAt(o, i, t);
-    if (!b.show) continue;
-    positionAt(o, i, t, scratch);
-    b.position = scratch; // copied by Cesium
-=======
 /** 256-step continuous interpolation of a ramp (no visible banding). */
 function lut(ramp: string[], steps = 256): Color[] {
   const stops = ramp.map((c) => Color.fromCssColorString(c));
@@ -391,7 +331,6 @@ function updateCloud(t: number) {
     Color.clone(CLOUD_LUT[Math.round(u * 255)], tint);
     tint.alpha = 0.06 + 0.5 * u ** 1.3; // sparse fringe fades out, dense core glows
     blobs[i].color = tint; // copied by Cesium
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
   }
 }
 
@@ -405,11 +344,7 @@ function rescaleDensity() {
     hi = Math.max(hi, l);
   }
   densityScale = Number.isFinite(lo) ? { lo, hi: hi > lo ? hi : lo + 1 } : { lo: 0, hi: 1 };
-<<<<<<< HEAD
-  $("density-ramp").style.background = `linear-gradient(to right, ${DENSITY_RAMP.join(", ")})`;
-=======
   $("density-ramp").style.background = `linear-gradient(to right, ${ENSEMBLE_RAMP.join(", ")})`;
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
   $("legend-min").textContent = (10 ** densityScale.lo).toPrecision(2);
   $("legend-max").textContent = (10 ** densityScale.hi).toPrecision(2);
 }
@@ -426,11 +361,7 @@ function buildVoxelLayers() {
       if (!(v[metric] > 0)) continue;
       const u = Math.min(1, Math.max(0, (Math.log10(v[metric]) - lo) / (hi - lo)));
       layer.add({ position: new Cartesian3(v[0] * 1000, v[1] * 1000, v[2] * 1000), pixelSize: 4 + 6 * u,
-<<<<<<< HEAD
-                  color: rampColor(DENSITY_RAMP, u, 0.25 + 0.6 * u) });
-=======
                   color: rampColor(ENSEMBLE_RAMP, u, 0.25 + 0.6 * u) });
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     }
     return layer;
   });
@@ -516,11 +447,6 @@ function setPlaying(on: boolean) {
 playButton.addEventListener("click", () => setPlaying(!playing));
 slider.addEventListener("input", () => {
   tSim = Number(slider.value);
-<<<<<<< HEAD
-  dirty = true;
-});
-showParticles.addEventListener("change", () => (dirty = true));
-=======
   refreshDensity = true;
   dirty = true;
 });
@@ -528,7 +454,6 @@ showParticles.addEventListener("change", () => {
   refreshDensity = true;
   dirty = true;
 });
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 showVoxels.addEventListener("change", () => (dirty = true));
 document.querySelectorAll<HTMLInputElement>('input[name="metric"]').forEach((el) =>
   el.addEventListener("change", () => {
@@ -545,16 +470,11 @@ document.querySelectorAll<HTMLInputElement>('input[name="metric"]').forEach((el)
     const sims = await api<Simulation[]>("/v1/simulations");
     const active = sims.find((s) => s.status === "queued" || s.status === "running");
     const done = sims.find((s) => s.status === "done");
-<<<<<<< HEAD
-    if (active) await follow(active.id);
-    else if (done) await load(await api<Simulation>(`/v1/simulations/${done.id}`));
-=======
     const shown = active ?? done;
     const sim = shown ? await api<Simulation>(`/v1/simulations/${shown.id}`) : null;
     void showSatellite(sim?.request);
     if (active) await follow(active.id);
     else if (sim) await load(sim);
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     else setStatus("Set a scenario and run a simulation.");
   } catch (err) {
     setStatus(`Could not load from the API at ${API}: ${(err as Error).message}`, true);

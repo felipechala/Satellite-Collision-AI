@@ -8,15 +8,6 @@ from ml.lab_rules import LabRules, combine
 from ml.schema import MATERIALS, Band
 
 
-<<<<<<< HEAD
-def test_default_table_is_neutral_and_marks_placeholders():
-    rules = LabRules.load()
-    assert set(rules.rules) == set(MATERIALS)
-    for m, r in rules.rules.items():
-        assert r.slope_delta == Band(0.0, 0.0, 0.0)
-        assert r.am_mu_shift_lab == Band(0.0, 0.0, 0.0)
-        assert r.provisional == (m != "aluminum")
-=======
 def test_default_table_neutral_except_debrisat_slope_for_modern_construction():
     rules = LabRules.load()
     assert set(rules.rules) == set(MATERIALS)
@@ -31,7 +22,6 @@ def test_default_table_neutral_except_debrisat_slope_for_modern_construction():
             assert "DebriSat" in r.source
         else:
             assert r.slope_delta == Band(0.0, 0.0, 0.0)
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 
 
 def test_combine_with_zero_band_is_identity():

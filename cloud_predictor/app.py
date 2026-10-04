@@ -5,10 +5,7 @@
 Endpoints (interactive docs at /docs):
   GET    /v1/health                       service + model status
   POST   /v1/breakup-parameters           NN correction bands for one event (p10/p50/p90)
-<<<<<<< HEAD
-=======
   POST   /v1/satellite-image              Grok Imagine illustration of the target satellite (XAI_TOKEN)
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
   POST   /v1/debris-cloud                 full model, computed in the request: event + orbit -> frames
   POST   /v1/debris-cloud:publish         same, then stream the frames into SpacetimeDB
   POST   /v1/simulations                  queue a simulation (stored in SpacetimeDB) -> 202 {id}
@@ -48,19 +45,12 @@ import numpy as np
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
-<<<<<<< HEAD
-=======
 from starlette.concurrency import run_in_threadpool
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 
 from ml.contract import ParameterSet
 from ml.schema import EventValidationError, FieldError, event_from_dict, params_to_dict
 from modeling import model_breakup
-<<<<<<< HEAD
-from request_schema import RequestError, parse_request, resolve_corrections
-=======
 from request_schema import RequestError, check_orbit, parse_request, resolve_corrections
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 
 MODEL_DIR_ENV = "BREAKUP_MODEL_DIR"
 SIMULATION_RUNS = 10
@@ -130,20 +120,12 @@ def _sim_frame(frame: dict, voxels: list[dict]) -> dict:
     }
 
 
-<<<<<<< HEAD
-def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = None) -> FastAPI:
-    """estimator: preloaded BreakupParameterEstimator (else loaded from BREAKUP_MODEL_DIR on demand).
-    spacetime: SpacetimeDB client with call()/sql() (else publish_breakup.SpacetimeClient from env).
-    start_worker: run worker.py's loop in a background thread (default: SIMULATION_WORKER != "0")."""
-    state = {"estimator": estimator, "spacetime": spacetime}
-=======
 def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = None, imager=None) -> FastAPI:
     """estimator: preloaded BreakupParameterEstimator (else loaded from BREAKUP_MODEL_DIR on demand).
     spacetime: SpacetimeDB client with call()/sql() (else publish_breakup.SpacetimeClient from env).
     start_worker: run worker.py's loop in a background thread (default: SIMULATION_WORKER != "0").
     imager: prompt -> imagine.GeneratedImage (else imagine.XaiImager from XAI_TOKEN on demand)."""
     state = {"estimator": estimator, "spacetime": spacetime, "imager": imager}
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     if start_worker is None:
         start_worker = os.environ.get("SIMULATION_WORKER", "1") != "0"
 
@@ -154,8 +136,6 @@ def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = No
             state["estimator"] = BreakupParameterEstimator.load(os.environ[MODEL_DIR_ENV])
         return state["estimator"]
 
-<<<<<<< HEAD
-=======
     def get_imager():
         if state["imager"] is None:
             from imagine import imager_from_env
@@ -163,7 +143,6 @@ def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = No
             state["imager"] = imager_from_env()
         return state["imager"]
 
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     def stdb():
         if state["spacetime"] is None:
             from worker import client_from_env
@@ -232,8 +211,6 @@ def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = No
         except EventValidationError as e:
             return _error(e.errors)
 
-<<<<<<< HEAD
-=======
     @app.post("/v1/satellite-image")
     async def satellite_image(request: Request):
         """Artist's impression of the event's target satellite in its orbit (not simulation output).
@@ -262,7 +239,6 @@ def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = No
             return _detail(502, str(e))
         return {"image": image.data_url(), "prompt": prompt, "model": image.model}
 
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
     @app.post("/v1/debris-cloud")
     async def debris_cloud(request: Request):
         body, err = await _json_body(request)

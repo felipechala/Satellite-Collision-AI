@@ -44,8 +44,6 @@ def test_metrics_and_bias_wording():
     assert m["model"]["p10_p90_coverage"] == 0.5
     assert _bias(24.0) == "24× too many"
     assert _bias(0.5) == "2.00× too few"
-<<<<<<< HEAD
-=======
 
 
 def test_kfold_scores_every_labeled_event_once_with_groups_held_out(synth_dir):
@@ -59,4 +57,3 @@ def test_kfold_scores_every_labeled_event_once_with_groups_held_out(synth_dir):
     assert preds["event_id"].is_unique and set(preds["event_id"]) == labeled
     assert (preds.groupby("group")["repeat"].nunique() == 1).all()  # a group never straddles folds
     assert len(splits) == 3
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb

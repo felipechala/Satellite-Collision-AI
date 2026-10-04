@@ -54,10 +54,6 @@ fieldset label { display: block; margin: 2px 0; }
 .legend-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted);
   margin-top: 3px; font-variant-numeric: tabular-nums; }
 
-<<<<<<< HEAD
-@media (max-width: 600px) {
-  #panel { left: 16px; right: 16px; width: auto; top: auto; bottom: 16px; max-height: 50vh; }
-=======
 .legend-unit { text-align: center; font-size: 11px; color: var(--ink-2); margin-top: 1px; }
 .note { margin: 8px 0 0; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
 
@@ -86,5 +82,4 @@ h2 { font-size: 14px; margin: 0 0 8px; }
   #panel { left: 16px; right: 16px; width: auto; top: auto; bottom: 16px; max-height: 50vh; }
   #sat-card { width: 160px; padding: 8px; }
   #sat-card h2, #sat-card .note { display: none; }
->>>>>>> 235d3119d07aa72c2f143baeebde775011dc23eb
 }
