@@ -1,5 +1,6 @@
 import copy
 import json
+import math
 import statistics
 import time
 
@@ -135,6 +136,38 @@ def test_invalid_event_raises_value_error(estimator, spec_request):
 def test_unseen_bus_family_is_handled(estimator, spec_request):
     spec_request["target"]["bus_family"] = "never-seen-bus"
     _check_bands(estimator.predict(event_from_dict(spec_request)))
+
+
+def _gated(estimator, spread=(-1.5, 1.1)):
+    manifest = copy.deepcopy(estimator.manifest)
+    manifest["heads"]["n_multiplier"]["collision_gate"] = {
+        "n_labeled": 4, "min_rows": 30, "use_model": False, "spread": list(spread)}
+    return BreakupParameterEstimator(manifest, estimator.heads, estimator.lab_rules)
+
+
+def test_collision_gate_uses_sbm_band_for_collisions_only(estimator, spec_request):
+    gated = _gated(estimator)
+    p = gated.predict(event_from_dict(spec_request))
+    assert p.n_multiplier.p50 == 1.0
+    assert p.n_multiplier.p10 == pytest.approx(math.exp(-1.5), abs=1e-6)
+    assert p.n_multiplier.p90 == pytest.approx(math.exp(1.1), abs=1e-6)
+    assert p.fallback is True
+    assert p.warnings == ["low_support_collision", "collision_count_from_sbm"]
+    # Other heads and explosions are untouched by the gate.
+    ungated = estimator.predict(event_from_dict(spec_request))
+    assert p.am_mu_shift == ungated.am_mu_shift
+    explosion = event_from_dict({
+        "event_type": "explosion", "epoch": "2001-05-01T00:00:00Z", "explosion_cause": "propulsion",
+        "target": {"object_class": "rocket_body", "dry_mass_kg": 1400, "bus_family": "stage-1"},
+    })
+    assert _dump(gated.predict(explosion)) == _dump(estimator.predict(explosion))
+
+
+def test_manifest_without_gate_uses_learned_head(estimator, spec_request):
+    manifest = copy.deepcopy(estimator.manifest)
+    manifest["heads"]["n_multiplier"].pop("collision_gate", None)
+    old = BreakupParameterEstimator(manifest, estimator.heads, estimator.lab_rules)
+    assert _dump(old.predict(event_from_dict(spec_request))) == _dump(estimator.predict(event_from_dict(spec_request)))
 
 
 def test_load_rejects_other_feature_sets(estimator):
