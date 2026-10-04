@@ -50,6 +50,27 @@ def voxelize(r_km, weight, voxel_km=20.0):
     return {"indices": rows, "density": mass / voxel_km**3, "voxel_km": float(voxel_km)}
 
 
+def _kernel(sigma_voxels, truncate):
+    """Voxel offsets (m, 3) and normalized Gaussian weights (m,) out to truncate*sigma."""
+    if sigma_voxels <= 0:
+        return np.zeros((1, 3), dtype=np.int64), np.ones(1)
+    reach = max(1, int(np.ceil(truncate * sigma_voxels)))
+    axis = np.arange(-reach, reach + 1)
+    ox, oy, oz = np.meshgrid(axis, axis, axis, indexing="ij")
+    offsets = np.stack([ox, oy, oz], axis=-1).reshape(-1, 3)
+    kernel = np.exp(-np.sum(offsets**2, axis=1) / (2.0 * sigma_voxels**2))
+    return offsets, kernel / kernel.sum()
+
+
+_KEY_OFFSET = 1 << 20  # voxel indices must stay within +-2^20 (20 km voxels: +-21 million km)
+
+
+def _keys(indices):
+    """One sortable int64 per voxel index row."""
+    i = np.asarray(indices, dtype=np.int64) + _KEY_OFFSET
+    return (i[:, 0] << 42) | (i[:, 1] << 21) | i[:, 2]
+
+
 def gaussian_smooth(grid, sigma_voxels=1.0, truncate=2.0):
     """Smooth a sparse voxel grid with a 3D Gaussian kernel (KDE step).
 
@@ -58,17 +79,32 @@ def gaussian_smooth(grid, sigma_voxels=1.0, truncate=2.0):
     """
     if grid["indices"].shape[0] == 0 or sigma_voxels <= 0:
         return grid
-    reach = max(1, int(np.ceil(truncate * sigma_voxels)))
-    axis = np.arange(-reach, reach + 1)
-    ox, oy, oz = np.meshgrid(axis, axis, axis, indexing="ij")
-    offsets = np.stack([ox, oy, oz], axis=-1).reshape(-1, 3)
-    kernel = np.exp(-np.sum(offsets**2, axis=1) / (2.0 * sigma_voxels**2))
-    kernel /= kernel.sum()
+    offsets, kernel = _kernel(sigma_voxels, truncate)
 
     idx = (grid["indices"][:, None, :] + offsets[None, :, :]).reshape(-1, 3)
     rho = (grid["density"][:, None] * kernel[None, :]).ravel()
     rows, rho_sum = _accumulate(idx, rho)
     return {"indices": rows, "density": rho_sum, "voxel_km": grid["voxel_km"]}
+
+
+def smoothed_at(grid, query_indices, sigma_voxels=1.0, truncate=2.0):
+    """gaussian_smooth(grid) evaluated only at the given voxel indices (q, 3); 0 where empty.
+
+    Equal to looking the query voxels up in the fully smoothed grid, without building it:
+    a query voxel receives kernel[o] of the mass of the raw voxel at query - o.
+    """
+    query = np.asarray(query_indices, dtype=np.int64).reshape(-1, 3)
+    if grid["indices"].shape[0] == 0 or query.shape[0] == 0:
+        return np.zeros(query.shape[0])
+    offsets, kernel = _kernel(sigma_voxels, truncate)
+    keys = _keys(grid["indices"])
+    order = np.argsort(keys)
+    sorted_keys, sorted_density = keys[order], np.asarray(grid["density"], dtype=float)[order]
+
+    sources = _keys((query[:, None, :] - offsets[None, :, :]).reshape(-1, 3))
+    pos = np.minimum(np.searchsorted(sorted_keys, sources), sorted_keys.size - 1)
+    raw = np.where(sorted_keys[pos] == sources, sorted_density[pos], 0.0)
+    return raw.reshape(query.shape[0], offsets.shape[0]) @ kernel
 
 
 def top_voxels(grid, max_voxels=1000):

@@ -1,11 +1,12 @@
 import json
 
+import numpy as np
 import pandas as pd
 
-from ml.heads import QuantileHead
+from ml.heads import QuantileHead, label_spread
 from ml.labels import LEARNED_HEADS
 from ml.synthetic import write
-from ml.train_breakup_scaler import main
+from ml.train_breakup_scaler import collision_gate, main
 
 from .conftest import AS_OF
 
@@ -28,6 +29,24 @@ def test_shipped_heads_beat_baseline_with_calibrated_coverage(train_report):
     for name, h in shipped.items():
         assert h["cv_pinball"] < h["baseline_pinball"], name
         assert 0.7 <= h["coverage_p10_p90"] <= 0.9, name
+
+
+def test_manifest_records_collision_gate(train_report):
+    out, report = train_report
+    gate = json.loads((out / "manifest.json").read_text())["heads"]["n_multiplier"]["collision_gate"]
+    assert gate == report["collision_gate"]
+    assert gate["n_labeled"] == 30 and gate["min_rows"] == 30 and gate["use_model"] is True
+    assert gate["spread"][0] < 0 < gate["spread"][1]
+
+
+def test_collision_gate_thresholds_and_spread_fallback():
+    y_all = np.array([-3.0, -1.0, 0.0, 1.0, 2.0])
+    gate = collision_gate(np.array([0.5, -0.5, 1.0, 0.0]), y_all, min_rows=30)
+    assert gate["use_model"] is False and gate["n_labeled"] == 4
+    assert gate["spread"][0] < 0 < gate["spread"][1]
+    assert collision_gate(np.zeros(30), y_all, min_rows=30)["use_model"] is True
+    # Fewer than 2 collision labels: the band comes from every count label instead.
+    assert collision_gate(np.array([0.3]), y_all, min_rows=30)["spread"] == list(label_spread(y_all))
 
 
 def test_report_lists_collisions_against_catalog(train_report):
