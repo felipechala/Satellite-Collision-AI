@@ -5,6 +5,7 @@
 Endpoints (interactive docs at /docs):
   GET    /v1/health                       service + model status
   POST   /v1/breakup-parameters           NN correction bands for one event (p10/p50/p90)
+  POST   /v1/satellite-image              Grok Imagine illustration of the target satellite (XAI_TOKEN)
   POST   /v1/debris-cloud                 full model, computed in the request: event + orbit -> frames
   POST   /v1/debris-cloud:publish         same, then stream the frames into SpacetimeDB
   POST   /v1/simulations                  queue a simulation (stored in SpacetimeDB) -> 202 {id}
@@ -44,11 +45,12 @@ import numpy as np
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
+from starlette.concurrency import run_in_threadpool
 
 from ml.contract import ParameterSet
 from ml.schema import EventValidationError, FieldError, event_from_dict, params_to_dict
 from modeling import model_breakup
-from request_schema import RequestError, parse_request, resolve_corrections
+from request_schema import RequestError, check_orbit, parse_request, resolve_corrections
 
 MODEL_DIR_ENV = "BREAKUP_MODEL_DIR"
 SIMULATION_RUNS = 10
@@ -118,11 +120,12 @@ def _sim_frame(frame: dict, voxels: list[dict]) -> dict:
     }
 
 
-def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = None) -> FastAPI:
+def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = None, imager=None) -> FastAPI:
     """estimator: preloaded BreakupParameterEstimator (else loaded from BREAKUP_MODEL_DIR on demand).
     spacetime: SpacetimeDB client with call()/sql() (else publish_breakup.SpacetimeClient from env).
-    start_worker: run worker.py's loop in a background thread (default: SIMULATION_WORKER != "0")."""
-    state = {"estimator": estimator, "spacetime": spacetime}
+    start_worker: run worker.py's loop in a background thread (default: SIMULATION_WORKER != "0").
+    imager: prompt -> imagine.GeneratedImage (else imagine.XaiImager from XAI_TOKEN on demand)."""
+    state = {"estimator": estimator, "spacetime": spacetime, "imager": imager}
     if start_worker is None:
         start_worker = os.environ.get("SIMULATION_WORKER", "1") != "0"
 
@@ -132,6 +135,13 @@ def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = No
 
             state["estimator"] = BreakupParameterEstimator.load(os.environ[MODEL_DIR_ENV])
         return state["estimator"]
+
+    def get_imager():
+        if state["imager"] is None:
+            from imagine import imager_from_env
+
+            state["imager"] = imager_from_env()
+        return state["imager"]
 
     def stdb():
         if state["spacetime"] is None:
@@ -200,6 +210,34 @@ def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = No
             return params_to_dict(est.predict(event_from_dict(body)))
         except EventValidationError as e:
             return _error(e.errors)
+
+    @app.post("/v1/satellite-image")
+    async def satellite_image(request: Request):
+        """Artist's impression of the event's target satellite in its orbit (not simulation output).
+        Body: {"event": ..., "orbit": ...} as for /v1/debris-cloud; orbit is optional."""
+        from imagine import TOKEN_ENV, altitude_of, satellite_prompt
+
+        body, err = await _json_body(request)
+        if err:
+            return err
+        errors: list[FieldError] = []
+        event = None
+        try:
+            event = event_from_dict(body.get("event"))
+        except EventValidationError as e:
+            errors.extend(FieldError(f"event.{x.loc}", x.msg) for x in e.errors)
+        orbit = check_orbit(body["orbit"], errors) if "orbit" in body else {}
+        if errors:
+            return _error(errors)
+        imager = get_imager()
+        if imager is None:
+            return _detail(503, f"{TOKEN_ENV} is not set (environment or repo-root .env)")
+        prompt = satellite_prompt(event, *altitude_of(orbit))
+        try:
+            image = await run_in_threadpool(imager, prompt)
+        except RuntimeError as e:
+            return _detail(502, str(e))
+        return {"image": image.data_url(), "prompt": prompt, "model": image.model}
 
     @app.post("/v1/debris-cloud")
     async def debris_cloud(request: Request):
