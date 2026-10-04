@@ -1,0 +1,14 @@
+---
+description: Debris-cloud pipeline boundaries between the Python model, SpacetimeDB, and the web viewer
+alwaysApply: true
+---
+
+# Satellite-Collision-AI
+
+Predicts the untrackable (<10 cm) debris cloud after a satellite breakup as a 3D voxel density field. Physics stays in Python. SpacetimeDB stores precomputed frames and streams them. The web viewer only reads the API.
+
+- `cloud_predictor/` runs the NASA standard breakup model, ML corrections (`ml/contract.py`, `ml/schema.py`), the HTTP API (`app.py`), and the simulation worker (`worker.py`). Request JSON is defined in `request_schema.py`.
+- `spacetimedb/` is the real-time store. It does not re-run physics. Tables, reducers, and the request lifecycle are in `spacetimedb/src/lib.rs` and `spacetimedb/README.md`.
+- `web/` is the Cesium demo. It talks to `/v1/simulations` and draws the stored cloud. Orbit motion matches `cloud_predictor/engine/propagator.py`.
+
+When you change a boundary between these — request fields, reducer arguments, voxel or particle columns, or the ML correction contract — update every side that reads or writes it, including `spacetimedb/README.md`, in the same change.
