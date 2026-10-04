@@ -61,3 +61,6 @@ target/
 Thumbs.db
 .DS_Store
 .venv/
+
+# Demo page: Cesium assets copied at dev/build time
+web/public/cesium/

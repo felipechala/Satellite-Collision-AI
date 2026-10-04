@@ -3,47 +3,65 @@
     BREAKUP_MODEL_DIR=models/estimator-v1 uvicorn app:app        # from cloud_predictor/
 
 Endpoints (interactive docs at /docs):
-  GET  /v1/health                 service + model status
-  POST /v1/breakup-parameters     NN correction bands for one event (p10/p50/p90)
-  POST /v1/debris-cloud           full model: event + orbit -> voxel density frames
-  POST /v1/debris-cloud:publish   same, then stream the frames into SpacetimeDB
+  GET    /v1/health                       service + model status
+  POST   /v1/breakup-parameters           NN correction bands for one event (p10/p50/p90)
+  POST   /v1/debris-cloud                 full model, computed in the request: event + orbit -> frames
+  POST   /v1/debris-cloud:publish         same, then stream the frames into SpacetimeDB
+  POST   /v1/simulations                  queue a simulation (stored in SpacetimeDB) -> 202 {id}
+  GET    /v1/simulations                  recent simulations and their status
+  GET    /v1/simulations/{id}             status, progress, event metadata, frame times
+  GET    /v1/simulations/{id}/frame?t_s=  the cloud at a time (latest frame at or before t_s)
+  GET    /v1/simulations/{id}/frames?start_s=&end_s=   every frame in a time range
+  DELETE /v1/simulations/{id}
 
-/v1/debris-cloud body:
+Request body (shared by /v1/debris-cloud and /v1/simulations; see request_schema.py):
   {
     "event":   { ...ml.schema.BreakupEvent shape... },
     "orbit":   {"alt_km": 780, "inc_deg": 86.4, "raan_deg": 0, "arg_lat_deg": 0}
                or {"r_km": [x,y,z], "v_km_s": [vx,vy,vz]},
     "corrections": "auto" | "p50" | "neutral" | {"n_multiplier": 1.4, ...},   # default auto
     "times_s": [...optional snapshot times...],
-    "k": 10000, "voxel_km": 20, "sigma_voxels": 1, "max_voxels": 1000, "seed": 0
+    "k": 10000, "voxel_km": 20, "sigma_voxels": 1, "max_voxels": 1000, "seed": 0,
+    "n_runs": 1 for /v1/debris-cloud, 10 for /v1/simulations (Monte Carlo runs, 1-30)
   }
+
+/v1/simulations runs in a worker (worker.py, started with the app unless SIMULATION_WORKER=0)
+and stores results in SpacetimeDB (SPACETIME_HOST, SPACETIME_DB). Simulation frame voxels are
+[x, y, z, mean, p10, p50, p90] (ECI km, fragments/km^3, densest first).
 """
 from __future__ import annotations
 
 import dataclasses
+import json
+import math
 import os
+import uuid
+from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 from typing import Any, Optional
 
 import numpy as np
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, Response
 
-from ml.contract import BOUNDS, ParameterSet
+from ml.contract import ParameterSet
 from ml.schema import EventValidationError, FieldError, event_from_dict, params_to_dict
-from modeling import DEFAULT_TIMES_S, model_breakup
+from modeling import model_breakup
+from request_schema import RequestError, parse_request, resolve_corrections
 
 MODEL_DIR_ENV = "BREAKUP_MODEL_DIR"
-
-# Request limits: keep one call bounded in time and payload.
-LIMITS = {"k": (100, 100_000), "voxel_km": (1.0, 500.0), "sigma_voxels": (0.0, 5.0),
-          "max_voxels": (10, 2000), "seed": (0, 2**31 - 1)}
-MAX_TIMES = 100
-MAX_HORIZON_S = 30 * 86400.0
+SIMULATION_RUNS = 10
+DEMO_ORIGINS = "http://localhost:5173,http://127.0.0.1:5173"
 
 
-def _error(errors: list[FieldError]) -> JSONResponse:
-    return JSONResponse(status_code=422,
+def _error(errors: list[FieldError], status: int = 422) -> JSONResponse:
+    return JSONResponse(status_code=status,
                         content={"detail": [{"loc": e.loc, "msg": e.msg} for e in errors]})
+
+
+def _detail(status: int, msg: str) -> JSONResponse:
+    return JSONResponse(status_code=status, content={"detail": msg})
 
 
 async def _json_body(request: Request) -> tuple[Any, Optional[JSONResponse]]:
@@ -56,72 +74,57 @@ async def _json_body(request: Request) -> tuple[Any, Optional[JSONResponse]]:
     return body, None
 
 
-def _check_orbit(orbit: Any, errors: list[FieldError]) -> dict:
-    if not isinstance(orbit, dict):
-        errors.append(FieldError("orbit", "is required (alt_km+inc_deg or r_km+v_km_s)"))
-        return {}
-    if "r_km" in orbit or "v_km_s" in orbit:
-        for key in ("r_km", "v_km_s"):
-            v = orbit.get(key)
-            if not (isinstance(v, list) and len(v) == 3 and all(isinstance(x, (int, float)) for x in v)):
-                errors.append(FieldError(f"orbit.{key}", "must be a list of 3 numbers"))
-        return {"r0_km": orbit.get("r_km"), "v0_km_s": orbit.get("v_km_s")}
-    out = {}
-    for key, lo, hi, required in (("alt_km", 150.0, 50_000.0, True), ("inc_deg", 0.0, 180.0, True),
-                                  ("raan_deg", -360.0, 360.0, False), ("arg_lat_deg", -360.0, 360.0, False)):
-        if key not in orbit:
-            if required:
-                errors.append(FieldError(f"orbit.{key}", "is required"))
-            continue
-        v = orbit[key]
-        if not isinstance(v, (int, float)) or not lo <= v <= hi:
-            errors.append(FieldError(f"orbit.{key}", f"must be a number in [{lo:g}, {hi:g}]"))
-        else:
-            out[key] = float(v)
-    return out
-
-
-def _check_options(body: dict, errors: list[FieldError]) -> dict:
-    out = {}
-    for key, (lo, hi) in LIMITS.items():
-        if key in body:
-            v = body[key]
-            if not isinstance(v, (int, float)) or not lo <= v <= hi:
-                errors.append(FieldError(key, f"must be a number in [{lo}, {hi}]"))
-            else:
-                out[key] = int(v) if isinstance(lo, int) else float(v)
-    times = body.get("times_s")
-    if times is not None:
-        ok = (isinstance(times, list) and 0 < len(times) <= MAX_TIMES
-              and all(isinstance(t, (int, float)) and 0 <= t <= MAX_HORIZON_S for t in times))
-        if ok:
-            out["times_s"] = [float(t) for t in times]
-        else:
-            errors.append(FieldError("times_s", f"must be 1..{MAX_TIMES} times in [0, {MAX_HORIZON_S:g}] s"))
-    return out
-
-
 def _frames_json(result: dict) -> list[dict]:
+    """Synchronous-endpoint frames: voxels [x, y, z, density], or [x, y, z, mean, p10, p50, p90]
+    when the result is a Monte Carlo ensemble (n_runs > 1)."""
+    ensemble = result.get("n_runs", 1) > 1
     frames = []
     for t, frac, frame in zip(result["times_s"], result["in_orbit_fraction"], result["frames"]):
         xyz = np.round(frame["xyz_km"], 2)
+        cols = [frame["density"]] + ([frame["p10"], frame["p50"], frame["p90"]] if ensemble else [])
         rho = frame["density"]
         frames.append({
             "t_s": float(t),
             "in_orbit_fraction": round(float(frac), 4),
             "n_voxels": int(rho.size),
             "peak_density": float(f"{rho[0]:.5g}") if rho.size else 0.0,
-            "voxels": [[float(x), float(y), float(z), float(f"{d:.5g}")]
-                       for (x, y, z), d in zip(xyz, rho)],
+            "voxels": [[float(x), float(y), float(z), *(float(f"{c[i]:.5g}") for c in cols)]
+                       for i, (x, y, z) in enumerate(xyz)],
         })
     return frames
 
 
-def create_app(estimator=None) -> FastAPI:
-    app = FastAPI(title="Debris Cloud Modeling API", version="1.0",
-                  description="Predicts the untrackable (<10 cm) debris cloud of a satellite "
-                              "breakup as a time series of 3D voxel density fields.")
-    state = {"estimator": estimator}
+def _timestamp_iso(value: Any) -> Any:
+    """SQL rows encode a Timestamp as a one-field product: [micros_since_unix_epoch]."""
+    if isinstance(value, list) and len(value) == 1 and isinstance(value[0], (int, float)):
+        return datetime.fromtimestamp(value[0] / 1e6, tz=timezone.utc).isoformat()
+    return value
+
+
+# SpacetimeDB's SQL names snake_case fields with an underscore before digits:
+# the Rust field density_p10 is the SQL column density_p_10.
+PERCENTILE_COLUMNS = ("density_p_10", "density_p_50", "density_p_90")
+
+
+def _sim_frame(frame: dict, voxels: list[dict]) -> dict:
+    rows = sorted(voxels, key=lambda v: v["density"], reverse=True)
+    return {
+        "frame": frame["frame"],
+        "t_s": frame["t_sim_s"],
+        "fragments_in_orbit": frame["fragments_in_orbit"],
+        "n_voxels": frame["n_voxels"],
+        "peak_density": frame["peak_density"],
+        "voxels": [[v["x"], v["y"], v["z"], v["density"], *(v[c] for c in PERCENTILE_COLUMNS)] for v in rows],
+    }
+
+
+def create_app(estimator=None, spacetime=None, start_worker: Optional[bool] = None) -> FastAPI:
+    """estimator: preloaded BreakupParameterEstimator (else loaded from BREAKUP_MODEL_DIR on demand).
+    spacetime: SpacetimeDB client with call()/sql() (else publish_breakup.SpacetimeClient from env).
+    start_worker: run worker.py's loop in a background thread (default: SIMULATION_WORKER != "0")."""
+    state = {"estimator": estimator, "spacetime": spacetime}
+    if start_worker is None:
+        start_worker = os.environ.get("SIMULATION_WORKER", "1") != "0"
 
     def get_estimator():
         if state["estimator"] is None and os.environ.get(MODEL_DIR_ENV):
@@ -130,58 +133,52 @@ def create_app(estimator=None) -> FastAPI:
             state["estimator"] = BreakupParameterEstimator.load(os.environ[MODEL_DIR_ENV])
         return state["estimator"]
 
-    def resolve_corrections(body: dict, event) -> tuple[Optional[ParameterSet], Optional[dict], str,
-                                                        Optional[JSONResponse]]:
-        """-> (params, parameter_bands, source, error_response)"""
-        choice = body.get("corrections", "auto")
-        if isinstance(choice, dict):
-            unknown = set(choice) - set(BOUNDS)
-            if unknown or not all(isinstance(v, (int, float)) for v in choice.values()):
-                return None, None, "", _error([FieldError("corrections",
-                                                          f"numeric values for any of {sorted(BOUNDS)}")])
-            clamped = {k: min(max(float(v), BOUNDS[k][0]), BOUNDS[k][1]) for k, v in choice.items()}
-            return ParameterSet(**clamped), None, "overrides", None
-        if choice not in ("auto", "p50", "neutral"):
-            return None, None, "", _error([FieldError("corrections",
-                                                      "must be 'auto', 'p50', 'neutral' or an object")])
-        est = get_estimator() if choice in ("auto", "p50") else None
-        if choice == "p50" and est is None:
-            return None, None, "", JSONResponse(status_code=503, content={
-                "detail": f"corrections='p50' needs a trained model; set {MODEL_DIR_ENV}"})
-        if est is None:
-            return None, None, "neutral-sbm", None
-        predicted = est.predict(event)
-        return ParameterSet.from_p50(predicted), params_to_dict(predicted), est.model_version, None
+    def stdb():
+        if state["spacetime"] is None:
+            from worker import client_from_env
 
-    def run_model(body: dict) -> tuple[Optional[dict], Optional[JSONResponse]]:
-        errors: list[FieldError] = []
-        orbit = _check_orbit(body.get("orbit"), errors)
-        options = _check_options(body, errors)
-        event = None
-        if "event" not in body:
-            errors.append(FieldError("event", "is required"))
-        else:
-            try:
-                event = event_from_dict(body["event"])
-            except EventValidationError as e:
-                errors.extend(FieldError(f"event.{x.loc}", x.msg) for x in e.errors)
-        if errors:
-            return None, _error(errors)
-        params, bands, source, err = resolve_corrections(body, event)
-        if err:
-            return None, err
-        result = model_breakup(event, params=params, **orbit, **options)
+            state["spacetime"] = client_from_env()
+        return state["spacetime"]
+
+    @asynccontextmanager
+    async def lifespan(_app: FastAPI):
+        stop = None
+        if start_worker:
+            from worker import client_from_env, start_thread
+
+            # The worker gets its own HTTP client; the API's stays on the request threads.
+            stop = start_thread(spacetime or client_from_env(), get_estimator)
+        yield
+        if stop is not None:
+            stop.set()
+
+    app = FastAPI(title="Debris Cloud Modeling API", version="1.1", lifespan=lifespan,
+                  description="Predicts the untrackable (<10 cm) debris cloud of a satellite "
+                              "breakup as a time series of 3D voxel density fields.")
+    app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("CORS_ORIGINS", DEMO_ORIGINS).split(","),
+                       allow_methods=["*"], allow_headers=["*"])
+
+    def run_model(body: dict) -> tuple[Optional[dict], Optional[dict], Optional[JSONResponse]]:
+        """-> (response JSON, raw modeling result, error response)"""
+        try:
+            req = parse_request(body)
+            corr = resolve_corrections(req.corrections, req.event, get_estimator())
+        except RequestError as e:
+            return None, None, _error(e.errors, e.status)
+        result = model_breakup(req.event, params=corr.point, bands=corr.bands, **req.orbit, **req.options)
+        result["event"] = req.event
         d = result["derived"]
         return {
-            "model_version": source,
-            "corrections": dataclasses.asdict(params) if params else dataclasses.asdict(ParameterSet()),
-            "parameters": bands,
+            "model_version": corr.source,
+            "corrections": dataclasses.asdict(corr.point or ParameterSet()),
+            "parameters": corr.parameters,
             "derived": {"emr_j_per_g": d.emr_j_per_g, "is_catastrophic": d.is_catastrophic,
                         "sbm_mass_param": d.sbm_mass_param},
+            "n_runs": result["n_runs"],
             "fragments_total": round(result["fragments_total"]),
             "voxel_km": result["voxel_km"],
             "frames": _frames_json(result),
-        }, None
+        }, result, None
 
     @app.get("/v1/health")
     def health():
@@ -195,8 +192,7 @@ def create_app(estimator=None) -> FastAPI:
     async def breakup_parameters(request: Request):
         est = get_estimator()
         if est is None:
-            return JSONResponse(status_code=503,
-                                content={"detail": f"{MODEL_DIR_ENV} is not set"})
+            return _detail(503, f"{MODEL_DIR_ENV} is not set")
         body, err = await _json_body(request)
         if err:
             return err
@@ -210,12 +206,12 @@ def create_app(estimator=None) -> FastAPI:
         body, err = await _json_body(request)
         if err:
             return err
-        response, err = run_model(body)
+        response, _, err = run_model(body)
         return err if err else response
 
     @app.post("/v1/debris-cloud:publish")
     async def debris_cloud_publish(request: Request):
-        from publish_breakup import SpacetimeClient  # local import: optional feature
+        import publish_breakup  # module attribute lookup, so tests can swap SpacetimeClient
 
         body, err = await _json_body(request)
         if err:
@@ -229,36 +225,169 @@ def create_app(estimator=None) -> FastAPI:
             errors.append(FieldError("sat_name", "is required"))
         if errors:
             return _error(errors)
-        response, err = run_model(body)
+        response, result, err = run_model(body)
         if err:
             return err
 
-        stdb = body.get("spacetimedb") or {}
-        client = SpacetimeClient(stdb.get("host", "http://127.0.0.1:3000"),
-                                 stdb.get("db", "debris-tracker"))
+        stdb_opts = body.get("spacetimedb") or {}
+        client = publish_breakup.SpacetimeClient(stdb_opts.get("host", "http://127.0.0.1:3000"),
+                                                 stdb_opts.get("db", "debris-tracker"))
         try:
             if body.get("replace"):
                 try:
                     client.call("delete_breakup", event_id)
                 except RuntimeError:
                     pass
-            d = response["derived"]
-            client.call("start_breakup", event_id, sat_name,
-                        float(body["event"]["target"].get("dry_mass_kg", 0.0))
-                        + float(body["event"]["target"].get("propellant_mass_kg") or 0.0),
-                        d["emr_j_per_g"] or 0.0, bool(d["is_catastrophic"]),
-                        response["model_version"], response["voxel_km"])
-            for i, frame in enumerate(response["frames"]):
-                v = frame["voxels"]
-                client.call("publish_frame", event_id, i, frame["t_s"],
-                            [r[0] for r in v], [r[1] for r in v], [r[2] for r in v],
-                            [r[3] for r in v])
-            client.call("finalize_breakup", event_id,
-                        float(body.get("speed", 3600.0)), True)
+            publish_breakup.publish(client, event_id, sat_name, result["event"], result,
+                                    response["model_version"], float(body.get("speed", 3600.0)), True)
         except (RuntimeError, OSError) as e:
-            return JSONResponse(status_code=502, content={"detail": f"SpacetimeDB publish failed: {e}"})
+            return _detail(502, f"SpacetimeDB publish failed: {e}")
         response["published"] = {"event_id": event_id, "frames": len(response["frames"])}
         return response
+
+    # ---------- stored simulations (SpacetimeDB) ----------
+
+    def request_row(sim_id: int) -> Optional[dict]:
+        rows = stdb().sql(f"SELECT * FROM simulation_request WHERE id = {int(sim_id)}")
+        return rows[0] if rows else None
+
+    def frames_of(sim_id: int) -> list[dict]:
+        return sorted(stdb().sql(f"SELECT * FROM cloud_frame WHERE event_id = {int(sim_id)}"),
+                      key=lambda f: f["t_sim_s"])
+
+    def summary(row: dict) -> dict:
+        return {"id": row["id"], "status": row["status"], "progress": row["progress"],
+                "error": row["error"] or None, "created_at": _timestamp_iso(row["created_at"])}
+
+    def done_or_error(sim_id: int) -> Optional[JSONResponse]:
+        row = request_row(sim_id)
+        if row is None:
+            return _detail(404, f"unknown simulation {sim_id}")
+        if row["status"] != "done":
+            return _detail(409, f"simulation {sim_id} is {row['status']}"
+                                + (f": {row['error']}" if row["error"] else ""))
+        return None
+
+    @app.post("/v1/simulations", status_code=202)
+    async def create_simulation(request: Request):
+        body, err = await _json_body(request)
+        if err:
+            return err
+        try:
+            req = parse_request(body, default_runs=SIMULATION_RUNS)
+            resolve_corrections(req.corrections, req.event, get_estimator())  # 503 now, not in the worker
+        except RequestError as e:
+            return _error(e.errors, e.status)
+        key = uuid.uuid4().hex
+        try:
+            stdb().call("request_simulation", key, json.dumps(body, sort_keys=True, separators=(",", ":")))
+            rows = stdb().sql(f"SELECT * FROM simulation_request WHERE request_key = '{key}'")
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+        if not rows:
+            return _detail(502, "SpacetimeDB accepted the request but the row was not found")
+        sim_id = rows[0]["id"]
+        return JSONResponse(status_code=202, content={
+            "id": sim_id, "status": rows[0]["status"], "n_runs": req.options["n_runs"],
+            "links": {"self": f"/v1/simulations/{sim_id}", "frame": f"/v1/simulations/{sim_id}/frame?t_s=0",
+                      "frames": f"/v1/simulations/{sim_id}/frames"}})
+
+    @app.get("/v1/simulations")
+    def list_simulations():
+        try:
+            rows = stdb().sql("SELECT * FROM simulation_request")
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+        return [summary(r) for r in sorted(rows, key=lambda r: r["id"], reverse=True)]
+
+    @app.get("/v1/simulations/{sim_id}")
+    def get_simulation(sim_id: int):
+        try:
+            row = request_row(sim_id)
+            if row is None:
+                return _detail(404, f"unknown simulation {sim_id}")
+            out = summary(row)
+            try:
+                out["request"] = json.loads(row["params_json"])
+            except ValueError:  # queued straight through the reducer with bad JSON; the worker fails it
+                out["request"] = row["params_json"]
+            if row["status"] == "done":
+                events = stdb().sql(f"SELECT * FROM breakup_event WHERE event_id = {int(sim_id)}")
+                if events:
+                    ev = events[0]
+                    out["event"] = {k: ev[k] for k in ("sat_name", "mass_kg", "emr_j_per_g", "is_catastrophic",
+                                                       "model_version", "voxel_km")}
+                out["frames"] = [{"frame": f["frame"], "t_s": f["t_sim_s"], "n_voxels": f["n_voxels"],
+                                  "peak_density": f["peak_density"], "fragments_in_orbit": f["fragments_in_orbit"]}
+                                 for f in frames_of(sim_id)]
+            return out
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+
+    @app.get("/v1/simulations/{sim_id}/frame")
+    def get_frame(sim_id: int, t_s: float = 0.0):
+        if not math.isfinite(t_s) or t_s < 0:
+            return _error([FieldError("t_s", "must be a time >= 0 in seconds after the breakup")])
+        try:
+            err = done_or_error(sim_id)
+            if err:
+                return err
+            frames = frames_of(sim_id)
+            at_or_before = [f for f in frames if f["t_sim_s"] <= t_s]
+            frame = at_or_before[-1] if at_or_before else frames[0]
+            voxels = stdb().sql(f"SELECT * FROM debris_voxel WHERE event_id = {int(sim_id)} "
+                                f"AND frame = {int(frame['frame'])}")
+            return {"id": sim_id, "requested_t_s": t_s, **_sim_frame(frame, voxels)}
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+
+    @app.get("/v1/simulations/{sim_id}/frames")
+    def get_frames(sim_id: int, start_s: float = 0.0, end_s: Optional[float] = None):
+        if end_s is not None and end_s < start_s:
+            return _error([FieldError("end_s", "must be >= start_s")])
+        try:
+            err = done_or_error(sim_id)
+            if err:
+                return err
+            frames = [f for f in frames_of(sim_id)
+                      if f["t_sim_s"] >= start_s and (end_s is None or f["t_sim_s"] <= end_s)]
+            by_frame: dict[int, list[dict]] = {f["frame"]: [] for f in frames}
+            if frames:
+                for v in stdb().sql(f"SELECT * FROM debris_voxel WHERE event_id = {int(sim_id)}"):
+                    if v["frame"] in by_frame:
+                        by_frame[v["frame"]].append(v)
+            return {"id": sim_id, "start_s": start_s, "end_s": end_s,
+                    "frames": [_sim_frame(f, by_frame[f["frame"]]) for f in frames]}
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+
+    @app.get("/v1/simulations/{sim_id}/particles")
+    def get_particles(sim_id: int):
+        """Representative fragment orbits for continuous animation (see engine.propagator.particle_orbits):
+        position at t from a = a_km + a_dot t, raan/argp + rate t, M = mean_anomaly + m_dot t + m_ddot t^2/2;
+        t_decay_s -1 = in orbit at the horizon. Column arrays, one entry per particle."""
+        from publish_breakup import PARTICLE_COLUMNS
+
+        try:
+            err = done_or_error(sim_id)
+            if err:
+                return err
+            rows = stdb().sql(f"SELECT * FROM cloud_particle WHERE event_id = {int(sim_id)}")
+            frames = frames_of(sim_id)
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+        return {"id": sim_id, "n_particles": len(rows), "t_end_s": frames[-1]["t_sim_s"] if frames else 0.0,
+                "particles": {c: [r[c] for r in rows] for c in PARTICLE_COLUMNS}}
+
+    @app.delete("/v1/simulations/{sim_id}", status_code=204)
+    def delete_simulation(sim_id: int):
+        try:
+            if request_row(sim_id) is None:
+                return _detail(404, f"unknown simulation {sim_id}")
+            stdb().call("delete_simulation", int(sim_id))
+        except RuntimeError as e:
+            return _detail(502, f"SpacetimeDB: {e}")
+        return Response(status_code=204)
 
     return app
 

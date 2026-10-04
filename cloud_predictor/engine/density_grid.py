@@ -65,10 +65,27 @@ def _kernel(sigma_voxels, truncate):
 _KEY_OFFSET = 1 << 20  # voxel indices must stay within +-2^20 (20 km voxels: +-21 million km)
 
 
+_KEY_MASK = (1 << 21) - 1
+_KEY_SHIFTS = (42, 21, 0)  # x, y, z fields of a packed key
+
+
 def _keys(indices):
-    """One sortable int64 per voxel index row."""
+    """One sortable int64 per voxel index row. Moving one voxel along an axis adds 1 << shift."""
     i = np.asarray(indices, dtype=np.int64) + _KEY_OFFSET
     return (i[:, 0] << 42) | (i[:, 1] << 21) | i[:, 2]
+
+
+def _unkeys(keys):
+    """Inverse of _keys: (n, 3) int64 voxel indices."""
+    return np.stack([((keys >> s) & _KEY_MASK) - _KEY_OFFSET for s in _KEY_SHIFTS], axis=1)
+
+
+def _sum_by_key(keys, values):
+    """Sum values over equal keys. Returns (sorted unique keys, sums)."""
+    order = np.argsort(keys)
+    k = keys[order]
+    starts = np.flatnonzero(np.concatenate(([True], k[1:] != k[:-1])))
+    return k[starts], np.add.reduceat(values[order], starts)
 
 
 def gaussian_smooth(grid, sigma_voxels=1.0, truncate=2.0):
@@ -76,15 +93,23 @@ def gaussian_smooth(grid, sigma_voxels=1.0, truncate=2.0):
 
     Each occupied voxel's mass is spread over its neighbors out to truncate*sigma.
     Total weight is conserved; the result has more, lower-density voxels.
+
+    The kernel is a cube-truncated Gaussian, which factorizes into three 1-D Gaussians, so it is
+    applied as three 1-D passes (identical result to the full 3-D kernel in _kernel, far less work).
     """
     if grid["indices"].shape[0] == 0 or sigma_voxels <= 0:
         return grid
-    offsets, kernel = _kernel(sigma_voxels, truncate)
+    reach = max(1, int(np.ceil(truncate * sigma_voxels)))
+    axis = np.arange(-reach, reach + 1)
+    weights = np.exp(-(axis**2) / (2.0 * sigma_voxels**2))
+    weights /= weights.sum()
 
-    idx = (grid["indices"][:, None, :] + offsets[None, :, :]).reshape(-1, 3)
-    rho = (grid["density"][:, None] * kernel[None, :]).ravel()
-    rows, rho_sum = _accumulate(idx, rho)
-    return {"indices": rows, "density": rho_sum, "voxel_km": grid["voxel_km"]}
+    # Work on packed keys: a shift along one axis is adding a constant, no index unpacking per pass.
+    keys, rho = _keys(grid["indices"]), np.asarray(grid["density"], dtype=float)
+    for shift in _KEY_SHIFTS:
+        keys, rho = _sum_by_key((keys[:, None] + (axis.astype(np.int64) << shift)[None, :]).ravel(),
+                                (rho[:, None] * weights[None, :]).ravel())
+    return {"indices": _unkeys(keys), "density": rho, "voxel_km": grid["voxel_km"]}
 
 
 def smoothed_at(grid, query_indices, sigma_voxels=1.0, truncate=2.0):
@@ -107,13 +132,23 @@ def smoothed_at(grid, query_indices, sigma_voxels=1.0, truncate=2.0):
     return raw.reshape(query.shape[0], offsets.shape[0]) @ kernel
 
 
+def densest(density, n):
+    """Indices of the n largest values, largest first (partial sort: O(N) + O(n log n))."""
+    density = np.asarray(density)
+    if density.size > n:
+        top = np.argpartition(density, density.size - n)[density.size - n:]
+    else:
+        top = np.arange(density.size)
+    return top[np.argsort(density[top])[::-1]]
+
+
 def top_voxels(grid, max_voxels=1000):
     """Densest voxels as frontend-ready rows: centers [km, ECI] + density.
 
     Returns {"xyz_km": (n, 3), "density": (n,)}, sorted densest-first and capped at
     max_voxels (the gameplan's WebGL streaming budget).
     """
-    order = np.argsort(grid["density"])[::-1][:max_voxels]
+    order = densest(grid["density"], max_voxels)
     centers = (grid["indices"][order] + 0.5) * grid["voxel_km"]
     return {"xyz_km": centers, "density": grid["density"][order]}
 
