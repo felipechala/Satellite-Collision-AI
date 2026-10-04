@@ -1,0 +1,14 @@
+---
+description: The Cesium demo reads the API and must match the Python orbit math
+globs: web/**/*
+alwaysApply: false
+---
+
+# Web viewer
+
+`web/` is a Vite + TypeScript Cesium demo. It loads the cloud from the HTTP API (`VITE_API_URL`, default `http://127.0.0.1:8000`): `POST /v1/simulations`, then the status, particle, and frame routes. Do not add a second physics step in the browser.
+
+- `src/orbit.ts` is the JavaScript twin of `cloud_predictor/engine/propagator.py` `orbit_positions`. Same elements: `a = a_km + a_dot t`, linear RAAN and argument of perigee, `M = mean_anomaly + m_dot t + m_ddot t^2 / 2`, eccentricity and inclination fixed. `positionAt` returns ECI meters. `t_decay_s < 0` means the fragment has not re-entered inside the horizon.
+- Draw a density field. Each stored particle is a weighted sample, not one fragment. The hourly voxel frames are an optional mean/p10/p90 overlay.
+- The satellite picture from `POST /v1/satellite-image` is decoration. It is not model output and must not feed the density field.
+- Cesium static assets are copied by `copy-cesium.mjs` into `web/public/cesium/` at dev and build time. That directory stays gitignored.
