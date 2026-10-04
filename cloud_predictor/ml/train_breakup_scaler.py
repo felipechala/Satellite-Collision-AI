@@ -31,10 +31,22 @@ def _r(x: Optional[float], nd: int = 4) -> Optional[float]:
     return None if x is None or (isinstance(x, float) and math.isnan(x)) else round(float(x), nd)
 
 
+def collision_gate(y_collision: np.ndarray, y_all: np.ndarray, min_rows: int) -> dict:
+    """Whether collisions may use the learned n_multiplier head.
+
+    With few labeled collisions the head is fit almost entirely to explosions and cannot be
+    validated on collisions, so the estimator falls back to the unmodified SBM (x1) with the
+    spread of the collision labels (all labels if fewer than 2 collisions) until min_rows exist.
+    """
+    spread = label_spread(y_collision if len(y_collision) >= 2 else y_all)
+    return {"n_labeled": int(len(y_collision)), "min_rows": int(min_rows),
+            "use_model": bool(len(y_collision) >= min_rows), "spread": list(spread)}
+
+
 def train(events_path: str, specs_path: str, out_dir: str, fragments_path: Optional[str] = None,
           as_of: Optional[str] = None, model_version: Optional[str] = None, seed: int = 0,
           n_folds: int = 5, min_tle_span_days: float = 180.0, min_fragments: int = 5,
-          min_rows: int = 30, min_improvement: float = 0.01,
+          min_rows: int = 30, min_improvement: float = 0.01, min_collision_rows: int = 30,
           log: Callable[[str], None] = print) -> dict:
     out = Path(out_dir)
     as_of_dt = parse_epoch(as_of) if as_of else datetime.now(timezone.utc)
@@ -91,6 +103,14 @@ def train(events_path: str, specs_path: str, out_dir: str, fragments_path: Optio
         }
         log(f"{name}: {status} ({reason})")
 
+    y_count = labels["n_multiplier"].to_numpy(float)
+    is_collision = np.array([r.event.event_type == "collision" for r in rows])
+    gate = collision_gate(y_count[is_collision & ~np.isnan(y_count)], y_count[~np.isnan(y_count)],
+                          min_collision_rows)
+    head_manifest["n_multiplier"]["collision_gate"] = gate
+    log(f"collisions: {'learned head' if gate['use_model'] else 'SBM fallback'} "
+        f"({gate['n_labeled']} labeled, need {min_collision_rows})")
+
     total_masses = [sbm.target_mass_kg(e) for e in events]
     manifest = {
         "format_version": MANIFEST_FORMAT,
@@ -116,7 +136,8 @@ def train(events_path: str, specs_path: str, out_dir: str, fragments_path: Optio
         "n_events": len(rows),
         "n_skipped": len(skipped),
         "heads": head_report,
-        "collisions": _collision_table(rows, labels, n_oof, head_report["n_multiplier"]["status"]),
+        "collision_gate": gate,
+        "collisions": _collision_table(rows, n_oof, head_report["n_multiplier"]["status"], gate),
         "provisional_lab_rules": sorted(m for m, r in lab_rules.rules.items() if r.provisional),
         "skipped": [{"event_id": eid, "errors": [f"{e.loc}: {e.msg}" for e in errs]} for eid, errs in skipped],
     }
@@ -126,7 +147,7 @@ def train(events_path: str, specs_path: str, out_dir: str, fragments_path: Optio
     return report
 
 
-def _collision_table(rows, labels, n_oof: Optional[np.ndarray], n_status: str) -> list[dict]:
+def _collision_table(rows, n_oof: Optional[np.ndarray], n_status: str, gate: dict) -> list[dict]:
     table = []
     for i, row in enumerate(rows):
         if row.event.event_type != "collision":
@@ -140,7 +161,11 @@ def _collision_table(rows, labels, n_oof: Optional[np.ndarray], n_status: str) -
             "n_cataloged": _r(row.n_cataloged, 0),
             "n_sbm": _r(n_sbm, 1),
         }
-        if n_status != "shipped":
+        if not gate["use_model"]:
+            lo, hi = gate["spread"]
+            entry.update(n_pred_p10=_r(n_sbm * math.exp(lo), 1), n_pred_p50=_r(n_sbm, 1),
+                         n_pred_p90=_r(n_sbm * math.exp(hi), 1), source="SBM (collision gate)")
+        elif n_status != "shipped":
             entry.update(n_pred_p10=None, n_pred_p50=_r(n_sbm, 1), n_pred_p90=None, source="fallback (SBM)")
         elif n_oof is not None and not np.isnan(n_oof[i, 1]):
             p10, p50, p90 = (float(np.exp(v)) * n_sbm for v in n_oof[i])
@@ -176,6 +201,12 @@ def _markdown(report: dict) -> str:
             f"{_fmt(h.get('baseline_pinball'))} | {_fmt(h.get('coverage_p10_p90'))} | {h['reason']} |"
         )
     lines += ["", "## Collisions: predicted vs cataloged fragment count (>= 10 cm)", ""]
+    gate = report["collision_gate"]
+    if gate["use_model"]:
+        lines += [f"Collisions use the learned head ({gate['n_labeled']} labeled collisions).", ""]
+    else:
+        lines += [f"Collision gate: only {gate['n_labeled']} labeled collisions (need {gate['min_rows']}), so "
+                  "collisions use the unmodified SBM with the collision labels' spread, not the learned head.", ""]
     if report["collisions"]:
         lines += [
             "| Event | Epoch | Catastrophic | Cataloged | SBM | Pred p10 | Pred p50 | Pred p90 | Source |",
@@ -215,10 +246,12 @@ def main(argv: Optional[list[str]] = None) -> None:
     p.add_argument("--min-rows", type=int, default=30, help="labeled events a head needs to be trained")
     p.add_argument("--min-improvement", type=float, default=0.01,
                    help="relative CV loss improvement over the baseline a head needs to ship")
+    p.add_argument("--min-collision-rows", type=int, default=30,
+                   help="labeled collisions needed before collisions use the learned count head")
     a = p.parse_args(argv)
     try:
         train(a.events, a.specs, a.out, a.fragments, a.as_of, a.model_version, a.seed, a.n_folds,
-              a.min_tle_span_days, a.min_fragments, a.min_rows, a.min_improvement,
+              a.min_tle_span_days, a.min_fragments, a.min_rows, a.min_improvement, a.min_collision_rows,
               log=lambda m: print(m, file=sys.stderr))
     except (ValueError, FileNotFoundError) as e:
         raise SystemExit(f"error: {e}") from None
