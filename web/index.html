@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debris Cloud Demo</title>
+    <script>
+      // Cesium loads its workers and assets from here (copied by copy-cesium.mjs).
+      window.CESIUM_BASE_URL = "/cesium/";
+    </script>
+    <link rel="stylesheet" href="/cesium/Widgets/widgets.css" />
+  </head>
+  <body>
+    <div id="globe"></div>
+
+    <aside id="panel">
+      <h1>Debris cloud</h1>
+      <p class="sub">Untrackable fragments (2 mm–10 cm) after a breakup</p>
+
+      <form id="scenario">
+        <label>Event
+          <select name="event_type">
+            <option value="collision" selected>Collision</option>
+            <option value="explosion">Explosion</option>
+          </select>
+        </label>
+        <label>Target dry mass (kg) <input name="dry_mass_kg" type="number" min="1" step="any" value="950" /></label>
+        <label class="collision-only">Impactor mass (kg) <input name="impactor_mass_kg" type="number" min="0.001" step="any" value="50" /></label>
+        <label class="collision-only">Relative speed (km/s) <input name="v_rel_km_s" type="number" min="0.1" max="20" step="any" value="10" /></label>
+        <label>Altitude (km) <input name="alt_km" type="number" min="150" max="50000" step="any" value="780" /></label>
+        <label>Inclination (°) <input name="inc_deg" type="number" min="0" max="180" step="any" value="86.4" /></label>
+        <label>Monte Carlo runs <input name="n_runs" type="number" min="1" max="30" step="1" value="10" /></label>
+        <button type="submit" id="run">Run simulation</button>
+      </form>
+
+      <div id="status" role="status"></div>
+      <div id="progress" hidden><div id="progress-bar"></div></div>
+
+      <section id="playback" hidden>
+        <div class="row">
+          <button type="button" id="play" aria-label="Play">▶</button>
+          <input id="slider" type="range" min="0" max="0" step="60" value="0" aria-label="Time after breakup" />
+        </div>
+        <div class="readout">
+          <span id="time-label">T+0:00</span>
+          <span id="orbit-label"></span>
+        </div>
+        <label class="inline">Speed
+          <select id="speed">
+            <option value="600">10 min / s</option>
+            <option value="3600" selected>1 h / s</option>
+            <option value="10800">3 h / s</option>
+          </select>
+        </label>
+
+        <fieldset>
+          <legend>Layers</legend>
+          <label><input type="checkbox" id="show-particles" checked /> Probability cloud (median scenario)</label>
+          <label><input type="checkbox" id="show-voxels" /> Ensemble density, hourly (uncertainty)</label>
+        </fieldset>
+        <div class="legend">
+          <div class="legend-ramp" id="cloud-ramp"></div>
+          <div class="legend-labels"><span>fewer</span><span>expected fragments</span><span>more</span></div>
+        </div>
+
+        <fieldset id="view">
+          <legend>Ensemble density shown</legend>
+          <label><input type="radio" name="metric" value="3" checked /> Mean</label>
+          <label><input type="radio" name="metric" value="4" /> p10 (low)</label>
+          <label><input type="radio" name="metric" value="6" /> p90 (high)</label>
+        </fieldset>
+        <div class="legend">
+          <div class="legend-ramp" id="density-ramp"></div>
+          <div class="legend-labels"><span id="legend-min"></span><span>fragments / km³</span><span id="legend-max"></span></div>
+        </div>
+      </section>
+    </aside>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

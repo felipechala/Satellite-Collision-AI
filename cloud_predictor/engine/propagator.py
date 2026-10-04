@@ -126,18 +126,25 @@ def elements_to_positions(el, mask=None):
     return r
 
 
+def secular_rates(el, alive=None):
+    """J2 secular drift [rad/s] of each orbit: (raan_dot, argp_dot, M_dot incl. mean motion)."""
+    a, e, inc = el["a"], el["e"], el["inc"]
+    ok = np.ones_like(a, dtype=bool) if alive is None else alive
+    n = np.sqrt(MU_KM3_S2 / np.where(ok, a, 1.0) ** 3)
+    p_slr = a * (1.0 - e**2)
+    fac = 1.5 * J2 * (R_EARTH_KM / np.where(ok, p_slr, 1.0)) ** 2 * n
+    sin2i = np.sin(inc) ** 2
+    root = np.sqrt(np.maximum(1.0 - e**2, 0.0))
+    return -fac * np.cos(inc), fac * (2.0 - 2.5 * sin2i), n + fac * root * (1.0 - 1.5 * sin2i)
+
+
 def _step(el, alive, bstar_m2_kg, dt_s):
     """Advance elements of alive particles by dt: J2 secular rates + drag decay of a."""
-    a, e, inc = el["a"], el["e"], el["inc"]
-    n = np.sqrt(MU_KM3_S2 / np.where(alive, a, 1.0) ** 3)
-    p_slr = a * (1.0 - e**2)
-    fac = 1.5 * J2 * (R_EARTH_KM / np.where(alive, p_slr, 1.0)) ** 2 * n
-    sin2i = np.sin(inc) ** 2
-
-    root = np.sqrt(np.maximum(1.0 - e**2, 0.0))
-    el["raan"] += np.where(alive, -fac * np.cos(inc) * dt_s, 0.0)
-    el["argp"] += np.where(alive, fac * (2.0 - 2.5 * sin2i) * dt_s, 0.0)
-    el["M"] += np.where(alive, (n + fac * root * (1.0 - 1.5 * sin2i)) * dt_s, 0.0)
+    a, e = el["a"], el["e"]
+    raan_dot, argp_dot, m_dot = secular_rates(el, alive)
+    el["raan"] += np.where(alive, raan_dot * dt_s, 0.0)
+    el["argp"] += np.where(alive, argp_dot * dt_s, 0.0)
+    el["M"] += np.where(alive, m_dot * dt_s, 0.0)
 
     # Drag: da/dt = -rho * B * sqrt(mu a), evaluated at perigee altitude. The 1e3 factor
     # converts rho[kg/m^3] * B[m^2/kg] * km^2/s to km/s.
@@ -178,6 +185,65 @@ def propagate_cloud(cloud, r0_km, v0_km_s, times_s, cd=CD, substep_s=60.0):
         r_out[j] = elements_to_positions(el, alive)
         alive_out[j] = alive
     return {"times_s": times, "r_km": r_out, "alive": alive_out, "weight": cloud["weight"]}
+
+
+def particle_orbits(cloud, r0_km, v0_km_s, t_end_s, cd=CD, substep_s=60.0):
+    """Each fragment's orbit as a few numbers that can be evaluated at any time in [0, t_end_s]
+    without re-running the propagator (orbit_positions here; the demo page does the same in JS).
+
+    Breakup-time osculating elements (a_km, e, inc, raan, argp, mean_anomaly) plus their drift:
+    the J2 secular rates (raan_dot, argp_dot, m_dot) and drag, taken from a full propagation: a
+    decays linearly at its average rate over the fragment's life (a_dot), and m_ddot is fitted so
+    the mean anomaly lands exactly on the propagator's at the end of that life (drag speeds a
+    fragment up along-track, and faster the lower it gets, so the average rate alone undershoots).
+    t_decay_s is when the perigee drops below DECAY_ALT_KM (inf if the fragment survives
+    t_end_s, 0 if it starts unbound). Units: km, rad, s.
+    """
+    k = cloud["dv"].shape[0]
+    r_part = np.broadcast_to(np.asarray(r0_km, dtype=float), (k, 3))
+    v_part = np.asarray(v0_km_s, dtype=float) + cloud["dv"] / 1000.0
+    el = rv_to_elements(r_part, v_part)
+    bound = el.pop("bound")
+    start = {key: el[key].copy() for key in ("a", "e", "inc", "raan", "argp", "M")}
+    raan_dot, argp_dot, m_dot = (np.where(bound, r, 0.0) for r in secular_rates(el, bound))
+
+    alive = bound.copy()
+    t_decay = np.where(bound, np.inf, 0.0)
+    bstar = cd * cloud["am"]
+    t = 0.0
+    while t < t_end_s and alive.any():
+        dt = min(substep_s, t_end_s - t)
+        still = _step(el, alive, bstar, dt)  # a freezes at its last value once a fragment decays
+        t += dt
+        t_decay[alive & ~still] = t
+        alive = still
+
+    life = np.minimum(t_decay, t_end_s)
+    lived = life > 0
+    span = np.where(lived, life, 1.0)
+    a_dot = np.where(lived, (el["a"] - start["a"]) / span, 0.0)
+    # el["M"] accumulates without wrapping, so this is the propagator's exact phase gain.
+    m_ddot = np.where(lived, 2.0 * (el["M"] - start["M"] - m_dot * life) / span**2, 0.0)
+    return {
+        "a_km": start["a"], "e": start["e"], "inc": start["inc"], "raan": start["raan"],
+        "argp": start["argp"], "mean_anomaly": start["M"],
+        "raan_dot": raan_dot, "argp_dot": argp_dot, "m_dot": m_dot, "a_dot": a_dot, "m_ddot": m_ddot,
+        "t_decay_s": t_decay, "lc_m": cloud["lc"], "weight": cloud["weight"],
+    }
+
+
+def orbit_positions(orbits, t_s):
+    """ECI positions [km] (K, 3) of particle_orbits at time t_s; NaN rows once decayed."""
+    t = float(t_s)
+    el = {
+        "a": orbits["a_km"] + orbits["a_dot"] * t,
+        "e": orbits["e"],
+        "inc": orbits["inc"],
+        "raan": orbits["raan"] + orbits["raan_dot"] * t,
+        "argp": orbits["argp"] + orbits["argp_dot"] * t,
+        "M": orbits["mean_anomaly"] + orbits["m_dot"] * t + 0.5 * orbits["m_ddot"] * t * t,
+    }
+    return elements_to_positions(el, orbits["t_decay_s"] > t)
 
 
 if __name__ == "__main__":

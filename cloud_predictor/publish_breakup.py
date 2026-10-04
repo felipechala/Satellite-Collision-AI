@@ -14,6 +14,7 @@ import json
 from typing import Optional
 
 import httpx
+import numpy as np
 
 from ml.contract import ParameterSet
 from ml.schema import BreakupEvent, event_from_dict
@@ -31,34 +32,81 @@ def _estimate_params(event: BreakupEvent, model_dir: Optional[str]) -> tuple[Opt
 
 
 class SpacetimeClient:
-    """Minimal reducer caller over SpacetimeDB's HTTP API (no SDK dependency)."""
+    """Minimal SpacetimeDB client over its HTTP API (no SDK dependency): reducer calls + SQL reads."""
 
     def __init__(self, host: str, db: str):
-        self.base = f"{host.rstrip('/')}/v1/database/{db}/call"
+        self.base = f"{host.rstrip('/')}/v1/database/{db}"
         self.http = httpx.Client(timeout=30.0)
 
     def call(self, reducer: str, *args) -> None:
         try:
-            r = self.http.post(f"{self.base}/{reducer}", json=list(args))
+            r = self.http.post(f"{self.base}/call/{reducer}", json=list(args))
         except httpx.HTTPError as e:
             raise RuntimeError(f"{reducer}: cannot reach SpacetimeDB at {self.base}: {e}") from e
         if r.status_code >= 300:
             raise RuntimeError(f"{reducer} failed ({r.status_code}): {r.text}")
 
+    def sql(self, query: str) -> list[dict]:
+        """Rows of a single SELECT as dicts keyed by column name."""
+        try:
+            r = self.http.post(f"{self.base}/sql", content=query.encode("utf-8"),
+                               headers={"content-type": "text/plain"})
+        except httpx.HTTPError as e:
+            raise RuntimeError(f"sql: cannot reach SpacetimeDB at {self.base}: {e}") from e
+        if r.status_code >= 300:
+            raise RuntimeError(f"sql failed ({r.status_code}): {r.text}")
+        return sql_rows(r.json())
+
+
+def _column_name(element: dict) -> str:
+    name = element.get("name")
+    return name.get("some") if isinstance(name, dict) else name
+
+
+def sql_rows(statements: list[dict]) -> list[dict]:
+    """Decode a /sql response (one statement: schema.elements + positional rows) into dicts."""
+    if not statements:
+        return []
+    first = statements[0]
+    names = [_column_name(e) for e in first["schema"]["elements"]]
+    return [dict(zip(names, row)) for row in first["rows"]]
+
 
 def publish(client: SpacetimeClient, event_id: int, sat_name: str, event: BreakupEvent,
             result: dict, model_version: str, speed: float, autoplay: bool = True) -> None:
+    """Write a modeling.model_breakup result as event `event_id` (frames carry p10/p50/p90)."""
     d = result["derived"]
     mass = event.target.dry_mass_kg + event.target.propellant_mass_kg
     client.call("start_breakup", event_id, sat_name, mass,
                 d.emr_j_per_g or 0.0, bool(d.is_catastrophic), model_version,
                 result["voxel_km"])
-    for i, (t, frame) in enumerate(zip(result["times_s"], result["frames"])):
-        xyz, rho = frame["xyz_km"], frame["density"]
-        client.call("publish_frame", event_id, i, float(t),
+    total = result["fragments_total"]
+    for i, (t, frac, frame) in enumerate(zip(result["times_s"], result["in_orbit_fraction"], result["frames"])):
+        xyz = frame["xyz_km"]
+        client.call("publish_frame", event_id, i, float(t), float(frac) * total,
                     xyz[:, 0].tolist(), xyz[:, 1].tolist(), xyz[:, 2].tolist(),
-                    rho.tolist())
+                    frame["density"].tolist(), frame["p10"].tolist(), frame["p50"].tolist(),
+                    frame["p90"].tolist())
+    if "particles" in result:
+        publish_particles(client, event_id, result["particles"])
     client.call("finalize_breakup", event_id, speed, autoplay)
+
+
+# Column order of the publish_particles reducer (and the cloud_particle table).
+PARTICLE_COLUMNS = ("a_km", "e", "inc", "raan", "argp", "mean_anomaly", "raan_dot", "argp_dot",
+                    "m_dot", "a_dot", "m_ddot", "t_decay_s", "lc_m", "weight")
+PARTICLES_PER_CALL = 2500
+
+
+def publish_particles(client, event_id: int, particles: dict) -> None:
+    """Upload engine.propagator.particle_orbits arrays. Never-bound particles (t_decay 0) are
+    skipped; survivors' t_decay (inf) is sent as -1, since JSON has no infinity."""
+    keep = particles["t_decay_s"] > 0
+    cols = {c: np.asarray(particles[c], dtype=float)[keep] for c in PARTICLE_COLUMNS}
+    cols["t_decay_s"] = np.where(np.isfinite(cols["t_decay_s"]), cols["t_decay_s"], -1.0)
+    for start in range(0, int(keep.sum()), PARTICLES_PER_CALL):
+        client.call("publish_particles", event_id,
+                    *(cols[c][start:start + PARTICLES_PER_CALL].tolist() for c in PARTICLE_COLUMNS))
 
 
 def main(argv: Optional[list[str]] = None) -> None:

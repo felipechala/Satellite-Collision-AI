@@ -167,8 +167,11 @@ def test_publish_streams_every_frame(neutral_client, monkeypatch):
     start_args = _FakeSpacetime.calls[0][1]
     assert start_args[:3] == (5, "Test Sat", 1000.0)
     _, frame_args = _FakeSpacetime.calls[1]
-    xs, ys, zs, rho = frame_args[3:]
+    in_orbit, xs, ys, zs, rho, p10, p50, p90 = frame_args[3:]
     assert len(xs) == len(ys) == len(zs) == len(rho) == r.json()["frames"][0]["n_voxels"]
+    assert p10 == p50 == p90 == rho  # a single run has no spread across runs
+    assert in_orbit == pytest.approx(r.json()["fragments_total"] * r.json()["frames"][0]["in_orbit_fraction"],
+                                     rel=1e-3)
 
 
 def test_publish_requires_ids(neutral_client):
