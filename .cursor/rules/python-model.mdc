@@ -1,0 +1,15 @@
+---
+description: Physics, ML corrections, and the HTTP API live in cloud_predictor and must keep one meaning for each correction
+globs: cloud_predictor/**/*
+alwaysApply: false
+---
+
+# Python model and API
+
+Work from `cloud_predictor/`. The NASA standard breakup formulas live in `ml/sbm.py`. Apply ML corrections only through `ml/contract.py` (`ParameterSet`, `corrected_count`, `am_params`, `dv_params`). Do not re-derive those formulas in the engine, the API, or tests.
+
+- Fragmentation (`engine/fragmentation.py`) emits weighted representative particles between 2 mm and 10 cm. Units there are metres, kilograms, and m/s. Convert delta-v to km/s before adding it to an orbital state.
+- A particle's `weight` is how many real fragments it stands for. Voxel density is fragments/km³ (ensemble mean, plus p10/p50/p90 across Monte Carlo runs), not a count of simulated particles.
+- `app.py` and `worker.py` both parse bodies with `request_schema.py`. Limits (`k`, `voxel_km`, `n_runs`, and the rest) stay in `request_schema.LIMITS`. `/v1/simulations` queues work; the worker claims it, publishes frames with `event_id` equal to the simulation id, and calls `fail_simulation` on any error so partial frames are dropped.
+- The worker keeps only the 10 newest finished simulations. SpacetimeDB is a temporary store.
+- Run tests from `cloud_predictor/` with pytest. API tests build a tiny estimator from synthetic data; do not point them at a checked-in model.
