@@ -8,14 +8,22 @@
 //! other viewers) over WebSockets. It deliberately does NOT re-run physics per tick:
 //! stepping voxels linearly inside the DB would be a second, wrong physics engine.
 //!
-//! Note: SpacetimeDB server modules are Rust or C# only (the gameplan's C++ module
-//! snippets describe a toolchain that does not exist; its own later section is Rust).
+//! Requests: API callers (and the demo page) queue a simulation with request_simulation;
+//! the Python worker (cloud_predictor/worker.py) claims it, runs the ensemble, publishes
+//! the frames under event_id = request id, and marks it done. The DB is a temporary
+//! store: the worker keeps only the most recent simulations.
+//!
+//! The module is Rust (SpacetimeDB also supports C#, TypeScript and C++ modules).
+//! No auth: this is a single-user local demo; anyone connected may call any reducer.
 
-use spacetimedb::{reducer, table, ReducerContext, ScheduleAt, Table, TimeDuration};
+use spacetimedb::{reducer, table, ReducerContext, ScheduleAt, Table, TimeDuration, Timestamp};
 
 const TICK_MS: i64 = 100;
 const MAX_VOXELS_PER_FRAME: usize = 2048; // keep WebGL clients in the gameplan's budget
 const DEFAULT_SPEED: f32 = 3600.0; // 1 wall second = 1 simulated hour
+const MAX_PARAMS_BYTES: usize = 16 * 1024;
+const MAX_ERROR_BYTES: usize = 1000;
+const MAX_PARTICLES_PER_CALL: usize = 5000;
 
 // ---------- tables (public: all clients can subscribe) ----------
 
@@ -43,7 +51,8 @@ pub struct CloudFrame {
     pub frame: u32,
     pub t_sim_s: f64, // simulated seconds after breakup
     pub n_voxels: u32,
-    pub peak_density: f32, // fragments / km^3
+    pub peak_density: f32,       // fragments / km^3 (ensemble mean)
+    pub fragments_in_orbit: f64, // weighted real fragments still in orbit (ensemble mean)
 }
 
 /// Voxel centers + densities for one frame. Clients subscribe per event and render
@@ -59,7 +68,53 @@ pub struct DebrisVoxel {
     pub x: f32, // ECI km, voxel center
     pub y: f32,
     pub z: f32,
-    pub density: f32, // fragments / km^3 (weighted real fragments, not particles)
+    pub density: f32, // fragments / km^3, ensemble mean (weighted real fragments, not particles)
+    pub density_p10: f32, // percentiles across Monte Carlo runs (all equal for a single run)
+    pub density_p50: f32,
+    pub density_p90: f32,
+}
+
+/// One representative fragment's orbit (cloud_predictor engine.propagator.particle_orbits), so a
+/// viewer can animate the cloud continuously: at time t after breakup the fragment is at the
+/// Kepler position of a = a_km + a_dot t, raan + raan_dot t, argp + argp_dot t,
+/// M = mean_anomaly + m_dot t + m_ddot t^2 / 2 (e, inc fixed). Units: km, rad, s.
+#[table(accessor = cloud_particle, public)]
+pub struct CloudParticle {
+    #[primary_key]
+    #[auto_inc]
+    pub id: u64,
+    #[index(btree)]
+    pub event_id: u64,
+    pub a_km: f32,
+    pub e: f32,
+    pub inc: f32,
+    pub raan: f32,
+    pub argp: f32,
+    pub mean_anomaly: f32,
+    pub raan_dot: f32,
+    pub argp_dot: f32,
+    pub m_dot: f32,
+    pub a_dot: f32,
+    pub m_ddot: f32,
+    pub t_decay_s: f32, // re-entry time; -1 = still in orbit at the horizon, 0 = never bound
+    pub lc_m: f32,      // characteristic length (size) [m]
+    pub weight: f32,    // real fragments this particle represents
+}
+
+/// One row per simulation asked for through the API. status: queued -> running -> done | failed.
+/// Its results are published as breakup_event / cloud_frame / debris_voxel with event_id = id.
+#[table(accessor = simulation_request, public)]
+pub struct SimulationRequest {
+    #[primary_key]
+    #[auto_inc]
+    pub id: u64,
+    #[unique]
+    pub request_key: String, // client-chosen UUID, so the caller can find its row
+    pub params_json: String, // the /v1/simulations request body; validated by the worker
+    pub status: String,
+    pub progress: f32, // 0..1
+    pub error: String,
+    pub created_at: Timestamp,
 }
 
 /// Shared playback state: every connected client sees the same timeline position.
@@ -134,24 +189,32 @@ pub fn start_breakup(
     Ok(())
 }
 
-/// Upload one voxel frame (parallel arrays, one entry per voxel).
+/// Upload one voxel frame (parallel arrays, one entry per voxel). density is the ensemble
+/// mean; density_p10/p50/p90 are percentiles across runs (equal to density for one run).
 #[reducer]
 pub fn publish_frame(
     ctx: &ReducerContext,
     event_id: u64,
     frame: u32,
     t_sim_s: f64,
+    fragments_in_orbit: f64,
     x: Vec<f32>,
     y: Vec<f32>,
     z: Vec<f32>,
     density: Vec<f32>,
+    density_p10: Vec<f32>,
+    density_p50: Vec<f32>,
+    density_p90: Vec<f32>,
 ) -> Result<(), String> {
     if ctx.db.breakup_event().event_id().find(event_id).is_none() {
         return Err(format!("unknown event {event_id}; call start_breakup first"));
     }
     let n = x.len();
-    if y.len() != n || z.len() != n || density.len() != n {
-        return Err("x, y, z, density must have equal lengths".into());
+    if [y.len(), z.len(), density.len(), density_p10.len(), density_p50.len(), density_p90.len()]
+        .iter()
+        .any(|&len| len != n)
+    {
+        return Err("x, y, z, density and density_p10/p50/p90 must have equal lengths".into());
     }
     if n == 0 || n > MAX_VOXELS_PER_FRAME {
         return Err(format!("frame must hold 1..={MAX_VOXELS_PER_FRAME} voxels, got {n}"));
@@ -167,6 +230,9 @@ pub fn publish_frame(
             y: y[i],
             z: z[i],
             density: density[i],
+            density_p10: density_p10[i],
+            density_p50: density_p50[i],
+            density_p90: density_p90[i],
         });
     }
     ctx.db.cloud_frame().insert(CloudFrame {
@@ -176,7 +242,65 @@ pub fn publish_frame(
         t_sim_s,
         n_voxels: n as u32,
         peak_density: peak,
+        fragments_in_orbit,
     });
+    Ok(())
+}
+
+/// Upload a batch of particle orbits (parallel arrays, one entry per particle; call repeatedly).
+#[reducer]
+pub fn publish_particles(
+    ctx: &ReducerContext,
+    event_id: u64,
+    a_km: Vec<f32>,
+    e: Vec<f32>,
+    inc: Vec<f32>,
+    raan: Vec<f32>,
+    argp: Vec<f32>,
+    mean_anomaly: Vec<f32>,
+    raan_dot: Vec<f32>,
+    argp_dot: Vec<f32>,
+    m_dot: Vec<f32>,
+    a_dot: Vec<f32>,
+    m_ddot: Vec<f32>,
+    t_decay_s: Vec<f32>,
+    lc_m: Vec<f32>,
+    weight: Vec<f32>,
+) -> Result<(), String> {
+    if ctx.db.breakup_event().event_id().find(event_id).is_none() {
+        return Err(format!("unknown event {event_id}; call start_breakup first"));
+    }
+    let n = a_km.len();
+    let lens = [
+        e.len(), inc.len(), raan.len(), argp.len(), mean_anomaly.len(), raan_dot.len(), argp_dot.len(),
+        m_dot.len(), a_dot.len(), m_ddot.len(), t_decay_s.len(), lc_m.len(), weight.len(),
+    ];
+    if lens.iter().any(|&len| len != n) {
+        return Err("all particle arrays must have equal lengths".into());
+    }
+    if n > MAX_PARTICLES_PER_CALL {
+        return Err(format!("at most {MAX_PARTICLES_PER_CALL} particles per call, got {n}"));
+    }
+    for i in 0..n {
+        ctx.db.cloud_particle().insert(CloudParticle {
+            id: 0,
+            event_id,
+            a_km: a_km[i],
+            e: e[i],
+            inc: inc[i],
+            raan: raan[i],
+            argp: argp[i],
+            mean_anomaly: mean_anomaly[i],
+            raan_dot: raan_dot[i],
+            argp_dot: argp_dot[i],
+            m_dot: m_dot[i],
+            a_dot: a_dot[i],
+            m_ddot: m_ddot[i],
+            t_decay_s: t_decay_s[i],
+            lc_m: lc_m[i],
+            weight: weight[i],
+        });
+    }
     Ok(())
 }
 
@@ -219,18 +343,116 @@ pub fn finalize_breakup(
 /// Remove an event and everything attached to it.
 #[reducer]
 pub fn delete_breakup(ctx: &ReducerContext, event_id: u64) -> Result<(), String> {
+    if remove_event_data(ctx, event_id) {
+        Ok(())
+    } else {
+        Err(format!("unknown event {event_id}"))
+    }
+}
+
+/// Delete an event's voxels, frames, playback row and metadata. Returns whether the event existed.
+fn remove_event_data(ctx: &ReducerContext, event_id: u64) -> bool {
     ctx.db.debris_voxel().event_id().delete(event_id);
     ctx.db.cloud_frame().event_id().delete(event_id);
+    ctx.db.cloud_particle().event_id().delete(event_id);
     if let Some(pb) = ctx.db.playback().event_id().find(event_id) {
         ctx.db.playback().delete(pb);
     }
     match ctx.db.breakup_event().event_id().find(event_id) {
         Some(ev) => {
             ctx.db.breakup_event().delete(ev);
-            Ok(())
+            true
         }
-        None => Err(format!("unknown event {event_id}")),
+        None => false,
     }
+}
+
+// ---------- simulation requests (API -> worker) ----------
+
+/// Queue a simulation. Anyone may call it; the worker validates params_json.
+#[reducer]
+pub fn request_simulation(ctx: &ReducerContext, request_key: String, params_json: String) -> Result<(), String> {
+    if request_key.is_empty() || request_key.len() > 64 {
+        return Err("request_key must be 1-64 characters".into());
+    }
+    if params_json.len() > MAX_PARAMS_BYTES {
+        return Err(format!("params_json is over {MAX_PARAMS_BYTES} bytes"));
+    }
+    if ctx.db.simulation_request().request_key().find(&request_key).is_some() {
+        return Err(format!("request_key {request_key} already used"));
+    }
+    ctx.db.simulation_request().insert(SimulationRequest {
+        id: 0,
+        request_key,
+        params_json,
+        status: "queued".into(),
+        progress: 0.0,
+        error: String::new(),
+        created_at: ctx.timestamp,
+    });
+    Ok(())
+}
+
+fn find_request(ctx: &ReducerContext, id: u64) -> Result<SimulationRequest, String> {
+    ctx.db
+        .simulation_request()
+        .id()
+        .find(id)
+        .ok_or(format!("unknown simulation {id}"))
+}
+
+/// Worker: take a queued simulation.
+#[reducer]
+pub fn claim_simulation(ctx: &ReducerContext, id: u64) -> Result<(), String> {
+    let mut req = find_request(ctx, id)?;
+    if req.status != "queued" {
+        return Err(format!("simulation {id} is {}, not queued", req.status));
+    }
+    req.status = "running".into();
+    ctx.db.simulation_request().id().update(req);
+    Ok(())
+}
+
+/// Worker: fraction of the Monte Carlo runs finished (0..1).
+#[reducer]
+pub fn report_progress(ctx: &ReducerContext, id: u64, progress: f32) -> Result<(), String> {
+    let mut req = find_request(ctx, id)?;
+    req.progress = progress.clamp(0.0, 1.0);
+    ctx.db.simulation_request().id().update(req);
+    Ok(())
+}
+
+/// Worker: all frames are published under event_id = id.
+#[reducer]
+pub fn complete_simulation(ctx: &ReducerContext, id: u64) -> Result<(), String> {
+    let mut req = find_request(ctx, id)?;
+    if ctx.db.breakup_event().event_id().find(id).is_none() {
+        return Err(format!("simulation {id} has no published event"));
+    }
+    req.status = "done".into();
+    req.progress = 1.0;
+    ctx.db.simulation_request().id().update(req);
+    Ok(())
+}
+
+/// Worker: the run failed; drop any partially published frames.
+#[reducer]
+pub fn fail_simulation(ctx: &ReducerContext, id: u64, error: String) -> Result<(), String> {
+    let mut req = find_request(ctx, id)?;
+    remove_event_data(ctx, id);
+    req.status = "failed".into();
+    req.error = error.chars().take(MAX_ERROR_BYTES).collect();
+    ctx.db.simulation_request().id().update(req);
+    Ok(())
+}
+
+/// Delete a simulation request and its published results.
+#[reducer]
+pub fn delete_simulation(ctx: &ReducerContext, id: u64) -> Result<(), String> {
+    let req = find_request(ctx, id)?;
+    remove_event_data(ctx, id);
+    ctx.db.simulation_request().delete(req);
+    Ok(())
 }
 
 // ---------- reducers called by viewers (multiplayer controls) ----------
