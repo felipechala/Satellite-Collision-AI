@@ -72,13 +72,23 @@ class BreakupParameterEstimator:
         raw = {name: head.predict(X) for name, head in self.heads.items()}
         return [self._assemble(i, ev, raw) for i, ev in enumerate(events)]
 
+    def _collision_gated(self, event: BreakupEvent) -> bool:
+        """True when this collision must use the SBM count instead of the learned head (see
+        train_breakup_scaler.collision_gate). Manifests from before the gate never gate."""
+        gate = self.manifest["heads"]["n_multiplier"].get("collision_gate", {"use_model": True})
+        return event.event_type == "collision" and not gate["use_model"]
+
     def _assemble(self, i: int, event: BreakupEvent, raw: dict[str, np.ndarray]) -> BreakupParameters:
         use_model = has_construction_info(event)
         fallback = False
         bands: dict[str, Band] = {}
         for name in LEARNED_HEADS:
             head = self.manifest["heads"][name]
-            if name in raw and use_model:
+            if name == "n_multiplier" and self._collision_gated(event):
+                lo, hi = head["collision_gate"]["spread"]
+                q = np.array([lo, 0.0, hi])
+                fallback = True
+            elif name in raw and use_model:
                 q = apply_offset(raw[name][i : i + 1], head["cqr_offset"])[0]
             else:
                 lo, hi = head["fallback_spread"]
@@ -114,4 +124,6 @@ class BreakupParameterEstimator:
             out.append("ood_era")
         if event.event_type == "collision":
             out.append("low_support_collision")
+        if self._collision_gated(event):
+            out.append("collision_count_from_sbm")
         return out
