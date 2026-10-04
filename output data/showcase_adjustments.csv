@@ -1,0 +1,19 @@
+event_id,parent_name,parameter,nasa_value,ours_p10,ours_p50,ours_p90,meaning_of_p50,source
+discos-834,Cosmos-1861,n_multiplier,1,0.003,0.005615,0.057364,fragment count x0.00562 vs NASA (all sizes),"learned (neural-net head, trained on 381 real breakups)"
+discos-834,Cosmos-1861,slope_delta,0,0,0,0,size-distribution slope below 10 cm +0.00 (0 = NASA),"DebriSat lab rule by material: +0.24 (0.12-0.32) for cfrp/mixed, from DebriSat's excess of small fragments over the SBM; neutral for aluminum/unknown (this satellite's material is unknown)"
+discos-834,Cosmos-1861,am_mu_shift,0,0,0,0,area-to-mass x1.00 (log10 shift +0.00),learned head (neutral until fragments.csv exists) + DebriSat lab rule
+discos-834,Cosmos-1861,am_sigma_scale,1,1,1,1,area-to-mass spread x1.00,learned head (neutral until fragments.csv exists)
+discos-834,Cosmos-1861,dv_mu_shift,0,0,0,0,ejection speed x1.00 (log10 shift +0.00),learned head (neutral until fragments.csv exists)
+discos-834,Cosmos-1861,dv_sigma_scale,1,1,1,1,ejection speed spread x1.00,learned head (neutral until fragments.csv exists)
+discos-365,Cosmos-1188,n_multiplier,1,0.003084,0.01449,0.104719,fragment count x0.0145 vs NASA (all sizes),"learned (neural-net head, trained on 381 real breakups)"
+discos-365,Cosmos-1188,slope_delta,0,0,0,0,size-distribution slope below 10 cm +0.00 (0 = NASA),"DebriSat lab rule by material: +0.24 (0.12-0.32) for cfrp/mixed, from DebriSat's excess of small fragments over the SBM; neutral for aluminum/unknown (this satellite's material is unknown)"
+discos-365,Cosmos-1188,am_mu_shift,0,0,0,0,area-to-mass x1.00 (log10 shift +0.00),learned head (neutral until fragments.csv exists) + DebriSat lab rule
+discos-365,Cosmos-1188,am_sigma_scale,1,1,1,1,area-to-mass spread x1.00,learned head (neutral until fragments.csv exists)
+discos-365,Cosmos-1188,dv_mu_shift,0,0,0,0,ejection speed x1.00 (log10 shift +0.00),learned head (neutral until fragments.csv exists)
+discos-365,Cosmos-1188,dv_sigma_scale,1,1,1,1,ejection speed spread x1.00,learned head (neutral until fragments.csv exists)
+discos-995,Cosmos-2143,n_multiplier,1,0.003181,0.021427,0.176335,fragment count x0.0214 vs NASA (all sizes),"learned (neural-net head, trained on 381 real breakups)"
+discos-995,Cosmos-2143,slope_delta,0,0,0,0,size-distribution slope below 10 cm +0.00 (0 = NASA),"DebriSat lab rule by material: +0.24 (0.12-0.32) for cfrp/mixed, from DebriSat's excess of small fragments over the SBM; neutral for aluminum/unknown (this satellite's material is unknown)"
+discos-995,Cosmos-2143,am_mu_shift,0,0,0,0,area-to-mass x1.00 (log10 shift +0.00),learned head (neutral until fragments.csv exists) + DebriSat lab rule
+discos-995,Cosmos-2143,am_sigma_scale,1,1,1,1,area-to-mass spread x1.00,learned head (neutral until fragments.csv exists)
+discos-995,Cosmos-2143,dv_mu_shift,0,0,0,0,ejection speed x1.00 (log10 shift +0.00),learned head (neutral until fragments.csv exists)
+discos-995,Cosmos-2143,dv_sigma_scale,1,1,1,1,ejection speed spread x1.00,learned head (neutral until fragments.csv exists)

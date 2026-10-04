@@ -1,0 +1,382 @@
+event_id,parent_name,norad_id,epoch,event_type,explosion_cause,discos_event_type,object_class,bus_family,dry_mass_kg,real_cataloged_ge10cm,nasa_pred_ge10cm,ours_p10_ge10cm,ours_p50_ge10cm,ours_p90_ge10cm,nasa_factor_off,model_factor_off,actual_in_model_band,improvement_ln,better_model,fold
+discos-111,Solwind,11278,1985-09-13,collision,,ASAT,payload,solwind,875,288,834.98,238.131,834.98,2927.77,2.89924,2.89924,True,0,tie,1
+discos-182,Fengyun 1C,25730,2007-01-11,collision,,ASAT,payload,fy-1,958,3536,1271.82,549.29,1271.82,4904.28,2.78027,2.78027,True,0,tie,3
+discos-217,USA 193,29651,2008-02-21,collision,,ASAT,payload,usa-193,1820,174,1440.83,373.65,1440.83,1984.09,8.28064,8.28064,False,0,tie,0
+discos-224,Cosmos-2251,22675,2009-02-10,collision,,Collision,payload,strela-2m,900,2375,1274.27,363.414,1274.27,4468.08,1.86382,1.86382,True,0,tie,1
+discos-50,Able-Star (Thor-Ablestar),118,1961-06-29,explosion,propulsion,Propulsion,rocket_body,Able-Star,445.99,324,238.864,1.58271,167.441,550.783,1.35642,1.93501,True,-0.355263,nasa,3
+discos-51,Sputnik 22,443,1962-10-29,explosion,propulsion,Propulsion,payload,Sputnik,887.02,23,238.864,1.34003,34.7426,136.35,10.3854,1.51055,True,1.92793,ours,2
+discos-52,CENTAUR C (Atlas LV3C),694,1963-11-27,explosion,propulsion,Propulsion,rocket_body,CENTAUR C,4443,17,238.864,2.06522,138.123,361.809,14.0508,8.12487,True,0.547752,ours,4
+discos-54,Cosmos-50,919,1964-11-05,explosion,deliberate,Payload Recovery Failure,payload,Zenit,4707.63,93,238.864,2.15694,104.42,296.77,2.56843,1.1228,True,0.827472,ours,1
+discos-55,Cosmos-57,1093,1965-02-22,explosion,deliberate,Deliberate,payload,Vostok / Zenit,5685,166,238.864,1.57722,55.9317,193.52,1.43894,2.9679,True,-0.723948,nasa,4
+discos-56,Cosmos 3 second stage (S3) (Cosmos 1 (65S3)),1270,1965-03-15,explosion,unknown,Unknown,rocket_body,Cosmos 3 second stage,1434,146,238.864,1.64816,50.7305,197.954,1.63606,2.87795,True,-0.564791,nasa,1
+discos-864,Titan Transtage (Titan IIIC),1822,1965-10-15,explosion,propulsion,Propulsion,rocket_body,Titan Transtage,1950,492,238.864,1.99762,121.597,328.502,2.05975,4.04617,False,-0.675187,nasa,4
+discos-291,Titan Transtage (OV2 3) (Titan IIIC),1863,1965-12-21,explosion,propulsion,Titan Transtage,rocket_body,Titan Transtage,1486.62,113,238.864,2.0614,133.884,348.781,2.11384,1.18482,True,0.578919,ours,4
+discos-58,Cosmos-95,1706,1966-01-15,explosion,unknown,Unknown,payload,DS,240,21,238.864,0.833398,5.65583,24.6085,11.3745,3.71298,True,1.11954,ours,3
+discos-59,OPS 3031 (Bluebell 2S),2015,1966-02-15,explosion,unknown,Unknown,payload,bluebell-2s,4,37,238.864,0.716593,2.32463,18.6498,6.45579,15.9165,False,-0.90238,nasa,4
+discos-60,ATLAS MA-5 (Atlas SLV3),2188,1966-06-15,explosion,unknown,Unknown,rocket_body,ATLAS MA-5,3291,50,238.864,1.72675,81.2619,262.72,4.77729,1.62524,True,1.07822,ours,4
+discos-63,Saturn IVB (S-IB) (Saturn IB),2289,1966-07-05,explosion,deliberate,Deliberate,rocket_body,Saturn IVB,13200,33,238.864,2.2298,125.646,282.686,7.23831,3.80747,True,0.642424,ours,2
+discos-64,Cosmos U-1 (OGCh),2437,1966-09-18,explosion,deliberate,Deliberate,payload,Cosmos U,1450,49,238.864,1.09042,25.5719,98.543,4.87478,1.91617,True,0.933747,ours,3
+discos-65,Cosmos U-2 warhead(OGCh),2543,1966-11-02,explosion,deliberate,Deliberate,payload,Cosmos U-2 warhead(OGCh),1450,37,238.864,1.38494,26.4062,96.0459,6.45579,1.40119,True,1.52766,ours,2
+discos-798,Cosmos-158,2801,1967-05-26,explosion,unknown,Unknown,payload,zaliv-gvm,800,2,238.864,1.11406,15.9351,77.2664,119.432,7.96756,True,2.70737,ours,4
+discos-831,Cosmos-189,3021,1967-11-05,explosion,unknown,Unknown,payload,tselina-o,400,12,238.864,0.956174,7.62479,50.9001,19.9054,1.57381,True,2.53749,ours,1
+discos-836,Cosmos-200,3100,1968-01-21,explosion,unknown,Unknown,payload,tselina-o,434,6,238.864,1.00275,8.74841,55.3523,39.8107,1.45807,True,3.30702,ours,1
+discos-66,Cosmos-199 equipment bay (Priborniy otsek),3099,1968-01-24,explosion,deliberate,Deliberate,payload,Cosmos-199 equipment bay,2477.7,1,238.864,1.73941,35.9617,117.028,238.864,35.9617,False,1.89344,ours,1
+discos-819,Cosmos-203,3129,1968-03-25,explosion,unknown,Unknown,payload,KAUR-1,800,1,238.864,0.817155,6.01699,38.3074,238.864,6.01699,True,3.68131,ours,2
+discos-67,Saturn IVB (S-V) (Saturn V),3171,1968-04-13,explosion,propulsion,Propulsion,rocket_body,Saturn IVB,13300,15,238.864,1.61401,51.6941,164.232,15.9243,3.44627,True,1.53055,ours,2
+discos-71,Cosmos-249,3504,1968-10-20,explosion,deliberate,ASAT,payload,i2p,1400,120,238.864,1.18692,49.9759,193.88,1.99054,2.40116,True,-0.187547,nasa,3
+discos-70,Cosmos-248,3503,1968-11-01,explosion,deliberate,ASAT,payload,i2m,1400,4,238.864,1.94268,67.1216,207.532,59.7161,16.7804,True,1.26939,ours,1
+discos-72,Cosmos-252,3530,1968-11-01,explosion,deliberate,ASAT,payload,i2p,1400,162,238.864,1.27124,62.2915,231.852,1.47447,2.60068,True,-0.567472,nasa,3
+discos-859,Cosmos-250,3526,1969-01-17,explosion,unknown,Unknown,payload,tselina-o,867.2,5,238.864,0.924405,7.47263,52.8127,47.7729,1.49453,True,3.46465,ours,1
+discos-840,Cosmos 3 second stage (S3) (Cosmos 3M (11K65M)),3776,1969-03-07,explosion,unknown,Unknown,rocket_body,Cosmos 3 second stage,1434,21,238.864,1.41551,33.6572,157.081,11.3745,1.60272,True,1.95967,ours,1
+discos-73,Vostok 8A92M-2 (Vostok SL-3 (A-1)),3836,1969-03-28,explosion,unknown,Unknown,rocket_body,Vostok 8A92M-2,1440,38,238.864,1.05411,19.3693,99.0339,6.2859,1.96187,True,1.16441,ours,2
+discos-74,Star 37D (Delta M),4052,1969-07-26,explosion,propulsion,Propulsion,rocket_body,Star 37D,70,23,238.864,1.74873,40.5494,134.482,10.3854,1.76302,True,1.77338,ours,1
+discos-857,Cosmos-292,4070,1969-09-06,explosion,unknown,Unknown,payload,KAUR-1,743.31,2,238.864,0.716593,2.53674,21.0578,119.432,1.26837,True,4.54502,ours,2
+discos-75,Agena D (Thorad-Agena D),4159,1969-10-04,explosion,unknown,Unknown,rocket_body,Agena D,600,275,238.864,0.955457,20.3235,97.5008,1.15128,13.5311,False,-2.46412,nasa,3
+discos-822,Cosmos-315,4273,1969-12-20,explosion,unknown,Unknown,payload,tselina-o,867.2,4,238.864,0.894786,6.80692,49.931,59.7161,1.70173,True,3.55796,ours,1
+discos-846,Cosmos-358,4497,1970-09-01,explosion,unknown,Unknown,payload,ds-p1-m,891.97,1,238.864,0.761738,4.3287,38.1822,238.864,4.3287,True,4.01063,ours,1
+discos-76,Agena D (Thorad-Agena D),4367,1970-10-17,explosion,unknown,Unknown,rocket_body,Agena D,600,464,238.864,0.934915,18.7016,91.6274,1.94253,24.8107,False,-2.54728,nasa,3
+discos-77,Cosmos-374,4594,1970-10-23,explosion,deliberate,ASAT,payload,i2p,1400,114,238.864,1.21773,52.934,205.339,2.0953,2.15363,True,-0.0274554,nasa,3
+discos-78,Cosmos-375,4598,1970-10-30,explosion,deliberate,ASAT,payload,i2p,1400,46,238.864,1.21749,52.8967,205.223,5.1927,1.14993,True,1.50755,ours,3
+discos-812,Cosmos-387,4806,1970-12-17,explosion,unknown,Unknown,payload,tselina-o,891.97,3,238.864,0.862061,6.1412,47.0269,79.6214,2.04707,True,3.66088,ours,1
+discos-847,Cosmos-381,4783,1971-01-03,explosion,unknown,Unknown,payload,KAUR-1,693.76,4,238.864,0.751706,4.62155,32.0539,59.7161,1.15539,True,3.94517,ours,2
+discos-832,Cosmos-394,4922,1971-02-11,explosion,unknown,Unknown,payload,ds-p1-m,743.31,1,238.864,0.764843,4.28355,37.4114,238.864,4.28355,True,4.02111,ours,1
+discos-79,Cosmos-397,4964,1971-02-25,explosion,deliberate,ASAT,payload,i2p,1400,138,238.864,1.19814,49.9695,196.924,1.7309,2.76169,True,-0.4672,nasa,3
+discos-808,Cosmos-395,4955,1971-03-02,explosion,unknown,Unknown,payload,tselina-o,867.2,3,238.864,0.846774,5.80894,45.3384,79.6214,1.93631,True,3.7165,ours,1
+discos-816,Cosmos-400,5050,1971-03-19,explosion,unknown,Unknown,payload,ds-p1-m,743.31,1,238.864,0.763649,4.2654,37.3221,238.864,4.2654,True,4.02536,ours,1
+discos-845,Cosmos-425,5253,1971-05-29,explosion,unknown,Unknown,payload,tselina-o,862.24,4,238.864,0.844146,5.75639,45.0935,59.7161,1.4391,True,3.72558,ours,1
+discos-844,Cosmos-407,5174,1971-06-14,explosion,unknown,Unknown,payload,strela-2m,743.31,4,238.864,0.882126,6.38556,47.3243,59.7161,1.59639,True,3.62186,ours,1
+discos-807,Cosmos-426,5281,1971-08-24,explosion,unknown,Unknown,payload,DS,396.43,4,238.864,0.716593,2.63109,14.4484,59.7161,1.52028,True,3.67071,ours,3
+discos-805,Cosmos-436,5461,1971-09-07,explosion,unknown,Unknown,payload,tselina-o,867.2,13,238.864,0.839847,5.68043,44.7732,18.3742,2.28856,True,2.08302,ours,1
+discos-837,Cosmos-459,5625,1971-11-30,explosion,unknown,Unknown,payload,ds-p1-m,743.31,1,238.864,0.75505,4.13809,36.6931,238.864,4.13809,True,4.05566,ours,1
+discos-854,Cosmos-460,5628,1971-12-01,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.836742,5.62358,44.5212,238.864,5.62358,True,3.74893,ours,1
+discos-80,Cosmos-462,5646,1971-12-03,explosion,deliberate,ASAT,payload,i2p,1400,26,238.864,1.1905,48.5723,192.536,9.18709,1.86817,True,1.59284,ours,3
+discos-848,Cosmos-461,5643,1971-12-04,explosion,unknown,Unknown,payload,DS,673.93,2,238.864,0.716593,4.21118,25.3927,119.432,2.10559,True,4.03815,ours,3
+discos-843,Cosmos-479,5894,1972-03-23,explosion,unknown,Unknown,payload,tselina-o,867.2,3,238.864,0.817871,5.26051,42.723,79.6214,1.7535,True,3.81567,ours,1
+discos-820,Aureole 1,5729,1972-04-15,explosion,unknown,Unknown,payload,DS-U2,396.43,2,238.864,0.716593,2.45935,17.5257,119.432,1.22967,True,4.576,ours,2
+discos-841,Cosmos-500,6097,1972-07-12,explosion,unknown,Unknown,payload,tselina-o,867.2,3,238.864,0.813811,5.19195,42.4104,79.6214,1.73065,True,3.82879,ours,1
+discos-830,Cosmos-514,6148,1972-08-30,explosion,unknown,Unknown,payload,zaliv-gvm,693.76,2,238.864,0.895025,7.93579,49.267,119.432,3.96789,True,3.40451,ours,4
+discos-804,Cosmos-521,6206,1972-10-04,explosion,unknown,Unknown,payload,ds-p1-m,743.31,1,238.864,0.73188,3.78218,34.7574,238.864,3.78218,True,4.1456,ours,1
+discos-809,Cosmos-272,3818,1972-11-25,explosion,unknown,Unknown,payload,KAUR-1,644.2,1,238.864,0.716593,1.95749,15.391,238.864,1.95749,True,4.80423,ours,2
+discos-824,Cosmos-544,6343,1973-01-29,explosion,unknown,Unknown,payload,tselina-o,867.2,2,238.864,0.792552,4.80643,40.461,119.432,2.40321,True,3.90594,ours,1
+discos-842,Cosmos-549,6373,1973-03-11,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.791119,4.78326,40.3511,238.864,4.78326,True,3.91077,ours,1
+discos-82,Proton-K 8S812,6399,1973-04-03,explosion,propulsion,Propulsion,rocket_body,Proton-K 8S812,4185,24,238.864,0.950202,36.813,199.805,9.95268,1.53388,True,1.87004,ours,3
+discos-83,Cosmos-554,6432,1973-05-06,explosion,deliberate,Payload Recovery Failure,payload,Zenit,2310,192,238.864,1.65843,43.4468,161.457,1.24408,4.4192,False,-1.26756,nasa,1
+discos-525,Delta E (Delta N),3616,1973-11-15,explosion,propulsion,Delta Upper Stage,rocket_body,Delta E,778,17,238.864,1.29775,88.3944,358.296,14.0508,5.19967,True,0.994087,ours,3
+discos-850,Cosmos-610,6950,1973-12-05,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.781564,4.63325,39.6369,238.864,4.63325,True,3.94264,ours,1
+discos-84,DSV-3H-4 (Delta 300),6921,1973-12-28,explosion,propulsion,Delta Upper Stage,rocket_body,DSV-3H-4,845,242,238.864,1.40619,41.3531,205.245,1.01313,5.85203,False,-1.75375,nasa,1
+discos-835,Cosmos-631,7109,1974-02-11,explosion,unknown,Unknown,payload,tselina-o,867.2,3,238.864,0.76556,4.35712,38.1493,79.6214,1.45237,True,4.00408,ours,1
+discos-802,Intercosmos 11,7299,1974-05-18,explosion,unknown,Unknown,payload,DS-U3,545.09,1,238.864,0.716593,2.09317,20.1759,238.864,2.09317,True,4.73722,ours,4
+discos-852,Cosmos-655,7306,1974-05-21,explosion,unknown,Unknown,payload,tselina-o,867.2,7,238.864,0.762216,4.30625,37.8994,34.1235,1.62555,True,3.04414,ours,1
+discos-814,Cosmos-676,7433,1974-11-25,explosion,unknown,Unknown,payload,strela-2m,743.31,2,238.864,0.791119,4.68676,39.3395,119.432,2.34338,True,3.93115,ours,1
+discos-825,Cosmos-698,7576,1974-12-21,explosion,unknown,Unknown,payload,tselina-o,867.2,6,238.864,0.75505,4.19852,37.3648,39.8107,1.42908,True,3.32711,ours,1
+discos-81,DSV-3H-4 (Delta 900),6127,1975-05-22,explosion,propulsion,Delta Upper Stage,rocket_body,DSV-3H-4,800,262,238.864,1.40643,41.4477,205.766,1.09686,6.32121,False,-1.75146,nasa,1
+discos-813,Cosmos 3 second stage (S3) (Cosmos 3M (11K65M)),7753,1975-07-31,explosion,unknown,Unknown,rocket_body,Cosmos 3 second stage,1434,2,238.864,1.14727,18.5261,109.865,119.432,9.26304,True,2.55672,ours,1
+discos-853,Cosmos-749,8009,1975-08-20,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.733791,3.86769,35.5497,238.864,3.86769,True,4.12324,ours,1
+discos-85,DELTA P (Delta 2310),7532,1975-08-20,explosion,propulsion,Propulsion,rocket_body,DELTA P,845,191,238.864,1.48263,47.9943,183.183,1.2506,3.97964,False,-1.15757,nasa,4
+discos-91,Cosmos-758,8191,1975-09-06,explosion,deliberate,Payload Recovery Failure,payload,Yantar,6640.24,75,238.864,1.6582,51.2051,198.097,3.18486,1.4647,True,0.776759,ours,1
+discos-828,Cosmos-781,8444,1975-11-22,explosion,unknown,Unknown,payload,tselina-o,867.2,8,238.864,0.730686,3.82493,35.3285,29.858,2.09154,True,2.65855,ours,1
+discos-800,Intercosmos 14,8471,1975-12-13,explosion,unknown,Unknown,payload,DS-U2,545.09,4,238.864,0.716593,1.4468,12.6311,59.7161,2.76472,True,3.07266,ours,2
+discos-860,Cosmos-787,8530,1976-01-06,explosion,unknown,Unknown,payload,tselina-o,867.2,8,238.864,0.716593,3.60685,34.0544,29.858,2.218,True,2.59985,ours,1
+discos-92,Cosmos-777,8416,1976-01-25,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3000,86,238.864,0.716593,3.99047,33.6667,2.77749,21.5514,False,-2.04889,nasa,2
+discos-801,Cosmos-437,5466,1976-03-24,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.780609,4.66693,40.1048,238.864,4.66693,True,3.93539,ours,1
+discos-413,Meteor 1-10,5731,1976-05-03,explosion,unknown,Meteor Class,payload,meteor-1,1280,14,238.864,0.754333,4.40036,39.6737,17.0617,3.18156,True,1.67947,ours,1
+discos-95,Cosmos-844,9046,1976-07-25,explosion,deliberate,Payload Recovery Failure,payload,Yantar,2886,247,238.864,1.48191,31.8162,134.724,1.03406,7.76333,False,-2.01592,nasa,1
+discos-829,Cosmos-845,9053,1976-08-06,explosion,unknown,Unknown,payload,tselina-o,867.2,6,238.864,0.716593,3.51704,33.5776,39.8107,1.70598,True,3.15,ours,1
+discos-821,Cosmos-870,9573,1976-12-02,explosion,unknown,Unknown,payload,tselina-o,867.2,6,238.864,0.716593,3.46855,33.3166,39.8107,1.72983,True,3.13611,ours,1
+discos-100,Cosmos-886,9634,1976-12-27,explosion,deliberate,ASAT,payload,is-a,1400,84,238.864,1.10761,20.2621,97.2782,2.84362,4.14566,True,-0.376984,nasa,2
+discos-99,Cosmos-884,9614,1976-12-29,explosion,deliberate,Deliberate,payload,Zenit,6010,1,238.864,1.62882,49.5053,196.287,238.864,49.5053,False,1.57382,ours,1
+discos-826,Cosmos-812,8794,1977-02-16,explosion,unknown,Unknown,payload,tselina-o,867.2,2,238.864,0.716593,3.4375,33.1489,119.432,1.71875,True,4.24115,ours,1
+discos-858,Cosmos-893,9833,1977-02-16,explosion,unknown,Unknown,payload,ds-u2-ik-gvm,2725.47,2,238.864,0.716593,4.79998,38.0009,119.432,2.39999,True,3.90728,ours,2
+discos-97,Cosmos-862,9495,1977-03-15,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,12,238.864,0.938259,10.1424,61.7586,19.9054,1.18315,True,2.82281,ours,4
+discos-810,Cosmos-899,9883,1977-03-28,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.716593,3.2433,31.9641,238.864,3.2433,True,4.2993,ours,1
+discos-93,Cosmos-838,8932,1977-05-17,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3000,41,238.864,0.716593,4.25704,35.4123,5.82596,9.63111,False,-0.502675,nasa,2
+discos-818,Cosmos-909,10010,1977-05-21,explosion,unknown,Unknown,payload,ds-p1-m,624.38,1,238.864,0.736896,3.73202,33.7448,238.864,3.73202,True,4.15895,ours,1
+discos-103,DELTA P (Delta 2914),10144,1977-07-14,explosion,propulsion,Delta Upper Stage,rocket_body,DELTA P,346.88,204,238.864,1.34098,33.6039,141.84,1.1709,6.07072,False,-1.6457,nasa,4
+discos-851,Cosmos-924,10129,1977-08-08,explosion,unknown,Unknown,payload,tselina-o,867.2,2,238.864,0.716593,3.19266,31.6832,119.432,1.59633,True,4.31504,ours,1
+discos-94,Cosmos-839,9011,1977-09-29,explosion,battery,Battery,payload,Cosmos,650,75,238.864,2.25966,375.065,862.831,3.18486,5.00087,True,-0.451204,nasa,3
+discos-104,Cosmos-931,10150,1977-10-24,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,6,238.864,0.90864,9.17549,57.965,39.8107,1.52925,True,3.25936,ours,4
+discos-106,Cosmos-970,10531,1977-12-21,explosion,deliberate,ASAT,payload,is-a,1400,121,238.864,1.0854,18.4542,90.14,1.97409,6.55678,False,-1.20039,nasa,2
+discos-96,DELTA P (Delta 2310),9063,1977-12-24,explosion,propulsion,Delta Upper Stage,rocket_body,DELTA P,845,192,238.864,1.39353,40.1674,165.683,1.24408,4.77999,False,-1.34604,nasa,4
+discos-833,Cosmos-985,10599,1978-01-29,explosion,unknown,Unknown,payload,KAUR-1,802.78,3,238.864,0.716593,1.90017,18.4117,79.6214,1.57881,True,3.92061,ours,2
+discos-410,DELTA P (Delta 1410),7735,1978-03-11,explosion,propulsion,Delta Upper Stage,rocket_body,DELTA P,346.88,3,238.864,1.37371,35.9818,147.3,79.6214,11.9939,True,1.89288,ours,4
+discos-803,Cosmos-1008,10898,1978-05-18,explosion,unknown,Unknown,payload,tselina-o,867.2,4,238.864,0.716593,2.9268,30.062,59.7161,1.36668,True,3.77722,ours,1
+discos-101,Cosmos-903,9911,1978-06-08,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,5,238.864,0.899085,8.8793,56.7709,47.7729,1.77586,True,3.29217,ours,4
+discos-105,Ekran 2,10365,1978-06-23,explosion,battery,Battery,payload,KAUR-3,1850,7,238.864,1.77858,93.7499,318.021,34.1235,13.3928,True,0.935265,ours,0
+discos-98,Cosmos-880,9601,1978-11-27,explosion,battery,Battery,payload,ds-p1-m,650,48,238.864,1.2796,25.5998,134.442,4.97634,1.87501,True,0.976078,ours,1
+discos-806,Cosmos-1062,11150,1978-12-15,explosion,unknown,Unknown,payload,tselina-o,867.2,1,238.864,0.716593,2.85467,29.644,238.864,2.85467,True,4.42694,ours,1
+discos-102,Cosmos-917,10059,1979-03-30,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,16,238.864,0.896219,8.81911,56.6722,14.929,1.81424,True,2.10764,ours,4
+discos-114,Cosmos-1124,11509,1979-09-09,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,6,238.864,0.875915,8.28143,54.848,39.8107,1.38024,True,3.36188,ours,4
+discos-112,Cosmos-1094,11333,1979-09-17,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,1,238.864,0.716593,5.55049,43.3204,238.864,5.55049,True,3.76201,ours,2
+discos-486,RCA Satcom III,11635,1979-12-11,explosion,propulsion,Propulsion,payload,AS-3000,458.87,27,238.864,0.716593,2.73547,14.1212,8.84683,9.87032,False,-0.109473,nasa,0
+discos-53,Elektron 1,746,1979-12-15,explosion,unknown,Unknown,payload,elektron-1,326.07,27,238.864,0.716593,2.91964,26.4815,8.84683,9.24772,False,-0.0443184,nasa,4
+discos-113,Cosmos-1109,11417,1980-02-15,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,19,238.864,0.874482,8.25109,54.7967,12.5718,2.30273,True,1.69736,ours,4
+discos-368,Ayame 2,11715,1980-02-22,explosion,propulsion,Propulsion,payload,ecs-a,128.84,5,238.864,1.03404,9.07684,37.8741,47.7729,1.81537,True,3.27017,ours,0
+discos-115,H8 (Ariane 1),11659,1980-03-31,explosion,propulsion,Ariane Upper Stage,rocket_body,H8,1318.14,34,238.864,1.06247,27.4844,144.529,7.02542,1.23706,True,1.73679,ours,2
+discos-823,Cosmos-1171,11750,1980-04-07,explosion,unknown,Unknown,payload,ds-p1-m,743.31,1,238.864,0.716593,2.76891,28.5395,238.864,2.76891,True,4.45744,ours,1
+discos-118,Cosmos-1174,11765,1980-04-18,explosion,deliberate,ASAT,payload,is-a,1400,49,238.864,0.938498,12.5124,71.4746,4.87478,3.91611,True,0.218977,ours,2
+discos-838,Cosmos-1215,12016,1980-10-16,explosion,unknown,Unknown,payload,tselina-o,867.2,2,238.864,0.716593,2.50712,27.5728,119.432,1.25356,True,4.55676,ours,1
+discos-839,Cosmos-1241,12149,1981-01-21,explosion,unknown,Unknown,payload,ds-p1-m,1045,1,238.864,0.716593,2.43307,27.5231,238.864,2.43307,True,4.58674,ours,1
+discos-107,DELTA P (Delta 2910),10704,1981-01-27,explosion,propulsion,Delta Upper Stage,rocket_body,DELTA P,346.88,262,238.864,1.29034,30.229,134.152,1.09686,8.66718,False,-2.06709,nasa,4
+discos-126,Cosmos-1261,12376,1981-03-31,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,10,238.864,0.857523,7.88515,53.9059,23.8864,1.26821,True,2.93571,ours,4
+discos-119,Cosmos-1191,11871,1981-05-14,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,10,238.864,0.860867,7.92743,53.7894,23.8864,1.26144,True,2.94105,ours,4
+discos-116,Cosmos-1167,11729,1981-07-15,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,11,238.864,0.716593,6.02034,46.16,21.7149,1.82714,True,2.47525,ours,2
+discos-127,Cosmos-1275,12504,1981-07-24,explosion,battery,Battery,payload,KAUR-1,800,486,238.864,0.996542,15.2868,82.2436,2.03463,31.7921,False,-2.7489,nasa,2
+discos-131,Blok-ML (Molniya-M Blok-ML),12827,1981-09-11,explosion,propulsion,Propulsion,rocket_body,Blok-ML,1720,9,238.864,1.52778,69.8585,268.191,26.5405,7.76205,True,1.22942,ours,0
+discos-123,Cosmos-1247,12303,1981-10-20,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,8,238.864,0.850357,7.66826,52.8924,29.858,1.04326,True,3.3541,ours,4
+discos-129,Cosmos-1285,12627,1981-11-21,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,24,238.864,0.850118,7.66253,52.8826,9.95268,3.13213,True,1.15613,ours,4
+discos-109,DELTA P (Delta 2910),11081,1981-12-26,explosion,propulsion,Delta Upper Stage,rocket_body,DELTA P,934,2,238.864,1.3159,34.4452,153.296,119.432,17.2226,True,1.93653,ours,4
+discos-132,Cosmos-1306,12828,1982-07-12,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,7,238.864,0.723281,6.35809,48.1725,34.1235,1.10096,True,3.4338,ours,2
+discos-130,Cosmos-1286,12631,1982-09-29,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,1,238.864,0.724475,6.40228,48.4338,238.864,6.40228,True,3.61924,ours,2
+discos-140,Blok-ML (Molniya-M Blok-ML),13696,1982-12-08,explosion,propulsion,Propulsion,rocket_body,Blok-ML,1720,29,238.864,1.42172,54.7713,218.752,8.2367,1.88867,True,1.47273,ours,0
+discos-120,Cosmos-1217,12032,1983-02-12,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,9,238.864,0.854895,7.81158,53.5871,26.5405,1.15214,True,3.13705,ours,4
+discos-376,H8 (Ariane 1),14130,1983-06-23,explosion,propulsion,Ariane Upper Stage,rocket_body,H8,1318.14,2,238.864,0.888097,15.9633,101.1,119.432,7.98165,True,2.7056,ours,2
+discos-146,Cosmos-1481,14182,1983-07-09,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,8,238.864,0.826709,7.12389,51.0501,29.858,1.12298,True,3.28047,ours,4
+discos-143,Cosmos-1456,14034,1983-08-13,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,3,238.864,0.82647,7.11816,51.0396,79.6214,2.37272,True,3.51325,ours,4
+discos-856,Cosmos 3 second stage (S3) (Cosmos 3M (11K65M)),13758,1983-08-24,explosion,unknown,Unknown,rocket_body,Cosmos 3 second stage,1421.21,1,238.864,0.928466,10.1393,76.5015,238.864,10.1393,True,3.15948,ours,1
+discos-426,DMSP Block 5D-2 F7,14506,1983-12-04,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,744.3,3,238.864,1.96036,227.937,604.79,79.6214,75.9791,True,0.0468254,ours,3
+discos-139,Cosmos-1405,13508,1983-12-20,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,31,238.864,0.735463,6.81217,50.8406,7.7053,4.55068,True,0.526632,ours,2
+discos-134,Cosmos-1317,12933,1984-01-28,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,10,238.864,0.842713,7.52279,52.6342,23.8864,1.32929,True,2.88866,ours,4
+discos-562,IRT,14689,1984-02-05,explosion,unknown,Accidental,payload,irt,90.19,2,238.864,0.856567,2.98867,12.6968,119.432,1.49434,True,4.38107,ours,0
+discos-467,H8 (Ariane 1),14423,1984-02-27,explosion,propulsion,Ariane Upper Stage,rocket_body,H8,1318.14,2,238.864,0.888814,16.2769,103.173,119.432,8.13847,True,2.68615,ours,2
+discos-353,H8 (Ariane 1),14787,1984-07-04,explosion,propulsion,Ariane Upper Stage,rocket_body,H8,1318.14,9,238.864,0.858239,14.6696,96.4474,26.5405,1.62996,True,2.79012,ours,2
+discos-449,Cosmos-1348,13124,1984-09-02,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,10,238.864,0.836742,7.43776,52.667,23.8864,1.34449,True,2.87729,ours,4
+discos-141,Proton-K/D-1 ullage motor (SOZ),13902,1984-09-03,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/D-1 ullage motor,55.5,1,238.864,0.843669,7.44851,46.4916,238.864,7.44851,True,3.46788,ours,2
+discos-446,H10 (Ariane 3),15165,1984-09-18,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,4,238.864,1.03834,15.8503,91.3025,59.7161,3.96258,True,2.71271,ours,4
+discos-267,H10 (Ariane 3),15388,1984-11-20,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,1,238.864,1.035,15.6951,90.7297,238.864,15.6951,False,2.72255,ours,4
+discos-155,Cosmos-1654,15734,1985-06-21,explosion,deliberate,Payload Recovery Failure,payload,Yantar,6600,17,238.864,1.31041,27.2891,139.394,14.0508,1.60524,True,2.16941,ours,1
+discos-138,Cosmos-1375,13259,1985-10-21,explosion,battery,Battery,payload,ds-p1-m,650,62,238.864,1.07274,16.0388,103.845,3.85265,3.86563,True,-0.00336346,nasa,1
+discos-159,Cosmos-1691,16139,1985-11-22,explosion,battery,Battery,payload,strela-3,222.99,20,238.864,1.19313,14.2678,54.7422,11.9432,1.40175,True,2.14244,ours,0
+discos-1,Zenit-2 second stage,16439,1985-12-28,explosion,propulsion,Zenit-2 Upper Stage,rocket_body,Zenit-2 second stage,8225.97,2,238.864,0.716593,9.87608,76.3606,119.432,4.93804,True,3.18578,ours,3
+discos-142,NOAA 8,13923,1985-12-30,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1712,10,238.864,1.73463,181.85,538.762,23.8864,18.185,True,0.272711,ours,3
+discos-151,Cosmos-1588,15167,1986-02-23,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,44,238.864,0.756006,7.64533,55.6401,5.42873,5.75515,True,-0.0583887,nasa,2
+discos-364,Star 37D (Delta J),3315,1986-06-09,explosion,propulsion,Delta Upper Stage,rocket_body,Star 37D,70,14,238.864,1.38637,21.9798,96.1082,17.0617,1.56999,True,2.38577,ours,1
+discos-3,H8 (Ariane 1),16615,1986-11-13,explosion,propulsion,Ariane Upper Stage,rocket_body,H8,1780,509,238.864,0.860628,16.3741,108.559,2.13092,31.0856,False,-2.68019,nasa,2
+discos-516,H10 (Ariane 3),16657,1986-11-30,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,7,238.864,0.95689,12.2678,77.6075,34.1235,1.75255,True,2.96892,ours,4
+discos-128,Cosmos-1278,12547,1986-11-30,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1150,2,238.864,0.833159,7.34532,52.3134,119.432,3.67266,True,3.48183,ours,4
+discos-827,Cosmos-1791,17066,1986-12-02,explosion,unknown,Unknown,payload,KAUR-1,802.78,1,238.864,0.716593,1.91689,19.5343,238.864,1.91689,True,4.82519,ours,2
+discos-157,Cosmos-1682,16054,1986-12-18,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,22,238.864,0.765082,8.02918,57.8118,10.8575,2.74,True,1.37689,ours,2
+discos-6,Cosmos-1813,17297,1987-01-29,explosion,deliberate,Payload Recovery Failure,payload,Zenit,6300,195,238.864,1.30157,27.8239,144.571,1.22495,7.00837,False,-1.74421,nasa,1
+discos-427,H8 (Ariane 1),15876,1987-06-07,explosion,propulsion,Ariane Upper Stage,rocket_body,H8,1318.14,15,238.864,0.802823,12.0376,84.8532,15.9243,1.2461,True,2.54783,ours,2
+discos-834,Cosmos-1861,18129,1987-06-26,explosion,unknown,Unknown,payload,KAUR-1,802.78,2,238.864,0.716593,2.01721,20.3137,119.432,1.0086,True,4.77418,ours,2
+discos-8,Cosmos-1866,18184,1987-07-26,explosion,deliberate,Payload Recovery Failure,payload,Yantar,6600,8,238.864,1.25786,24.6045,132.096,29.858,3.07556,True,2.27297,ours,1
+discos-11,H10 (Ariane 3),18352,1987-09-19,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1920,3,238.864,0.951635,12.2965,78.8909,79.6214,4.09883,True,2.96658,ours,4
+discos-4,Cosmos-1769,16895,1987-09-21,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,3,238.864,0.773681,8.41638,59.9819,79.6214,2.80546,True,3.34572,ours,2
+discos-456,Altair 3 (Scout G-1),18363,1987-10-13,explosion,propulsion,Scout Class,rocket_body,Altair,23.79,6,238.864,0.991765,6.73382,27.9519,39.8107,1.1223,True,3.56875,ours,0
+discos-817,Cosmos 3 second stage (S3) (Cosmos 3M (11K65M)),17240,1987-10-23,explosion,unknown,Unknown,rocket_body,Cosmos 3 second stage,1421.21,1,238.864,0.866361,8.58359,70.603,238.864,8.58359,True,3.32604,ours,1
+discos-153,Cosmos-1646,15653,1987-11-20,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,24,238.864,0.770337,8.2702,59.1614,9.95268,2.90199,True,1.23245,ours,2
+discos-7,Cosmos-1823,17535,1987-12-17,explosion,battery,Battery,payload,KAUR-1,1545,162,238.864,0.732358,7.00804,52.763,1.47447,23.1163,False,-2.75224,nasa,2
+discos-156,Proton-K/DM-2 ullage motor (SOZ),15773,1988-01-05,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,5,238.864,1.00466,8.49019,36.2145,47.7729,1.69804,True,3.33698,ours,0
+discos-13,Cosmos-1906,18713,1988-01-31,explosion,deliberate,Payload Recovery Failure,payload,Vostok / Zenit Capsule,6450,36,238.864,0.716593,9.73324,63.9163,6.63512,3.69866,True,0.584405,ours,3
+discos-15,Cosmos-1916,18823,1988-02-27,explosion,deliberate,Payload Recovery Failure,payload,Yantar,6640.24,1,238.864,1.24568,24.1198,131.208,238.864,24.1198,False,2.29286,ours,1
+discos-110,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),11087,1988-05-09,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1400,43,238.864,0.965012,22.9393,134.923,5.55498,1.87451,True,1.08635,ours,2
+discos-559,Titan 34D third stage (Transtage D-3) (Titan 34D Transtage),19490,1988-09-02,explosion,propulsion,Propulsion,rocket_body,Titan 34D third stage,1486.62,1,238.864,0.870899,10.7618,92.602,238.864,10.7618,True,3.09989,ours,1
+discos-386,H10 (Ariane 3),19332,1988-10-21,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,5,238.864,0.92536,11.1946,74.0102,47.7729,2.23892,True,3.06046,ours,4
+discos-387,H10 (Ariane 2),19622,1988-11-06,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,8,238.864,0.992481,14.2459,87.6713,29.858,1.78073,True,2.81943,ours,4
+discos-22,Cosmos-2030,20124,1989-07-28,explosion,deliberate,Payload Recovery Failure,payload,Yantar,6600,1,238.864,1.22991,23.5895,130.629,238.864,23.5895,False,2.31509,ours,1
+discos-462,H10 (Ariane 3),20123,1989-07-29,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1820,1,238.864,0.98842,14.3163,89.1592,238.864,14.3163,True,2.81449,ours,4
+discos-23,Cosmos-2031,20136,1989-08-31,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,8,238.864,0.856806,18.2686,107.912,29.858,2.28357,True,2.57071,ours,0
+discos-501,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),20262,1989-10-16,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1387.51,7,238.864,0.899802,19.766,125.894,34.1235,2.82372,True,2.49193,ours,2
+discos-29,L-14 (YF40A) (Long March (CZ) 4),20791,1990-10-04,explosion,propulsion,Propulsion,rocket_body,L-14,1000,103,238.864,1.08468,19.5644,110.625,2.31907,5.26466,True,-0.81985,nasa,4
+discos-30,Cosmos-2101,20828,1990-11-30,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,3,238.864,0.860389,18.613,109.786,79.6214,6.20434,True,2.55203,ours,0
+discos-32,DMSP Block 5D-2 F10,20978,1990-12-01,explosion,propulsion,Propulsion,payload,TIROS-N,1487,27,238.864,0.716593,7.4122,53.437,8.84683,3.64264,True,0.887349,ours,3
+discos-148,Proton-K/DM-2 ullage motor (SOZ),14608,1991-02-04,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,7,238.864,1.01278,8.72739,37.0572,34.1235,1.24677,True,3.30943,ours,0
+discos-35,Cosmos 3 second stage (S3) (Cosmos 3M (11K65M)),21108,1991-03-05,explosion,propulsion,Propulsion,rocket_body,Cosmos 3 second stage,1434,112,238.864,0.83077,9.9432,91.4917,2.13272,11.264,False,-1.66421,nasa,1
+discos-90,DELTA P (Delta 2910),7946,1991-05-01,explosion,propulsion,Delta Upper Stage,rocket_body,DELTA P,845,310,238.864,1.2784,31.9044,147.655,1.29781,9.71653,False,-2.01315,nasa,4
+discos-39,Cosmos-2163,21741,1991-12-06,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,13,238.864,0.862539,18.8641,111.208,18.3742,1.45108,True,2.53864,ours,0
+discos-2,Proton-K/DM-2 ullage motor (SOZ),16446,1991-12-29,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,16,238.864,0.981971,7.96923,34.5111,14.929,2.00772,True,2.00631,ours,0
+discos-68,Transtage 5 (Titan IIIC),3432,1992-02-21,explosion,propulsion,Titan Transtage,rocket_body,Transtage,1950,37,238.864,1.07537,46.2893,229.176,6.45579,1.25106,True,1.64099,ours,3
+discos-393,H-8 (Long March (CZ) 3),16528,1992-05-17,explosion,unknown,Unknown,rocket_body,H-8,1982.16,3,238.864,0.882604,10.2329,52.5399,79.6214,3.41098,True,3.15028,ours,0
+discos-27,Proton-K/DM-2 ullage motor (SOZ),20399,1992-07-01,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,13,238.864,0.92966,6.78303,30.4034,18.3742,1.91655,True,2.26042,ours,0
+discos-152,Proton-K/DM-2 ullage motor (SOZ),15338,1992-09-05,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,23,238.864,0.990809,8.19042,35.2736,10.3854,2.80816,True,1.30787,ours,0
+discos-390,H10+ (Ariane 42P H10+),22206,1992-11-09,explosion,propulsion,Ariane Upper Stage,rocket_body,H10+,1764.12,28,238.864,0.765321,7.34364,72.9492,8.53087,3.81282,True,0.805322,ours,1
+discos-700,AKM (USA 40 AKM),20344,1992-12-09,explosion,unknown,Unknown,payload,AKM,3600,66,238.864,1.72938,106.466,455.501,3.61916,1.61312,True,0.808069,ours,1
+discos-19,Proton-K/DM-2 ullage motor (SOZ),19771,1992-12-18,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.927271,6.73311,30.2331,119.432,3.36655,True,3.56886,ours,0
+discos-43,Zenit-2 second stage,22285,1992-12-26,explosion,propulsion,Zenit-2 Upper Stage,rocket_body,Zenit-2 second stage,8500,282,238.864,0.716593,5.80775,51.6976,1.18059,48.5558,False,-3.7167,nasa,3
+discos-21,Proton-K/DM-2 ullage motor (SOZ),20116,1993-01-12,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.926793,6.7257,30.208,119.432,3.36285,True,3.56996,ours,0
+discos-42,Cosmos-2225,22280,1993-02-18,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,5,238.864,0.865883,19.1994,113.04,47.7729,3.83989,True,2.52101,ours,0
+discos-47,Zenit-2 second stage,22566,1993-03-28,explosion,propulsion,Zenit-2 Upper Stage,rocket_body,Zenit-2 second stage,8500,103,238.864,0.716593,5.50009,49.7053,2.31907,18.727,False,-2.0888,nasa,3
+discos-40,H10+ (Ariane 44L H10+),21941,1993-04-21,explosion,propulsion,Ariane Upper Stage,rocket_body,H10+,2080,17,238.864,0.774637,7.61595,74.6728,14.0508,2.23216,True,1.83971,ours,1
+discos-49,Cosmos-2243,22641,1993-04-27,explosion,deliberate,Deliberate,payload,Yantar,6300,1,238.864,1.29751,30.4466,162.62,238.864,30.4466,False,2.05992,ours,1
+discos-147,Cosmos-1484,14207,1993-10-18,explosion,unknown,Unknown,payload,SP-1,2477.7,57,238.864,0.716593,3.27961,21.3177,4.1906,17.3801,False,-1.42248,nasa,3
+discos-235,Cosmos-2262,22789,1993-12-18,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,2,238.864,0.867077,19.3762,114.106,119.432,9.6881,True,2.51185,ours,0
+discos-418,H10 (Ariane 40 H10),22830,1994-01-04,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1764.12,2,238.864,0.929421,12.1857,82.4875,119.432,6.09283,True,2.97564,ours,4
+discos-237,Titan-2-2 (Titan II SLV),22974,1994-02-07,explosion,propulsion,Propulsion,rocket_body,Titan-2-2,2680,5,238.864,0.944947,17.7089,92.7391,47.7729,3.54178,True,2.60183,ours,0
+discos-37,H10 (Ariane 44LP H10),21141,1994-04-27,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1764.12,11,238.864,0.882126,10.054,71.4383,21.7149,1.09409,True,2.98808,ours,4
+discos-36,Proton-K/DM-2 ullage motor (SOZ),21114,1994-05-07,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,3,238.864,0.913178,6.43906,29.1933,79.6214,2.14635,True,3.61351,ours,0
+discos-41,Proton-K/DM-2 ullage motor (SOZ),22067,1994-11-08,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,36,238.864,0.909356,6.35905,28.9057,6.63512,5.66123,False,0.158736,ours,0
+discos-48,Cosmos-2238,22585,1994-12-01,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,1,238.864,0.84964,12.4329,81.3739,238.864,12.4329,True,2.95555,ours,2
+discos-242,Briz-KM (Rokot-KM),23440,1994-12-26,explosion,propulsion,Briz-M,rocket_body,Briz-KM,2300,27,238.864,1.33931,45.9224,219.753,8.84683,1.70083,True,1.64894,ours,4
+discos-241,Proton-K/DM-2 ullage motor (SOZ),23338,1995-05-11,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.900518,6.17536,28.24,238.864,6.17536,True,3.65533,ours,0
+discos-239,Proton-K/DM-2 ullage motor (SOZ),23174,1995-10-21,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.901713,6.19853,28.3269,119.432,3.09926,True,3.65158,ours,0
+discos-31,Proton-K/DM-2 ullage motor (SOZ),20957,1995-12-14,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.922255,6.63708,29.9149,119.432,3.31854,True,3.58322,ours,0
+discos-421,STAR 48B cyl (Atlas E),14190,1996-01-29,explosion,unknown,Unknown,rocket_body,STAR 48B cyl,150,2,238.864,0.716593,3.13509,29.0497,119.432,1.56755,True,4.33324,ours,4
+discos-452,H10 (Ariane 2),19920,1996-01-29,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,4,238.864,0.954024,13.0145,84.9573,59.7161,3.25363,True,2.90983,ours,4
+discos-246,Blok-DM-2 (Proton-K/DM-2),23797,1996-02-19,explosion,propulsion,Propulsion,rocket_body,Blok-DM-2,2440,1,238.864,0.756961,12.7152,97.7583,238.864,12.7152,True,2.9331,ours,2
+discos-34,H10 (Ariane 44L H10),21057,1996-04-30,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1764.12,15,238.864,0.87496,9.88564,71.1297,15.9243,1.51735,True,2.35088,ours,4
+discos-238,HAPS (Pegasus/HAPS),23106,1996-06-03,explosion,propulsion,Propulsion,rocket_body,HAPS,97,754,238.864,1.01087,13.4134,69.7326,3.1566,56.2123,False,-2.87964,nasa,2
+discos-12,Proton-K/DM-2 ullage motor (SOZ),18374,1996-12-01,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,54,238.864,0.94017,7.0367,31.3474,4.42341,7.67405,False,-0.550933,nasa,0
+discos-811,Informator 1,21087,1997-04-02,explosion,unknown,Unknown,payload,KAUR-1,802.78,1,238.864,0.716593,3.65224,31.6526,238.864,3.65224,True,4.18056,ours,2
+discos-14,Proton-K/DM-2 ullage motor (SOZ),18719,1997-05-22,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.941125,7.06489,31.4489,238.864,7.06489,True,3.52076,ours,0
+discos-243,Cosmos-2313,23596,1997-06-26,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,12,238.864,0.876154,14.1286,89.926,19.9054,1.17738,True,2.8277,ours,2
+discos-395,Boost motor (USA 89) (Discovery (OV-103)),22519,1997-06-30,explosion,unknown,Unknown,rocket_body,Boost motor,200,13,238.864,0.732119,4.77299,46.3361,18.3742,2.72366,True,1.90897,ours,1
+discos-248,Cosmos-2343,24805,1997-09-16,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,1,238.864,0.831009,17.063,103.186,238.864,17.063,True,2.63898,ours,0
+discos-10,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),18313,1998-02-15,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1400,108,238.864,0.879021,19.3697,127.132,2.21171,5.57571,True,-0.924655,nasa,2
+discos-475,H10 (Ariane 44LP H10),20170,1998-02-15,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1920,12,238.864,0.893591,10.6185,74.7311,19.9054,1.13011,True,2.86868,ours,4
+discos-17,H10 (Ariane 44LP H10),19689,1998-02-17,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1920,18,238.864,0.90028,10.8182,75.3474,13.2702,1.66387,True,2.07638,ours,4
+discos-251,H-II LE-5A,25176,1998-02-21,explosion,propulsion,Propulsion,rocket_body,H-II LE-5A,2700,1,238.864,0.716593,2.98437,32.4263,238.864,2.98437,True,4.38251,ours,4
+discos-415,CENTAUR (Atlas IIAS),24881,1998-02-23,explosion,unknown,Unknown,rocket_body,CENTAUR,2095,1,238.864,0.787058,6.80763,37.0877,238.864,6.80763,True,3.55785,ours,0
+discos-33,Proton-K/DM-2 ullage motor (SOZ),21013,1998-03-14,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.927749,6.76392,30.3802,238.864,6.76392,True,3.56429,ours,0
+discos-18,Proton-K/DM-2 ullage motor (SOZ),19755,1998-08-03,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,15,238.864,0.933959,6.90103,30.8718,15.9243,2.17359,True,1.99147,ours,0
+discos-154,Proton-K/DM-2 ullage motor (SOZ),15714,1998-11-29,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,3,238.864,0.955457,7.40025,32.6418,79.6214,2.46675,True,3.47438,ours,0
+discos-16,Proton-K/DM-2 ullage motor (SOZ),19537,1999-03-09,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,78,238.864,0.940409,7.05319,31.4164,3.06236,11.0588,False,-1.28404,nasa,0
+discos-28,Proton-K/DM-2 ullage motor (SOZ),20631,1999-03-28,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.930376,6.8234,30.5976,119.432,3.4117,True,3.55554,ours,0
+discos-443,H10+ (Ariane 44LP H10+),22118,1999-04-01,explosion,propulsion,Ariane Upper Stage,rocket_body,H10+,1764.12,5,238.864,0.747645,7.08424,72.8266,47.7729,1.41685,True,3.51802,ours,1
+discos-26,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),20390,1999-04-18,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1387.51,25,238.864,0.881409,19.8783,130.324,9.55457,1.25765,True,2.02777,ours,2
+discos-183,Meteor 2-8,13113,1999-05-01,explosion,unknown,Meteor Class,payload,SP-1,1500,52,238.864,0.716593,2.18824,15.8386,4.59354,23.7634,False,-1.6435,nasa,3
+discos-451,Delta III second stage (Delta 8930),25728,1999-05-05,explosion,propulsion,Propulsion,rocket_body,Delta III second stage,2476,1,238.864,0.716593,6.27401,59.2209,238.864,6.27401,True,3.63948,ours,2
+discos-317,Zenit-2 second stage,22803,1999-09-08,explosion,propulsion,Zenit-2 Upper Stage,rocket_body,Zenit-2 second stage,8225.97,5,238.864,0.716593,4.61772,43.169,47.7729,1.08278,True,3.78692,ours,3
+discos-38,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),21734,1999-10-09,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1400,41,238.864,0.885709,20.4931,133.924,5.82596,2.00067,True,1.06884,ours,2
+discos-249,Cosmos-2347,25088,1999-11-22,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3300,9,238.864,0.902429,15.9741,98.983,26.5405,1.77489,True,2.70493,ours,2
+discos-247,Proton-K/DM-2 ullage motor (SOZ),23887,1999-12-13,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.901713,6.20713,28.3754,238.864,6.20713,True,3.6502,ours,0
+discos-378,H10 (Ariane 3),18953,1999-12-20,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,1,238.864,0.884992,10.1911,72.2522,238.864,10.1911,True,3.15438,ours,4
+discos-252,L-14B (YF40B) (Long March (CZ) 4B),25942,2000-03-11,explosion,propulsion,Propulsion,rocket_body,L-14B,1727,343,238.864,0.716593,8.35715,69.3504,1.43596,41.0427,False,-3.35278,nasa,3
+discos-455,NOAA 10,16969,2000-04-15,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1004.96,6,238.864,1.59585,105.804,340.542,39.8107,17.634,True,0.814307,ours,3
+discos-471,H10 (Ariane 3),19485,2000-09-04,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,11,238.864,0.882365,10.1305,72.142,21.7149,1.08583,True,2.99565,ours,4
+discos-236,Proton-K/DM-2 ullage motor (SOZ),22925,2000-09-07,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.918433,6.56805,29.6875,238.864,6.56805,True,3.59368,ours,0
+discos-245,Proton-K/DM-2 ullage motor (SOZ),23631,2000-11-21,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.908879,6.36239,28.9441,119.432,3.18119,True,3.62549,ours,0
+discos-20,H10 (Ariane 2),19773,2001-01-01,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1920,87,238.864,0.946142,13.1234,87.6809,2.74557,6.62936,True,-0.88152,nasa,4
+discos-365,Cosmos-1188,11844,2001-01-05,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,7,238.864,0.800673,6.87738,52.4861,34.1235,1.01783,True,3.51231,ours,4
+discos-332,H10 (Ariane 40 H10),21610,2001-04-01,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1764.12,1,238.864,0.922494,12.1646,83.8318,238.864,12.1646,True,2.97736,ours,4
+discos-257,Proton-K/DM-2 ullage motor (SOZ),21226,2001-06-16,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.930615,6.83654,30.6549,238.864,6.83654,True,3.55361,ours,0
+discos-256,Proton-K/DM-2 ullage motor (SOZ),22250,2001-07-14,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.925599,6.72714,30.2632,238.864,6.72714,True,3.56975,ours,0
+discos-508,Cosmos-1024,10970,2001-10-10,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,5,238.864,0.815483,7.25001,54.0908,47.7729,1.45,True,3.49489,ours,4
+discos-255,Cosmos-2367,26040,2001-11-21,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3000,16,238.864,0.895741,15.777,98.6065,14.929,1.01414,True,2.68927,ours,2
+discos-254,PSLV fourth stage (PS4),26960,2001-12-19,explosion,propulsion,Propulsion,rocket_body,PSLV fourth stage,960,373,238.864,0.908162,12.8542,94.1013,1.56156,29.0177,False,-2.92222,nasa,4
+discos-258,H10 (Ariane 44L H10),21766,2001-12-24,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1920,13,238.864,0.922733,12.2683,84.7615,18.3742,1.05964,True,2.85302,ours,4
+discos-260,H10 (Ariane 44L H10),22032,2002-02-02,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1920,6,238.864,0.852029,9.39788,70.6491,39.8107,1.56631,True,3.23541,ours,4
+discos-259,H10 (Ariane 2),19122,2002-07-09,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1466.8,7,238.864,0.933721,12.424,83.8507,34.1235,1.77486,True,2.95626,ours,4
+discos-751,Contour,27457,2002-08-15,explosion,propulsion,Propulsion,payload,contour,435,2,238.864,0.716593,3.09496,28.0491,119.432,1.54748,True,4.34612,ours,3
+discos-341,H-II LE-5B (H-IIA 2024),27518,2002-09-10,explosion,propulsion,H-IIA Class,rocket_body,H-II LE-5B,4000,1,238.864,0.716593,8.55946,77.3488,238.864,8.55946,True,3.32886,ours,2
+discos-442,"Delta IV DCSS 4 (Delta 4M+(4,2))",27555,2002-12-01,explosion,propulsion,Delta 4 Class,rocket_body,Delta IV DCSS,2850,8,238.864,0.716593,1.34194,10.3789,29.858,5.96152,True,1.61113,ours,0
+discos-263,Proton-K/DM-2 ullage motor (SOZ),21012,2003-02-21,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.939931,7.05175,31.4295,119.432,3.52588,True,3.52262,ours,0
+discos-419,Delta IV DCSS 4 (Delta 4M),27692,2003-03-12,explosion,propulsion,Delta 4 Class,rocket_body,Delta IV DCSS,2850,4,238.864,0.716593,1.35197,10.4768,59.7161,2.95864,True,3.00487,ours,0
+discos-476,Altair 2 (Scout X-4),1815,2003-03-21,explosion,propulsion,Scout Class,rocket_body,Altair,33,2,238.864,1.26932,15.4067,55.7521,119.432,7.70337,True,2.74109,ours,0
+discos-431,Cosmos 3 second stage (S3) (Cosmos 3M (11K65M)),13003,2003-04-09,explosion,propulsion,Cosmos-3 Class,rocket_body,Cosmos 3 second stage,1421.21,12,238.864,1.0639,23.7577,171.683,19.9054,1.97981,True,2.30799,ours,1
+discos-381,Cosmos-1382,13295,2003-06-30,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,3,238.864,0.768904,6.14765,49.4604,79.6214,2.04922,True,3.65983,ours,4
+discos-268,Proton-K/DM-2 ullage motor (SOZ),19856,2003-11-13,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.947097,7.2149,32.0124,238.864,7.2149,True,3.49975,ours,0
+discos-262,Cosmos-2399,27856,2003-12-09,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,21,238.864,0.888336,22.0589,129.317,11.3745,1.05042,True,2.38218,ours,0
+discos-265,Cosmos-2383,27053,2004-02-28,explosion,unknown,Cosmos 699 Class (EORSAT),payload,US,3150,13,238.864,0.937304,18.8927,113.194,18.3742,1.45329,True,2.53712,ours,2
+discos-383,Meteor 2-7,12456,2004-03-04,explosion,unknown,Meteor Class,payload,SP-1,1500,22,238.864,0.716593,2.27757,16.0235,10.8575,9.65941,False,0.11692,ours,3
+discos-433,"Transit 13 (NNS 30090, OPS 0082)",2176,2004-04-02,explosion,unknown,Unknown,payload,Transit,50.8,3,238.864,3.1468,893.405,1194.32,79.6214,297.802,False,-1.31914,nasa,3
+discos-273,DMSP Block 5D-2 F11,21798,2004-04-15,explosion,propulsion,Propulsion,payload,TIROS-N,1487,85,238.864,0.716593,5.25645,37.7673,2.81017,16.1706,False,-1.74995,nasa,3
+discos-274,Proton-K/DM-2 ullage motor (SOZ),22066,2004-07-10,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.933004,6.89888,30.8914,238.864,6.89888,True,3.54454,ours,0
+discos-275,Proton-K/DM-2 ullage motor (SOZ),27475,2004-10-29,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,110,1,238.864,1.24042,18.8282,72.6159,238.864,18.8282,False,2.54054,ours,0
+discos-315,Meteor 2-12,15516,2005-02-04,explosion,unknown,Meteor Class,payload,SP-1,1500,5,238.864,0.716593,2.83412,18.7915,47.7729,1.76421,True,3.29875,ours,3
+discos-468,Meteor 2-5,11605,2005-02-04,explosion,unknown,Meteor Class,payload,SP-1,1500,90,238.864,0.716593,2.30982,16.1346,2.65405,38.9641,False,-2.68656,nasa,3
+discos-326,Meteor 2-9,13718,2005-02-08,explosion,unknown,Meteor Class,payload,SP-1,1500,5,238.864,0.716593,2.51906,17.2109,47.7729,1.98487,True,3.18091,ours,3
+discos-450,DMSP 5D-3 F-16 (USA 172),28054,2005-02-17,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1503,5,238.864,1.23851,45.4052,190.405,47.7729,9.08105,True,1.66027,ours,3
+discos-313,Proton-K/DM-2 ullage motor (SOZ),22273,2005-04-22,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.934915,6.9445,31.0579,238.864,6.9445,True,3.53795,ours,0
+discos-166,Proton-K/DM-2 ullage motor (SOZ),22274,2005-04-23,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,1,238.864,0.934915,6.9445,31.0586,238.864,6.9445,True,3.53795,ours,0
+discos-169,Meteor 2-17,18820,2005-06-21,explosion,unknown,Meteor Class,payload,SP-1,1500,51,238.864,0.716593,3.27053,20.8779,4.68361,15.5938,False,-1.2028,nasa,3
+discos-401,Altair 3 (Scout B-1),1502,2005-10-18,explosion,propulsion,Scout Class,rocket_body,Altair,47,27,238.864,1.18023,13.4172,51.5512,8.84683,2.01234,True,1.48076,ours,0
+discos-342,Meteor 2-15,17290,2006-03-13,explosion,unknown,Meteor Class,payload,SP-1,1500,1,238.864,0.716593,3.29728,20.9465,238.864,3.29728,True,4.2828,ours,3
+discos-480,Meteor 2-6,11962,2006-03-24,explosion,unknown,Meteor Class,payload,SP-1,1500,20,238.864,0.716593,2.50521,17.0671,11.9432,7.98337,False,0.402803,ours,3
+discos-472,Meteor 3-1,16191,2006-04-24,explosion,unknown,Meteor Class,payload,SP-2,1750,4,238.864,0.716593,3.44012,23.1546,59.7161,1.16275,True,3.93881,ours,3
+discos-371,Zenit-2 second stage,28353,2006-04-26,explosion,propulsion,Zenit-2 Upper Stage,rocket_body,Zenit-2 second stage,9000,3,238.864,0.716593,6.18778,56.1443,79.6214,2.06259,True,3.65332,ours,3
+discos-172,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),16263,2006-05-04,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1400,50,238.864,0.884276,20.6735,135.552,4.77729,2.41856,True,0.680701,ours,2
+discos-483,FW-4D (Delta E),3094,2006-05-13,explosion,propulsion,Delta Upper Stage,rocket_body,FW-4D,40,10,238.864,0.81405,6.46725,46.8764,23.8864,1.54625,True,2.73748,ours,4
+discos-173,Proton-K/DM-2 ullage motor (SOZ),20081,2006-06-10,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,119,238.864,0.953546,7.37302,32.583,2.00726,16.1399,False,-2.08452,nasa,0
+discos-176,Proton-K/DM-2 ullage motor (SOZ),26398,2006-09-01,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,110,1,238.864,1.26049,19.7751,75.5349,238.864,19.7751,False,2.49147,ours,0
+discos-179,Delta IV DCSS 4 (Delta 4M),29523,2006-11-04,explosion,unknown,Unknown,rocket_body,Delta IV DCSS,2850,66,238.864,0.716593,4.54869,26.3224,3.61916,14.5097,False,-1.38857,nasa,0
+discos-178,Cosmos-2423,29402,2006-11-17,explosion,deliberate,Cosmos 2031 Class,payload,orlets-1,7600,30,238.864,0.894547,22.9064,134.131,7.96214,1.30968,True,1.80492,ours,0
+discos-199,H-18 (Long March (CZ) YF) (Long March (CZ) 3A),30324,2007-02-02,explosion,propulsion,Propulsion,rocket_body,H-18,2800,1,238.864,0.815005,8.99969,74.0721,238.864,8.99969,True,3.27871,ours,4
+discos-201,Proton-K/DM-2M ullage motor (SOZ),25054,2007-02-14,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2M ullage motor,55.5,7,238.864,0.716593,1.75661,26.6198,34.1235,3.98495,True,2.14746,ours,1
+discos-200,Zi Yuan 1,25940,2007-02-18,explosion,unknown,Unknown,payload,Zi Yuan,1450,90,238.864,0.716593,5.13295,55.9332,2.65405,17.5338,False,-1.88804,nasa,1
+discos-202,Briz-M (Proton-M/Briz-M),28944,2007-02-19,explosion,propulsion,Briz-M,rocket_body,Briz-M,2370,109,238.864,0.772487,14.6992,108.627,2.19142,7.41535,False,-1.219,nasa,3
+discos-213,Delta IV DCSS 5 (Delta 4H),32288,2007-11-11,explosion,unknown,Unknown,rocket_body,Delta IV DCSS,3510,31,238.864,0.716593,2.4099,13.9351,7.7053,12.8636,False,-0.512493,nasa,0
+discos-385,Cosmos-1341,13080,2008-02-15,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,2,238.864,0.7572,5.96038,49.1623,119.432,2.98019,True,3.69076,ours,4
+discos-218,Cosmos-2421,29247,2008-03-14,explosion,unknown,Cosmos 699 Class (EORSAT),payload,Cosmos,3150,509,238.864,0.80139,8.0299,42.3903,2.13092,63.3881,False,-3.39272,nasa,3
+discos-389,Cosmos-1409,13585,2008-05-30,explosion,deliberate,Cosmos 862 Class (Explosive Charge),payload,us-k,1238.85,2,238.864,0.760066,6.04136,49.6577,119.432,3.02068,True,3.67727,ours,4
+discos-440,L-55 (YF24) (Long March (CZ) 2C),33322,2008-09-06,explosion,propulsion,Propulsion,rocket_body,L-55,3800,17,238.864,0.902429,17.1896,155.225,14.0508,1.01115,True,2.63159,ours,1
+discos-375,H-II LE-5B (H-IIA 202),33500,2009-01-24,explosion,propulsion,H-IIA Class,rocket_body,H-II LE-5B,4000,10,238.864,0.716593,12.3154,102.801,23.8864,1.23154,True,2.96505,ours,2
+discos-225,Proton-K/DM-2 ullage motor (SOZ),21220,2009-03-08,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,33,238.864,0.949963,7.29635,32.326,7.23831,4.52281,False,0.470255,ours,0
+discos-346,DMSP Block 5D-2 F6,13736,2009-06-22,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,744.3,7,238.864,1.58964,89.4334,288.818,34.1235,12.7762,True,0.982401,ours,3
+discos-358,DMSP F-18 (USA 210),35951,2009-11-23,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1217,2,238.864,1.23063,41.5655,181.775,119.432,20.7827,True,1.74863,ours,3
+discos-184,Yaogan Weixing 1,29092,2010-02-04,explosion,unknown,Unknown,payload,yaogan-1,2700,7,238.864,1.153,28.256,159.281,34.1235,4.03657,True,2.13459,ours,4
+discos-352,H-II LE-5B (H-IIA 202),36105,2010-08-17,explosion,propulsion,H-IIA Class,rocket_body,H-II LE-5B,4000,7,238.864,0.719937,12.9472,106.893,34.1235,1.84959,True,2.91502,ours,2
+discos-186,Briz-M (Proton-M/Briz-M),32709,2010-10-13,explosion,propulsion,Briz-M,rocket_body,Briz-M,2370,122,238.864,0.84128,19.0962,132.129,1.9579,6.38869,True,-1.18265,nasa,3
+discos-187,H-18 (Long March (CZ) YF) (Long March (CZ) 3C),37211,2010-11-01,explosion,unknown,Unknown,rocket_body,H-18,2800,61,238.864,0.88762,11.3145,83.0889,3.91581,5.3913,True,-0.319765,nasa,4
+discos-188,NOAA 11,19531,2010-11-24,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1712,2,238.864,1.32594,58.5459,224.115,119.432,29.2729,True,1.40608,ours,3
+discos-227,Proton-M/DM-2 ullage motor (SOZ),32399,2011-08-18,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,2,238.864,0.794463,7.33504,53.5324,119.432,3.66752,True,3.48323,ours,3
+discos-438,NOAA 12,21263,2011-10-02,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,728.44,4,238.864,1.31781,47.9766,190.183,59.7161,11.9942,True,1.60518,ours,3
+discos-855,Cosmos-1331,13027,2011-11-15,explosion,unknown,Unknown,payload,strela-2m,743.31,1,238.864,0.729969,5.4055,54.3942,238.864,5.4055,True,3.78848,ours,1
+discos-849,Cosmos-468,5705,2011-11-17,explosion,unknown,Unknown,payload,strela-2m,743.31,2,238.864,0.716593,4.43189,46.88,119.432,2.21594,True,3.98707,ours,1
+discos-228,Proton-K/DM-2 ullage motor (SOZ),20630,2011-11-18,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.962145,7.59063,33.3746,119.432,3.79531,True,3.44898,ours,0
+discos-229,H-18 (Long March (CZ) YF) (Long March (CZ) 3B/E),38015,2011-12-21,explosion,unknown,Unknown,rocket_body,H-18,2800,39,238.864,0.900041,11.953,86.7899,6.12473,3.26278,True,0.629755,ours,4
+discos-190,H-18 (Long March (CZ) YF) (Long March (CZ) 3C),38092,2012-02-26,explosion,propulsion,Propulsion,rocket_body,H-18,2800,41,238.864,0.890725,12.5991,95.9886,5.82596,3.25419,True,0.58238,ours,4
+discos-349,Blok-DM-2M (Proton-K/DM-2M),23845,2012-06-14,explosion,propulsion,Proton Ullage Motor,rocket_body,Blok-DM-2M,2120.91,2,238.864,0.874243,14.2898,130.777,119.432,7.14491,True,2.81635,ours,1
+discos-497,Meteor 2-10,14452,2012-06-23,explosion,unknown,Meteor Class,payload,SP-1,1500,3,238.864,0.716593,4.25226,24.7141,79.6214,1.41742,True,4.02844,ours,3
+discos-330,NOAA 14,23455,2012-07-15,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1060.46,1,238.864,1.24687,43.4836,182.477,238.864,43.4836,False,1.70351,ours,3
+discos-461,H-18 (Long March (CZ) YF) (Long March (CZ) 3B/E),37151,2012-08-12,explosion,propulsion,Propulsion,rocket_body,H-18,2800,31,238.864,0.870899,11.6258,90.4713,7.7053,2.66649,True,1.06114,ours,4
+discos-230,Briz-M (Proton-M/Briz-M),38746,2012-10-16,explosion,propulsion,Briz-M,rocket_body,Briz-M,2370,116,238.864,0.891919,23.0289,153.523,2.05918,5.03715,True,-0.894534,nasa,3
+discos-400,DMSP Block 5D-2 F9,18822,2012-12-16,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,815.66,7,238.864,1.36296,53.7282,204.651,34.1235,7.67546,True,1.49196,ours,3
+discos-436,H-II LE-5B (H-IIA 202),39063,2013-01-27,explosion,propulsion,H-IIA Class,rocket_body,H-II LE-5B,4000,1,238.864,0.749795,15.3403,122.06,238.864,15.3403,True,2.74541,ours,2
+discos-515,Falcon 9 Merlin-V (1D) (Falcon 9 v1.1),39271,2013-09-29,explosion,unknown,Unknown,rocket_body,Falcon 9 Merlin-V,3000,24,238.864,0.941603,12.8175,99.7686,9.95268,1.87245,True,1.6706,ours,1
+discos-367,H-II LE-5B (H-IIA 202),39580,2014-03-03,explosion,propulsion,H-IIA Class,rocket_body,H-II LE-5B,4000,1,238.864,0.760305,16.2552,127.713,238.864,16.2552,True,2.68748,ours,2
+discos-209,Proton-K/DM-2 ullage motor (SOZ),23402,2014-05-08,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,55.5,2,238.864,0.947097,7.2469,32.1762,119.432,3.62345,True,3.49532,ours,0
+discos-210,Proton-M/DM-2 ullage motor (SOZ),33385,2014-05-08,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,1,238.864,0.843908,8.84944,61.5245,238.864,8.84944,True,3.29554,ours,3
+discos-402,"Delta IV DCSS 4 (Delta 4M+(4,2))",39742,2014-05-22,explosion,propulsion,Delta 4 Class,rocket_body,Delta IV DCSS,2850,14,238.864,0.716593,3.04146,20.963,17.0617,4.60305,True,1.31012,ours,0
+discos-512,H-II LE-5B (H-IIA 202),39771,2014-05-27,explosion,propulsion,H-IIA Class,rocket_body,H-II LE-5B,4000,1,238.864,0.761499,16.3768,128.459,238.864,16.3768,True,2.68003,ours,2
+discos-204,Proton-M/DM-2 ullage motor (SOZ),36406,2014-07-09,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,12,238.864,0.857762,9.43323,65.1118,19.9054,1.2721,True,2.75032,ours,3
+discos-205,Proton-K/DM-2 ullage motor (SOZ),32280,2014-08-13,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,56,25,238.864,0.93802,7.15542,32.0561,9.55457,3.49386,True,1.00601,ours,0
+discos-510,Meteor 2-11,15099,2014-11-23,explosion,unknown,Meteor Class,payload,SP-1,1500,26,238.864,0.745495,5.18503,28.3845,9.18709,5.01444,True,0.605478,ours,3
+discos-327,Delta IV DCSS 5 (Delta 4H),40330,2014-12-05,explosion,propulsion,Delta 4 Class,rocket_body,Delta IV DCSS,3450,1,238.864,0.716593,0.896935,6.89745,238.864,1.11491,True,5.36712,ours,0
+discos-233,DMSP Block 5D-2 F13,23533,2015-02-03,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1487,237,238.864,1.53518,76.4024,250.601,1.00787,3.102,True,-1.12421,nasa,3
+discos-348,"Delta IV DCSS 4 (Delta 4M+(4,2))",40535,2015-04-20,explosion,propulsion,Delta 4 Class,rocket_body,Delta IV DCSS,2850,4,238.864,0.716593,3.29681,22.4494,59.7161,1.2133,True,3.89626,ours,0
+discos-369,Progress M-27M,40619,2015-04-28,explosion,unknown,Accidental,payload,progress-m-m,7290,20,238.864,1.09018,41.2039,218.875,11.9432,2.06019,True,1.75736,ours,2
+discos-318,Meteor 2-21,22782,2015-06-23,explosion,unknown,Meteor Class,payload,SP-1,1500,2,238.864,0.840325,7.68809,37.9821,119.432,3.84404,True,3.43622,ours,3
+discos-226,NOAA 16,26536,2015-11-25,explosion,battery,DMSP/NOAA Class,payload,TIROS-N,1403,457,238.864,1.36272,60.6465,239.914,1.91322,7.53548,False,-1.37083,nasa,3
+discos-285,Briz-M (Proton-M/Briz-M),38343,2015-12-23,explosion,propulsion,Briz-M,rocket_body,Briz-M,1600,1,238.864,0.928943,24.0319,155.062,238.864,24.0319,True,2.29651,ours,3
+discos-284,Briz-M (Proton-M/Briz-M),41122,2016-01-16,explosion,propulsion,Briz-M,rocket_body,Briz-M,1600,7,238.864,0.941125,25.2336,162.47,34.1235,3.6048,True,2.24772,ours,3
+discos-288,Hitomi,41337,2016-03-26,explosion,unknown,Accidental,payload,astro-h,2700,10,238.864,1.20889,43.9045,203.751,23.8864,4.39045,True,1.69388,ours,0
+discos-286,Proton-M/DM-2 ullage motor (SOZ),33472,2016-03-26,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,17,238.864,0.875915,9.89185,66.597,14.0508,1.71859,True,2.10118,ours,3
+discos-289,Proton-M/DM-2 ullage motor (SOZ),33473,2016-06-01,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,1,238.864,0.879021,9.99934,67.1116,238.864,9.99934,True,3.17338,ours,3
+discos-278,Beidou DW 2,34779,2016-06-29,explosion,propulsion,Propulsion,payload,DFH-3,3060,2,238.864,1.49816,102.549,432.333,119.432,51.2746,True,0.845553,ours,0
+discos-479,Briz-KM (Rokot-KM),40556,2016-07-26,explosion,propulsion,Briz-M,rocket_body,Briz-KM,2370,6,238.864,1.23158,39.9384,222.308,39.8107,6.65639,True,1.78856,ours,4
+discos-281,Proton-K/DM-2 ullage motor (SOZ),29680,2016-07-27,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,56,8,238.864,0.944469,7.30256,32.578,29.858,1.09551,True,3.30524,ours,0
+discos-526,Telkom 1,25880,2017-08-25,explosion,propulsion,Propulsion,payload,A2100A,2763,1,238.864,0.747168,12.1307,94.4615,238.864,12.1307,True,2.98015,ours,2
+discos-519,Proton-M/DM-2 ullage motor (SOZ),37143,2017-09-03,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,9,238.864,0.913178,11.3656,74.3429,26.5405,1.26285,True,3.0453,ours,3
+discos-612,Fregat operational debris (SBB),43089,2018-02-12,explosion,propulsion,Propulsion,rocket_body,Fregat operational debris,360,5,238.864,0.837697,12.3307,82.224,47.7729,2.46613,True,2.96381,ours,2
+discos-579,Transtage 17 (Titan IIIC),3692,2018-02-28,explosion,propulsion,Titan Transtage,rocket_body,Transtage,1486.62,54,238.864,0.908879,19.4543,113.564,4.42341,2.77574,True,0.465996,ours,3
+discos-645,Proton-M/DM-2 ullage motor (SOZ),36407,2018-05-22,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,23,238.864,0.926077,11.8563,76.6121,10.3854,1.9399,True,1.67776,ours,3
+discos-646,L-14B-res (YF40B-res) (Long March (CZ) 4C),39411,2018-08-17,explosion,propulsion,Propulsion,rocket_body,L-14B-res,1000,1,238.864,0.745257,13.2856,104.888,238.864,13.2856,True,2.88921,ours,2
+discos-648,Proton-K/DM-2 ullage motor (SOZ),28920,2018-08-24,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,56,3,238.864,0.951874,7.4786,33.2031,79.6214,2.49287,True,3.46385,ours,0
+discos-647,Centaur-5 SEC (Atlas V 401),40209,2018-08-30,explosion,propulsion,Propulsion,rocket_body,Centaur-5 SEC,2020,533,238.864,0.799001,9.43825,53.6176,2.23139,56.4724,False,-3.23113,nasa,0
+discos-649,Orbcomm FM16,25417,2018-12-22,explosion,unknown,Unknown,payload,MicroStar,42,14,238.864,0.716593,1.18931,16.028,17.0617,11.7716,True,0.37115,ours,4
+discos-651,Centaur-5 SEC (Atlas V 401),35816,2019-03-25,explosion,propulsion,Propulsion,rocket_body,Centaur-5 SEC,2020,605,238.864,0.758394,7.74804,45.1246,2.53282,78.0843,False,-3.42846,nasa,0
+discos-653,Centaur-5 SEC (Atlas V 551),43652,2019-04-06,explosion,propulsion,Propulsion,rocket_body,Centaur-5 SEC,2020,962,238.864,0.843908,11.5293,63.7381,4.02739,83.4399,False,-3.03101,nasa,0
+discos-652,Intelsat IS-29e,41308,2019-04-07,explosion,propulsion,Propulsion,payload,BSS-702MP,6552,2,238.864,0.95283,33.9304,212.188,119.432,16.9652,True,1.95158,ours,2
+discos-690,Transtage 30 (Titan IIIC),8751,2019-05-07,explosion,propulsion,Titan Transtage,rocket_body,Transtage,1486.62,1,238.864,0.910551,19.9256,116.875,238.864,19.9256,True,2.48389,ours,3
+discos-694,Long March (CZ) 11 fourth stage,44317,2019-06-05,explosion,unknown,Unknown,rocket_body,Long March,500,8,238.864,1.49983,40.5221,144.065,29.858,5.06527,True,1.77405,ours,0
+discos-657,H10 (Ariane 42P H10),22079,2019-07-22,explosion,propulsion,Ariane Upper Stage,rocket_body,H10,1764.12,10,238.864,0.793507,8.06907,67.7524,23.8864,1.2393,True,2.95876,ours,4
+discos-691,Proton-M/DM-2 ullage motor (SOZ),37144,2019-08-19,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,23,238.864,0.949247,12.7604,80.7251,10.3854,1.80246,True,1.75125,ours,3
+discos-705,Cosmos-2536,44422,2019-09-30,explosion,unknown,Unknown,payload,kyua-1,100,9,238.864,1.84977,104.701,298.409,26.5405,11.6335,True,0.824783,ours,2
+discos-703,Proton-K/DM-2 ullage motor (SOZ),29682,2019-10-23,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-K/DM-2 ullage motor,56,4,238.864,0.971939,8.01294,35.167,59.7161,2.00324,True,3.39484,ours,0
+discos-741,Proton-M/DM-2 ullage motor (SOZ),36116,2019-12-22,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,2,238.864,0.949247,12.6753,79.8927,119.432,6.33767,True,2.93624,ours,3
+discos-693,Cosmos 2491 (RS 46),39497,2019-12-23,explosion,unknown,Unknown,payload,nivelir,50,50,238.864,0.922733,9.75092,73.7233,4.77729,5.12772,True,-0.0707889,nasa,1
+discos-742,Cosmos-2535,44421,2020-01-09,explosion,unknown,Unknown,payload,kyua-1,547,17,238.864,1.12433,32.9886,163.829,14.0508,1.94051,True,1.97973,ours,2
+discos-704,Tsyklon-3-3 (Tsyklon SL-14 (F-2)),21656,2020-02-12,explosion,propulsion,Tsyklon Upper Stage,rocket_body,Tsyklon-3-3,1387.51,111,238.864,0.904579,25.1371,163.294,2.15193,4.41578,True,-0.718819,nasa,2
+discos-763,NOAA 17,27453,2021-03-10,explosion,battery,Battery,payload,TIROS-N,1403,114,238.864,1.52157,84.4006,305.417,2.0953,1.3507,True,0.439073,ours,3
+discos-877,Orbcomm FM05,25117,2021-11-18,explosion,unknown,Unknown,payload,MicroStar,42,14,238.864,0.716593,1.17569,15.9927,17.0617,11.9079,True,0.359636,ours,4
+discos-876,ORION 38 (Pegasus XL) (Minotaur-4),45877,2021-11-26,explosion,unknown,Unknown,rocket_body,ORION,410,29,238.864,1.5851,45.7296,155.828,8.2367,1.57688,True,1.65315,ours,0
+discos-882,Proton-M/DM-2 ullage motor (SOZ),32398,2022-04-15,explosion,propulsion,Proton Ullage Motor,rocket_body,Proton-M/DM-2 ullage motor,56,2,238.864,0.980777,13.7696,83.7953,119.432,6.88479,True,2.85343,ours,3
+discos-890,L-15 (YF-115) (Long March (CZ) 6A),54236,2022-11-12,explosion,propulsion,CZ-6A Upper Stage,rocket_body,L-15,6000,790,238.864,1.13986,58.5884,304.4,3.30732,13.4839,False,-1.40536,nasa,2
+discos-891,H-IIA 202 Adapter (4/4D-LC),38345,2022-11-17,explosion,unknown,Unknown,rocket_body,H-IIA 202 Adapter,100,39,238.864,1.67683,39.7788,109.351,6.12473,1.01997,True,1.79256,ours,3
+discos-895,SS-3 (SSLV),55565,2023-02-10,explosion,propulsion,Propulsion,rocket_body,SS-3,1500,5,238.864,1.58964,94.9782,368.483,47.7729,18.9956,True,0.922248,ours,0
+discos-896,Orbcomm FM36,25984,2023-03-11,explosion,unknown,Unknown,payload,MicroStar,44,9,238.864,0.716593,1.20985,16.5586,26.5405,7.43895,True,1.27194,ours,4
+discos-995,Cosmos-2143,21299,2023-06-29,explosion,battery,Battery,payload,strela-3,222.99,6,238.864,1.01374,8.87811,37.7998,39.8107,1.47968,True,3.29231,ours,0
+discos-1028,Resurs-P No. 1,39186,2024-06-26,explosion,unknown,Unknown,payload,Yantar,5691,19,238.864,1.43581,70.9673,386.417,12.5718,3.73512,True,1.21368,ours,1
+discos-1032,L-15 (YF-115) (Long March (CZ) 6A),60397,2024-08-06,explosion,propulsion,CZ-6A Upper Stage,rocket_body,L-15,6000,705,238.864,1.16781,64.8232,329.447,2.95147,10.8757,False,-1.30423,nasa,2
+discos-1054,Centaur-5 SEC (Atlas V 541),43227,2024-09-06,explosion,propulsion,Propulsion,rocket_body,Centaur-5 SEC,2020,843,238.864,0.901713,14.3276,76.2892,3.5292,58.8377,False,-2.81371,nasa,0
+discos-1037,Intelsat 33e (IS-33e),41748,2024-10-19,explosion,propulsion,Propulsion,payload,BSS-702MP,6552,1086,238.864,0.994392,40.5121,243.673,4.54651,26.8068,False,-1.77429,nasa,2
+discos-1057,DMSP Block 5D-2 F14,24753,2024-12-19,explosion,battery,Battery,payload,TIROS-N,815.66,15,238.864,1.52395,66.6618,232.587,15.9243,4.44412,True,1.27626,ours,3
